@@ -16,7 +16,6 @@ module.exports = {
         rules: [ 
 
             {
-
                 test: /\.js[x]{0,1}$/,
 
                 exclude: /(node_modules|bower_components)/,
@@ -30,11 +29,9 @@ module.exports = {
                         presets: [ 'react', 'env' ]
                     }
                 }
-
             }, 
 
             { 
-
                 test: /\.less$/,
 
                 use: [ 
