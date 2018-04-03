@@ -1,0 +1,5 @@
+# Node modules
+node_modules
+
+# Bundled JS files by Webpack
+dist/bundle.js
