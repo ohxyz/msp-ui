@@ -1,5 +1,9 @@
 # Node modules
 node_modules
 
-# Bundled JS files by Webpack
-dist/bundle.js
+# Bundled JS files by webpack
+**/bundle.js
+
+# avn optional version file
+.node-version
+

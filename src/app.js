@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { InsertText } from 'web-form-controls';
 
 require( '../less/main.less' );
 
@@ -11,13 +10,11 @@ class App extends React.Component {
         return (
 
             <div>
-                <InsertText hint="Agencies" />
-                <h1>Hello, world X !</h1>
+                <h1>MSP</h1>
             </div>
         );
     }
 }
-
 
 ReactDOM.render(
     <App />,
