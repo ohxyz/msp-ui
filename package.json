@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "Multi-site portal UI",
   "scripts": {
-    "watch": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "dev": "webpack --mode development --watch --env.env=dev",
+    "watch": "webpack --mode development --watch --env.env=dev",
     "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy",
-    "serve:dev": "http-server ./test/dev -c-1"
+    "serve:dev": "http-server ./test/dev -c-1",
+    "dev": "npm run serve:dev & webpack --mode development --watch --env.env=dev"
   },
   "repository": {
     "type": "git",
