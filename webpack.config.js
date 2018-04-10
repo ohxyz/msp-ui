@@ -2,8 +2,6 @@ var path = require( 'path' );
 
 module.exports = env => {
 
-    console.log( '********', env );
-
     let environ = env.env;
     let outputPath = path.join( __dirname, 'dist' );
     let entryPath = './src/app.js';
@@ -13,10 +11,10 @@ module.exports = env => {
         outputPath = path.join( __dirname , dist );
     }
 
-
     let outputPathFragment = '';
     let fileName = '';
 
+    // Todo: check env.component's actual type
     if ( env.component && environ === 'dev' ) {
 
         componentFolder = path.join( __dirname, 'test', 'dev', 'components', env.component );
@@ -59,7 +57,7 @@ module.exports = env => {
                         }
                     }
                 },
-
+                
                 { 
                     test: /\.less$/,
 
@@ -73,6 +71,4 @@ module.exports = env => {
             ]
         }
     };
-
-
 };
