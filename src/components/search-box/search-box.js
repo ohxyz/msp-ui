@@ -7,4 +7,3 @@ export default class SearchBox extends React.Component {
         return <h1>Search box here...</h1>
     }
 }
-
