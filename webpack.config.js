@@ -2,8 +2,10 @@ var path = require( 'path' );
 
 module.exports = env => {
 
+    console.log( '********', env );
+
     let environ = env.env;
-    let outputPath = '';
+    let outputPath = path.join( __dirname, 'dist' );
     let entryPath = './src/app.js';
 
     if ( environ === 'prod' ) {
