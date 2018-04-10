@@ -4,8 +4,14 @@ import SearchBox from '../../../../src/components/search-box/search-box.js';
 
 require( '../../../../less/components/search-box.less' );
 
+const users = [
+
+    'Apple', 'Banana', 'Cat', 'Dog', 'Elphant',
+    'abc', 'abe', 'bcd', 'cde', 'cdf', 'def', 'efg'
+];
+
 ReactDOM.render(
 
-    <SearchBox />,
-    document.getElementById( 'search-box' )
+    <SearchBox items={ users } />,
+    document.getElementById( 'root' )
 );

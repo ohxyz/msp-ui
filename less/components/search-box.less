@@ -1,4 +1,90 @@
-body {
+@import "../_variables";
 
-    background-color: pink;
+.search-box {
+
+    position: relative;
+    font-size: @default-font-size;
+    border-radius: 3px;
+    width: 100%;
+    line-height: 24px;
+
+    &__header {
+
+        min-height: 24px;
+    }
+
+    &__field {
+
+        box-sizing: border-box;
+        font-size: @default-font-size;
+        padding: @default-padding;
+        border: @default-border;
+        line-height: @default-line-height;
+        width: 100%;
+
+        &:focus {
+
+            outline: none;
+            border-color: @default-border-color;
+        }
+    }
+
+    &__list {
+
+        margin-top: 8px;
+        min-height: 50px;
+
+        &-item {
+            padding: 4px 8px;
+            border: @default-border;
+        }
+    }
+
 }
+
+.search-box--open {
+
+    .search-box {
+
+        &__header {
+
+        }
+
+        &__content {
+
+            position: absolute;
+            z-index: 1;
+            top: 49px;
+            left: 0;
+            right: 0;
+            background-color: white;
+            min-height: 24px;
+            border: @default-border;
+            border-color: @default-border-color;
+            max-height: 49px * 5 - 1 ;
+            user-select: none;
+            overflow-y: auto;
+        }
+
+        &__list-item {
+
+            padding: @default-padding;
+            font-size: @default-font-size;
+            line-height: @default-line-height;
+            border-bottom: @default-border;
+
+            cursor: pointer;
+
+            &:last-child {
+
+                border-color: transparent;
+            }
+
+            &:hover {
+
+                background-color: #eeeeee;
+            }
+        }
+    }
+}
+
