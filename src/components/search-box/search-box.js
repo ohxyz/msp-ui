@@ -28,10 +28,16 @@ export default class SearchBox extends React.Component {
     handleChange() {
 
         let text = this.textInputElement.value;
-        let itemsFiltered = this.filterItemsByText( text );
+        let itemsFiltered = [];
 
-        console.log( text );
-        console.log( itemsFiltered );
+        if ( text.length > 2 ) {
+
+            itemsFiltered = this.filterItemsByText( text );
+
+        }
+
+        // console.log( text );
+        // console.log( itemsFiltered );
 
         this.setState( { 
 
