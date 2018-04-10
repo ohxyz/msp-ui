@@ -5,8 +5,9 @@
   "scripts": {
     "watch": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "dev":   "webpack --mode development --watch --env.env=dev",
-    "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy "
+    "dev": "webpack --mode development --watch --env.env=dev",
+    "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy",
+    "serve:dev": "http-server ./test/dev -c-1"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "http-server": "^0.11.1",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "react": "^16.3.1",
