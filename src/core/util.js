@@ -1,5 +1,7 @@
-/* Utilities */
-
+/* Utilities 
+ *
+ * CommonJS styles
+ */
 
 /* Check if it is an object like { a: 1, b: 2 }, not function, null, array, etc 
  *
@@ -10,7 +12,26 @@ function isObject( a ) {
     return ( !!a ) && ( a.constructor === Object );
 };
 
+
+function generateRandomString() {
+
+    return Math.random().toString( 36 ).slice( 2 );
+}
+
+
+function setDefault( defaultValue, otherValue ) {
+    
+    if ( defaultValue === undefined ) {
+        
+        return otherValue;
+    }
+    
+    return defaultValue;
+}
+
 module.exports = {
 
-    isObject
+    isObject,
+    generateRandomString,
+    setDefault
 };

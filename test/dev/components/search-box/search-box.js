@@ -12,6 +12,6 @@ const users = [
 
 ReactDOM.render(
 
-    <SearchBox items={ users } />,
+    <SearchBox id="seach-box-users" items={ users } />,
     document.getElementById( 'root' )
 );

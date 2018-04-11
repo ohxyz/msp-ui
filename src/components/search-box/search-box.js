@@ -1,5 +1,9 @@
 import React from 'react';
 import SearchList from './search-box-list.js';
+import { componentManager } from '../../core/component-manager.js';
+import { generateRandomString, setDefault } from '../../core/util.js';
+
+console.log( componentManager );
 
 export default class SearchBox extends React.Component {
 
@@ -18,6 +22,9 @@ export default class SearchBox extends React.Component {
             items: props.items,
             itemsFiltered: []
         };
+
+        this.id = setDefault( props.id, generateRandomString() );
+        componentManager.addComponent( this.id, this );
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
