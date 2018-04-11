@@ -7,7 +7,8 @@
     "watch": "webpack --mode development --watch --env.env=dev",
     "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy",
     "serve:dev": "http-server ./test/dev -c-1",
-    "dev": "npm run serve:dev & webpack --mode development --watch --env.env=dev"
+    "dev": "npm run serve:dev & webpack --mode development --watch --env.env=dev",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "http-server": "^0.11.1",
+    "jest": "^22.4.3",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "react": "^16.3.1",
