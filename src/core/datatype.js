@@ -6,7 +6,7 @@
  */
 const util = require( './util.js' );
 
-class User {
+class UserProfile {
 
     constructor( arg ) {
 
@@ -38,5 +38,5 @@ class User {
 
 module.exports = {
 
-    User
+    UserProfile
 };
