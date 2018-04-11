@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchList from './search-list.js';
+import SearchList from './search-box-list.js';
 
 export default class SearchBox extends React.Component {
 
@@ -8,6 +8,9 @@ export default class SearchBox extends React.Component {
         super( props );
 
         this.handleChange = this.handleChange.bind( this );
+        this.handleSelect = this.handleSelect.bind( this );
+        this.handleCrossIconClick = this.handleCrossIconClick.bind( this );
+
         this.textInputElement = null;
 
         this.state = {
@@ -33,16 +36,27 @@ export default class SearchBox extends React.Component {
         if ( text.length > 2 ) {
 
             itemsFiltered = this.filterItemsByText( text );
-
         }
-
-        // console.log( text );
-        // console.log( itemsFiltered );
 
         this.setState( { 
 
             itemsFiltered: itemsFiltered
         } )
+    }
+
+    handleSelect( item ) {
+
+        this.textInputElement.value = item;
+
+        this.setState( { 
+
+            itemsFiltered: []
+        } );
+    }
+
+    handleCrossIconClick() {
+
+        this.textInputElement.value = '';
     }
 
     filterItemsByText( text ) {
@@ -67,12 +81,13 @@ export default class SearchBox extends React.Component {
         return (
 
             <div className="search-box__header">
+                <span className="search-box__clear" onClick={ this.handleCrossIconClick }>x</span>
                 <input 
                     type="text" 
                     className="search-box__field" 
                     onChange={ this.handleChange }
                     ref={ elem => this.textInputElement = elem }
-                />  
+                />
             </div>
         );
     }
@@ -82,9 +97,11 @@ export default class SearchBox extends React.Component {
         return (
 
             <div className="search-box__content">
-                <SearchList items={ this.state.itemsFiltered } />
+                <SearchList 
+                    items={ this.state.itemsFiltered }
+                    onSelect={ this.handleSelect }
+                />
             </div>
-
         );
     }
 

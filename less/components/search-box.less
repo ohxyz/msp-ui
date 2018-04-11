@@ -9,6 +9,18 @@
     width: 100%;
     line-height: 24px;
 
+    &__clear {
+
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: @default-font-color;
+        cursor: pointer;
+        z-index: 1;
+    }
+
     &__header {
 
         min-height: 24px;
@@ -41,6 +53,7 @@
             padding: 12px 19px;
             border: @default-border;
             border-top: none;
+            cursor: pointer;
         }
     }
 }
