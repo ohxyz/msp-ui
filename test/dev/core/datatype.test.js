@@ -21,7 +21,7 @@ describe( 'UserProfile object', () => {
         let arg = { name: 'tom', 'org': 123, 'email': '@' };
         let user = new datatype.UserProfile( arg );
 
-        expect( user ).toEqual( { name: "tom", org: 123 } );
+        expect( arg ).toEqual( expect.objectContaining( user ) );
 
     } );
 } );
