@@ -17,7 +17,7 @@ export default class SearchBox extends React.Component {
 
             items: props.items,
             itemsFiltered: []
-        }
+        };
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
@@ -81,7 +81,7 @@ export default class SearchBox extends React.Component {
         return (
 
             <div className="search-box__header">
-                <span className="search-box__clear" onClick={ this.handleCrossIconClick }>x</span>
+                <span className="search-box__clear" onClick={ this.handleCrossIconClick }></span>
                 <input 
                     type="text" 
                     className="search-box__field" 
