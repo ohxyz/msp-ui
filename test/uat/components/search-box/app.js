@@ -7,7 +7,7 @@ require( '../../../../less/components/search-box.less' );
 const users = [
 
     'Apple', 'Banana', 'Cat', 'Dog', 'Elphant',
-    'abcd', 'abce', 'bcde', 'cdef', 'cefg', 'defg', 'efgh'
+    'abcd', 'abce', 'abcZ', 'bcde', 'cdef', 'cefg', 'defg', 'efgh'
 ];
 
 ReactDOM.render(

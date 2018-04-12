@@ -21,9 +21,8 @@ module.exports = env => {
         if ( environ === 'uat' || environ === 'dev' ) {
 
             componentFolder = path.join( __dirname, 'test', environ, 'components', componentName );
-            fileName = componentName + '.js';
 
-            entryPath = path.join( componentFolder, componentName + '.js' );
+            entryPath = path.join( componentFolder, 'app.js' );
             outputPath = componentFolder;
         }
     }
