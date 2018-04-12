@@ -2,12 +2,32 @@
   "name": "msp-ui",
   "version": "0.0.1",
   "description": "Multi-site portal UI",
+  "jest": {
+    "roots": [
+      "./test"
+    ]
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env"
+          ],
+          "react"
+        ]
+      }
+    }
+  },
   "scripts": {
     "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch --env.env=dev",
-    "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy",
+    "watch": "webpack --mode development --watch --env.environ=dev",
+    "dummy": "webpack --mode development --watch --env.environ=dev --env.component=dummy",
     "serve:dev": "http-server ./test/dev -c-1",
-    "dev": "npm run serve:dev & webpack --mode development --watch --env.env=dev"
+    "serve:uat": "http-server ./test/uat -c-1",
+    "dev": "npm run serve:dev & webpack --mode development --watch --env.environ=dev",
+    "uat": "npm run serve:uat & webpack --mode development --watch --env.environ=uat",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,6 +46,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "http-server": "^0.11.1",
+    "jest": "^22.4.3",
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "react": "^16.3.1",

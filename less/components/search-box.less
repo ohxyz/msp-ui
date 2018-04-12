@@ -1,4 +1,85 @@
-body {
+@import "../_variables";
 
-    background-color: pink;
+.search-box {
+
+    font-family: @default-font-family;
+    position: relative;
+    font-size: @default-font-size;
+    border-radius: 3px;
+    width: 100%;
+    line-height: 24px;
+
+    &__clear {
+
+        width: 48px;
+        height: 48px;
+        top: 1px;
+        right: 1px;
+        border-left: @default-border;
+        position: absolute;
+        color: @default-font-color;
+        cursor: pointer;
+        z-index: 1;
+
+        &:before,
+        &:after {
+
+            content: "";
+            display: block;
+            background-color: @default-border-color;
+            width: 20px;
+            height: 2px;
+            top: 24px;
+            right: 13px;
+            position: absolute;
+        }
+
+        &:before {
+
+            transform: rotate(45deg);
+        }
+
+        &:after {
+
+            transform: rotate(135deg);
+        }
+    }
+
+    &__header {
+
+        min-height: 24px;
+    }
+
+    &__field {
+
+        box-sizing: border-box;
+        font-size: @default-font-size;
+        padding: @default-padding;
+        padding-right: 19px + 49px;
+        border: @default-border;
+        line-height: @default-line-height;
+        width: 100%;
+
+        &:focus {
+
+            outline: none;
+            border-color: @default-border-color;
+        }
+    }
+
+    &__list {
+
+        min-height: 50px;
+
+        &-item {
+
+            box-sizing: border-box;
+            line-height: 24px;
+            padding: 12px 19px;
+            border: @default-border;
+            border-top: none;
+            cursor: pointer;
+        }
+    }
 }
+

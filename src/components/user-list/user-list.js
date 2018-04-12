@@ -14,10 +14,10 @@ class UserList extends React.Component {
 
         return (
 
-            <div class="user-list">
-                <div class="user-list__user">
-                    <div class="user-list__name">Matthew Guy</div>
-                    <div class="user-list__organisation">Liberal Party</div>
+            <div className="user-list">
+                <div className="user-list__user">
+                    <div className="user-list__name">Matthew Guy</div>
+                    <div className="user-list__organisation">Liberal Party</div>
                 </div>
             </div>
         )
