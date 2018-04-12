@@ -1,4 +1,4 @@
-import SearchBox from '../../../../src/components/search-box/search-box.js';
+import SearchBox from '../../../../../src/components/search-box/search-box.js';
 
 describe( 'SearchBox React object', () => {
 

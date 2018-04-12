@@ -1,4 +1,4 @@
-const datatype = require( '../../../../src/components/search-box/datatype.js' );
+const datatype = require( '../../../../../src/components/search-box/datatype.js' );
 
 let SearchItem = datatype.SearchItem;
 

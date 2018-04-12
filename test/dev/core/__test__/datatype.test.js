@@ -1,4 +1,4 @@
-const datatype = require( '../../../src/core/datatype.js' );
+const datatype = require( '../../../../src/core/datatype.js' );
 
 describe( 'UserProfile object', () => { 
 
