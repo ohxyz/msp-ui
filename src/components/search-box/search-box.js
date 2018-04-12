@@ -2,6 +2,7 @@ import React from 'react';
 import SearchList from './search-box-list.js';
 import { componentManager } from '../../core/component-manager.js';
 import { generateRandomString, setDefault } from '../../core/util.js';
+import { SearchItem, makeSearchItemsByFields } from './data-model.js';
 
 export default class SearchBox extends React.Component {
 
@@ -17,7 +18,9 @@ export default class SearchBox extends React.Component {
 
         this.state = {
 
+            fields: props.fields,
             items: props.items,
+            searchItems: makeSearchItemsByFields( props.items, props.fields ),
             itemsFiltered: []
         };
 
@@ -29,7 +32,9 @@ export default class SearchBox extends React.Component {
         
         return {
 
-            items: nextProps.items
+            items: nextProps.items,
+            fields: nextProps.fields,
+            searchItems: makeSearchItemsByFields( nextProps.items, nextProps.fields )
         };
     }
 
@@ -40,7 +45,7 @@ export default class SearchBox extends React.Component {
 
         if ( text.length > 2 ) {
 
-            itemsFiltered = this.filterItemsByText( text );
+            itemsFiltered = this.filterSearchItemsByText( text );
         }
 
         this.setState( { 
@@ -49,21 +54,26 @@ export default class SearchBox extends React.Component {
         } )
     }
 
-    handleSelect( item ) {
+    filterSearchItemsByText( text ) {
 
-        this.textInputElement.value = item;
+        let itemsFiltered = [];
+        let searchItems = this.state.searchItems;
 
-        this.setState( { 
+        for ( let i = 0; i < searchItems.length; i ++ ) {
 
-            itemsFiltered: []
-        } );
+            let searchItem = searchItems[ i ];
+            let content = searchItem.content;
+
+            if ( content.indexOf( text ) >= 0 ) {
+
+                itemsFiltered.push( searchItem );
+            }
+        }
+
+        return itemsFiltered;
     }
 
-    handleCrossIconClick() {
-
-        this.textInputElement.value = '';
-    }
-
+    // Not in use
     filterItemsByText( text ) {
 
         let itemsFiltered = [];
@@ -79,6 +89,21 @@ export default class SearchBox extends React.Component {
         }
 
         return itemsFiltered;
+    }
+
+    handleSelect( item ) {
+
+        this.textInputElement.value = item;
+
+        this.setState( { 
+
+            itemsFiltered: []
+        } );
+    }
+
+    handleCrossIconClick() {
+
+        this.textInputElement.value = '';
     }
 
     renderHeader() {

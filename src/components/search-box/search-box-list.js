@@ -29,7 +29,7 @@ export default class SearchList extends React.Component {
 
                         <SearchListItem 
                             key={ key }
-                            content={ item }
+                            item={ item }
                             onSelect={ onPropsSelect }
                         />
                     );
