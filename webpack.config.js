@@ -2,7 +2,8 @@ var path = require( 'path' );
 
 module.exports = env => {
 
-    let environ = env.env;
+    let environ = env.environ;
+    let componentName = env.component;
     let outputPath = path.join( __dirname, 'dist' );
     let entryPath = './src/app.js';
 
@@ -14,18 +15,21 @@ module.exports = env => {
     let outputPathFragment = '';
     let fileName = '';
 
-    // Todo: check env.component's actual type
-    if ( env.component && environ === 'dev' ) {
+    // Todo: check componentName's actual type, eg. '', undefined or null
+    if ( componentName ) {
 
-        componentFolder = path.join( __dirname, 'test', 'dev', 'components', env.component );
-        fileName = env.component + '.js';
+        if ( environ === 'uat' || environ === 'dev' ) {
 
-        entryPath = path.join( componentFolder, env.component + '.js' );
-        outputPath = componentFolder;
+            componentFolder = path.join( __dirname, 'test', environ, 'components', componentName );
+            fileName = componentName + '.js';
+
+            entryPath = path.join( componentFolder, componentName + '.js' );
+            outputPath = componentFolder;
+        }
     }
 
-    console.log( '[Entry path]', entryPath );
-    console.log( '[Output path]', outputPath );
+    console.log( '[Entry path]  ', entryPath );
+    console.log( '[Output path] ', outputPath );
 
     return {
 

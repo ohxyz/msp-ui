@@ -4,10 +4,12 @@
   "description": "Multi-site portal UI",
   "scripts": {
     "build": "webpack --mode production",
-    "watch": "webpack --mode development --watch --env.env=dev",
-    "dummy": "webpack --mode development --watch --env.env=dev --env.component=dummy",
+    "watch": "webpack --mode development --watch --env.environ=dev",
+    "dummy": "webpack --mode development --watch --env.environ=dev --env.component=dummy",
     "serve:dev": "http-server ./test/dev -c-1",
-    "dev": "npm run serve:dev & webpack --mode development --watch --env.env=dev",
+    "serve:uat": "http-server ./test/uat -c-1",
+    "dev": "npm run serve:dev & webpack --mode development --watch --env.environ=dev",
+    "uat": "npm run serve:uat & webpack --mode development --watch --env.environ=uat",
     "test": "jest"
   },
   "repository": {

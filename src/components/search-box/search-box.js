@@ -3,8 +3,6 @@ import SearchList from './search-box-list.js';
 import { componentManager } from '../../core/component-manager.js';
 import { generateRandomString, setDefault } from '../../core/util.js';
 
-console.log( componentManager );
-
 export default class SearchBox extends React.Component {
 
     constructor( props ) {
