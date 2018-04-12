@@ -10,7 +10,7 @@ export default class SearchListItem extends React.Component {
 
     handleClick() {
 
-        this.props.onSelect( this.props.content );
+        this.props.onSelect( this.props.item.content );
     }
 
     render() {
@@ -18,7 +18,7 @@ export default class SearchListItem extends React.Component {
         return (
 
             <div className="search-box__list-item" onClick={ this.handleClick }>
-                {this.props.content }
+                {this.props.item.content }
             </div>
         )
     }

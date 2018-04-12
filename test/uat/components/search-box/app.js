@@ -4,14 +4,17 @@ import SearchBox from '../../../../src/components/search-box/search-box.js';
 
 require( '../../../../less/components/search-box.less' );
 
-const users = [
+const usersOrgs = [
 
-    'Apple', 'Banana', 'Cat', 'Dog', 'Elphant',
-    'abcd', 'abce', 'abcZ', 'bcde', 'cdef', 'cefg', 'defg', 'efgh'
+    { 'org': 'abcd Education', name: 'abcd' },
+    { 'org': 'abce Health', name: 'abce health people' },
+    { 'org': 'abcde Transport' },
+    { 'name': 'Mr abcdg ' },
+    { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
 ];
 
 ReactDOM.render(
 
-    <SearchBox id="seach-box-users" items={ users } />,
+    <SearchBox id="seach-box-users" items={ usersOrgs } fields={ [ 'org', 'name' ] }/>,
     document.getElementById( 'root' )
 );
