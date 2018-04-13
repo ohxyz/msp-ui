@@ -20,28 +20,14 @@
         cursor: pointer;
         z-index: 1;
 
-        &:before,
-        &:after {
+        .material-icons {
 
-            content: "";
-            display: block;
-            background-color: @default-border-color;
-            width: 20px;
-            height: 2px;
-            top: 24px;
-            right: 13px;
             position: absolute;
+            top: 12px;
+            left: 12px;
+            color: @default-border-color;
         }
 
-        &:before {
-
-            transform: rotate(45deg);
-        }
-
-        &:after {
-
-            transform: rotate(135deg);
-        }
     }
 
     &__count {

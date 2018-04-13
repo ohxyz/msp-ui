@@ -91,21 +91,26 @@ export default class SearchBox extends React.Component {
         return itemsFiltered;
     }
 
+    clearSearch() {
+
+        this.setState( {
+
+            itemsFiltered: [],
+            shouldRenderList: false,
+
+        } );
+    }
+
     handleSelect( item ) {
 
         this.textInputElement.value = item;
-
-        this.setState( { 
-
-            shouldRenderList: false,
-            itemsFiltered: []
-
-        } );
+        this.clearSearch();
     }
 
     handleCrossIconClick() {
 
         this.textInputElement.value = '';
+        this.clearSearch();
     }
 
     handleClickOutside( event ) {
@@ -147,8 +152,7 @@ export default class SearchBox extends React.Component {
 
         return (
 
-            <div className="search-box__header"> 
-                <div className="search-box__clear" onClick={ this.handleCrossIconClick }></div>
+            <div className="search-box__header">
                 <input 
                     type="text" 
                     className="search-box__field"
@@ -157,6 +161,9 @@ export default class SearchBox extends React.Component {
                     onFocus={ this.handleFocus }
                     ref={ elem => this.textInputElement = elem }
                 />
+                <span className="search-box__clear" onClick={ this.handleCrossIconClick }>
+                     <i className="material-icons">close</i>
+                </span>
             </div>
         );
     }
