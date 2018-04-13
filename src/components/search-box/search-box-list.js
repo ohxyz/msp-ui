@@ -1,7 +1,6 @@
 import React from 'react';
 import SearchListItem from './search-box-list-item.js';
 
-
 export default class SearchList extends React.Component {
 
     constructor( props ) {

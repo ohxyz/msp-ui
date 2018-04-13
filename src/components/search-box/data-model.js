@@ -46,17 +46,23 @@ function makeSearchItems( items ) {
     return searchItems;
 }
 
-/* Example:
+/* @example
  *  
- * items: [ { first: 'name',  next: 'address',  last: 'number'  }
- *          { first: 'name2', next: 'address2', last: 'number2' } ]
+ * @param {Array of JSON like object } eg.
+ *         
+ *     [ { first: 'name',  next: 'address',  last: 'number'  }
+ *       { first: 'name2', next: 'address2', last: 'number2' } ]
  *
- * fields: [ 'first', 'last' ]
+ * @param {Array of String } eg. 
+ *         
+ *     [ 'first', 'last' ]
  * 
- * @return [ { name: 'first', content: 'name' },
- *           { name: 'last',  content: 'number'},
- *           { name: 'first', content: 'name2' },
- *           { name: 'last', content" 'number2'} ]
+ * @returns {Array of SeachItem } eg.
+ *
+ *     [ { name: 'first', content: 'name' },
+ *       { name: 'last',  content: 'number'},
+ *       { name: 'first', content: 'name2' },
+ *       { name: 'last', content: 'number2'} ]
  */
 
 function makeSearchItemsByFields( items, fields ) {
