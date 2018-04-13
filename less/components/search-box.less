@@ -5,7 +5,7 @@
     font-family: @default-font-family;
     position: relative;
     font-size: @default-font-size;
-    width: 100%;
+    width: 62%;
     line-height: 24px;
 
     &__clear {
@@ -44,9 +44,16 @@
         }
     }
 
+    &__count {
+
+        position: absolute;
+        right: -70px;
+    }
+
     &__header {
 
         min-height: 24px;
+        position: relative;
     }
 
     &__field {
@@ -66,9 +73,17 @@
         }
     }
 
-    &__list {
+    &__content {
 
-        min-height: 50px;
+        position: absolute;
+        z-index: 100;
+        background-color: white;
+        top: 50px;
+        left: 0;
+        right: 0;
+    }
+
+    &__list {
 
         &-item {
 

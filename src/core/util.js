@@ -29,8 +29,25 @@ function setDefault( defaultValue, otherValue ) {
     return defaultValue;
 }
 
+function isDescendant( childElem, parentElem ) {
+    
+    let node = childElem.parentNode;
+    
+    while ( node !== null ) {
+        
+        if ( node === parentElem ) {
+            return true;
+        }
+        
+        node = node.parentNode;
+    }
+    
+    return false;
+}
+
 module.exports = {
 
+    isDescendant,
     isObject,
     generateRandomString,
     setDefault
