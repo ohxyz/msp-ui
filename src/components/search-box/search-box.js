@@ -103,7 +103,23 @@ export default class SearchBox extends React.Component {
         return itemsFiltered;
     }
 
-    clearSearch() {
+    handleSelect( item ) {
+
+        this.textInputElement.value = item.content;
+
+        let itemsFiltered = this.filterSearchItemsByText( item.content );
+
+        this.setState( {
+
+            itemsFiltered: itemsFiltered,
+            shouldRenderList: false
+
+        } );
+    }
+
+    handleCrossIconClick() {
+
+        this.textInputElement.value = '';
 
         this.setState( {
 
@@ -111,18 +127,6 @@ export default class SearchBox extends React.Component {
             shouldRenderList: false,
 
         } );
-    }
-
-    handleSelect( item ) {
-
-        this.textInputElement.value = item;
-        this.clearSearch();
-    }
-
-    handleCrossIconClick() {
-
-        this.textInputElement.value = '';
-        this.clearSearch();
     }
 
     handleClickOutside( event ) {
@@ -145,36 +149,26 @@ export default class SearchBox extends React.Component {
 
         if ( event.key === 'Enter' ) {
 
-            let content = this.itemFocused.content;
-            let itemsFiltered = this.filterSearchItemsByText( content );
-
-            this.textInputElement.value = content;
-
-            this.setState( {
-
-                itemsFiltered: itemsFiltered,
-                shouldRenderList: false
-
-            } );
+            this.handleSelect( this.itemFocused );
         }
     }
 
     handleListItemFocus( item ) {
 
         this.itemFocused = item;
-       
+        this.textInputElement.value = item.content;
     }
 
     componentDidMount() {
         
         document.addEventListener( 'mouseup', this.handleClickOutside );
-        document.addEventListener( 'keydown', this.handleKeyDown );
+        this.textInputElement.addEventListener( 'keydown', this.handleKeyDown );
     }
     
     componentWillUnmount() {
 
         document.removeEventListener( 'mouseup', this.handleClickOutside );
-        document.removeEventListener( 'keydown', this.handleKeyDown );
+        this.textInputElement.removeEventListener( 'keydown', this.handleKeyDown );
     }
 
     renderCount() {

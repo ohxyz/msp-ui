@@ -11,7 +11,7 @@ export default class SearchListItem extends React.Component {
 
     handleClick() {
 
-        this.props.onSelect( this.props.item.content );
+        this.props.onSelect( this.props.item );
     }
 
     render() {

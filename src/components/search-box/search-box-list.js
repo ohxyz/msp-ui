@@ -41,8 +41,7 @@ export default class SearchList extends React.Component {
                 itemIndexFocused = 0;
             }
         }
-
-        if ( event.key === 'ArrowUp' ) {
+        else if ( event.key === 'ArrowUp' ) {
 
             if ( itemIndexFocused > 0 ) {
 
@@ -52,6 +51,10 @@ export default class SearchList extends React.Component {
 
                 itemIndexFocused = countOfItems - 1;
             }
+        }
+        else {
+
+            return;
         }
 
         this.itemFocused = this.state.items[ itemIndexFocused ];
