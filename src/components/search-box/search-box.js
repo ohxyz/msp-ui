@@ -80,29 +80,11 @@ export default class SearchBox extends React.Component {
         for ( let i = 0; i < searchItems.length; i ++ ) {
 
             let searchItem = searchItems[ i ];
-            let content = searchItem.content;
+            let content = searchItem.content.toLowerCase();
 
-            if ( content.indexOf( text ) >= 0 ) {
+            if ( content.indexOf( text.toLowerCase() ) >= 0 ) {
 
                 itemsFiltered.push( searchItem );
-            }
-        }
-
-        return itemsFiltered;
-    }
-
-    // Not in use
-    filterItemsByText( text ) {
-
-        let itemsFiltered = [];
-
-        for ( let i = 0; i < this.state.items.length; i ++ ) {
-
-            let item = this.state.items[ i ];
-
-            if ( item.indexOf( text ) >= 0 ) {
-
-                itemsFiltered.push( item );
             }
         }
 
