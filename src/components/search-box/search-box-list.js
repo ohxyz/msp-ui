@@ -6,11 +6,82 @@ export default class SearchList extends React.Component {
     constructor( props ) {
 
         super( props );
+        this.handleKeyDown = this.handleKeyDown.bind( this );
+
+        this.itemFocused = null;
+
+        this.state = {
+
+            itemIndexFocused: -1,
+            items: props.items
+        }
+    }
+
+    static getDerivedStateFromProps( nextProps, prevState ) {
+        
+        return {
+
+            items: nextProps.items
+        };
+    }
+
+    handleKeyDown( event ) {
+
+        let countOfItems = this.state.items.length;
+        let itemIndexFocused = this.state.itemIndexFocused;
+
+        if ( event.key === 'ArrowDown' ) {
+
+            if ( itemIndexFocused < countOfItems - 1 ) {
+
+                itemIndexFocused ++;
+            }
+            else {
+
+                itemIndexFocused = 0;
+            }
+        }
+
+        if ( event.key === 'ArrowUp' ) {
+
+            if ( itemIndexFocused > 0 ) {
+
+                itemIndexFocused --;
+            }
+            else {
+
+                itemIndexFocused = countOfItems - 1;
+            }
+        }
+
+        this.itemFocused = this.state.items[ itemIndexFocused ];
+
+        if ( this.props.onListItemFocus instanceof Function ) {
+
+            this.props.onListItemFocus( this.itemFocused );
+        }
+
+        this.setState( {
+
+            itemIndexFocused: itemIndexFocused
+
+        } );
+
+    }
+    
+    componentDidMount() {
+
+        document.addEventListener( 'keydown', this.handleKeyDown );
+    }
+    
+    componentWillUnmount() {
+
+        document.removeEventListener( 'keydown', this.handleKeyDown );
     }
 
     render() {
 
-        let items = this.props.items;
+        let items = this.state.items;
         let onPropsSelect = new Function();
 
         if ( this.props.onSelect instanceof Function ) {
@@ -22,13 +93,22 @@ export default class SearchList extends React.Component {
 
             <div className="search-box__list">
             {
-                items.map( ( item, key ) => { 
+                
+                items.map( ( item, key ) => {
+
+                    let isFocused = false;
+
+                    if ( key === this.state.itemIndexFocused ) {
+
+                        isFocused = true;
+                    }
 
                     return (
 
                         <SearchListItem 
                             key={ key }
                             item={ item }
+                            isFocused={ isFocused }
                             onSelect={ onPropsSelect }
                         />
                     );

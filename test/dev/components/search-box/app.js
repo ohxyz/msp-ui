@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBox from '../../../../src/components/search-box/search-box.js';
+import SearchBoxList from '../../../../src/components/search-box/search-box-list.js';
+
 
 require( '../../../../less/components/search-box.less' );
 
@@ -34,4 +36,11 @@ ReactDOM.render(
 
     <SearchBox id="seach-box-orgs" placeholder="Search" items={ depts } />,
     document.getElementById( 'search-box-2' )
+);
+
+
+ReactDOM.render(
+
+    <SearchBoxList id="my-list" items={ depts } />,
+    document.getElementById( 'search-box-list' )
 );
