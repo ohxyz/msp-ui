@@ -80,9 +80,9 @@ export default class SearchBox extends React.Component {
         for ( let i = 0; i < searchItems.length; i ++ ) {
 
             let searchItem = searchItems[ i ];
-            let content = searchItem.content;
+            let content = searchItem.content.toLowerCase();
 
-            if ( content.indexOf( text ) >= 0 ) {
+            if ( content.indexOf( text.toLowerCase() ) >= 0 ) {
 
                 itemsFiltered.push( searchItem );
             }
@@ -91,39 +91,26 @@ export default class SearchBox extends React.Component {
         return itemsFiltered;
     }
 
-    // Not in use
-    filterItemsByText( text ) {
+    clearSearch() {
 
-        let itemsFiltered = [];
+        this.setState( {
 
-        for ( let i = 0; i < this.state.items.length; i ++ ) {
+            itemsFiltered: [],
+            shouldRenderList: false,
 
-            let item = this.state.items[ i ];
-
-            if ( item.indexOf( text ) >= 0 ) {
-
-                itemsFiltered.push( item );
-            }
-        }
-
-        return itemsFiltered;
+        } );
     }
 
     handleSelect( item ) {
 
         this.textInputElement.value = item;
-
-        this.setState( { 
-
-            shouldRenderList: false,
-            itemsFiltered: []
-
-        } );
+        this.clearSearch();
     }
 
     handleCrossIconClick() {
 
         this.textInputElement.value = '';
+        this.clearSearch();
     }
 
     handleClickOutside( event ) {
@@ -165,8 +152,7 @@ export default class SearchBox extends React.Component {
 
         return (
 
-            <div className="search-box__header"> 
-                <div className="search-box__clear" onClick={ this.handleCrossIconClick }></div>
+            <div className="search-box__header">
                 <input 
                     type="text" 
                     className="search-box__field"
@@ -175,6 +161,9 @@ export default class SearchBox extends React.Component {
                     onFocus={ this.handleFocus }
                     ref={ elem => this.textInputElement = elem }
                 />
+                <span className="search-box__clear" onClick={ this.handleCrossIconClick }>
+                     <i className="material-icons">close</i>
+                </span>
             </div>
         );
     }
