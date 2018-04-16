@@ -14,7 +14,7 @@ export default class SearchList extends React.Component {
 
         this.state = {
 
-            itemIndexFocused: -1,
+            indexOfItemFocused: -1,
             items: props.items
         }
     }
@@ -30,38 +30,35 @@ export default class SearchList extends React.Component {
     handleKeyDown( event ) {
 
         let countOfItems = this.state.items.length;
-        let itemIndexFocused = this.state.itemIndexFocused;
+        let indexOfItemFocused = this.state.indexOfItemFocused;
 
         if ( event.key === 'ArrowDown' ) {
 
-            this.domElement.focus();
+            if ( indexOfItemFocused > 0 ) {
 
-            if ( itemIndexFocused < countOfItems - 1 ) {
-
-                itemIndexFocused ++;
+                this.domElement.focus();
             }
-            else {
 
-                // itemIndexFocused = 0;
+            if ( indexOfItemFocused < countOfItems - 1 ) {
+
+                indexOfItemFocused ++;
             }
+
         }
         else if ( event.key === 'ArrowUp' ) {
 
-            if ( itemIndexFocused > 0 ) {
+            if ( indexOfItemFocused > 0 ) {
 
-                itemIndexFocused --;
+                indexOfItemFocused --;
             }
-            else {
 
-                // itemIndexFocused = countOfItems - 1;
-            }
         }
         else {
 
             return;
         }
 
-        this.itemFocused = this.state.items[ itemIndexFocused ];
+        this.itemFocused = this.state.items[ indexOfItemFocused ];
 
         if ( this.props.onListItemFocus instanceof Function ) {
 
@@ -70,7 +67,7 @@ export default class SearchList extends React.Component {
 
         this.setState( {
 
-            itemIndexFocused: itemIndexFocused
+            indexOfItemFocused: indexOfItemFocused
 
         } );
 
@@ -109,7 +106,7 @@ export default class SearchList extends React.Component {
 
                     let isFocused = false;
 
-                    if ( key === this.state.itemIndexFocused ) {
+                    if ( key === this.state.indexOfItemFocused ) {
 
                         isFocused = true;
                     }

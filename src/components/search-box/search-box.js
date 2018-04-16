@@ -14,7 +14,7 @@ export default class SearchBox extends React.Component {
         this.handleSelect = this.handleSelect.bind( this );
         this.handleCrossIconClick = this.handleCrossIconClick.bind( this );
         this.handleClickOutside = this.handleClickOutside.bind( this );
-        this.handleFocus = this.handleFocus.bind( this );
+        this.handleTextInputFocus = this.handleTextInputFocus.bind( this );
         this.handleBlur = this.handleBlur.bind( this );
         this.handleListItemFocus = this.handleListItemFocus.bind( this );
         this.handleKeyDown = this.handleKeyDown.bind( this );
@@ -53,33 +53,40 @@ export default class SearchBox extends React.Component {
     handleChange() {
 
         let text = this.textInputElement.value;
-        let itemsFiltered = [];
 
         if ( text.length > 2 ) {
 
-            itemsFiltered = this.filterSearchItemsByText( text );
+            let itemsFiltered = this.filterSearchItemsByText( text );
+
+            this.setState( { 
+
+                itemsFiltered: itemsFiltered,
+                shouldRenderList: true
+            } );
         }
+        else {
 
-        this.setState( { 
+            this.setState( {
 
-            itemsFiltered: itemsFiltered,
-            shouldRenderList: true
-        } );
+                itemsFiltered: [],
+                shouldRenderList: false
 
-
+            } ); 
+        }
     }
 
-    handleFocus() {
+    handleTextInputFocus() {
 
         this.isTextInputFocused = true;
 
-        if ( this.state.itemsFiltered.length >= 0 ) {
+        if ( this.state.itemsFiltered.length > 0 ) {
 
             this.setState( {
 
                 shouldRenderList: true
             } );
         }
+
     }
 
     handleBlur() {
@@ -202,7 +209,7 @@ export default class SearchBox extends React.Component {
                     className="search-box__field"
                     placeholder={ this.state.placeholder }
                     onChange={ this.handleChange }
-                    onFocus={ this.handleFocus }
+                    onFocus={ this.handleTextInputFocus }
                     onBlur={ this.handleBlur }
                     ref={ elem => this.textInputElement = elem }
                 />

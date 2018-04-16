@@ -67,7 +67,6 @@ ReactDOM.render(
     <SearchBox id="seach-box-orgs" placeholder="Search" items={ depts } />,
     document.getElementById( 'search-box-2' )
 );
-*/
 
 ReactDOM.render(
 
@@ -75,3 +74,4 @@ ReactDOM.render(
     document.getElementById( 'search-box-list' )
 );
 
+*/

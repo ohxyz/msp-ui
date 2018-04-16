@@ -67,20 +67,23 @@
         top: 50px;
         left: 0;
         right: 0;
+
     }
 
     &__list {
 
         overflow: auto;
         outline: none; // Chrome's blue frame
+        border: @default-border;
+        border-top: none;
+        max-height: 200px;
 
         &-item {
 
             box-sizing: border-box;
             line-height: 24px;
             padding: 12px 19px;
-            border: @default-border;
-            border-top: none;
+
             cursor: pointer;
 
             &--focused {
