@@ -7,6 +7,8 @@ export default class SearchListItem extends React.Component {
 
         super( props );
         this.handleClick = this.handleClick.bind( this );
+
+        this.domElement = null;
     }
 
     handleClick() {
@@ -28,7 +30,7 @@ export default class SearchListItem extends React.Component {
 
         return (
 
-            <div className={ className } onClick={ this.handleClick }>
+            <div className={ className } onClick={ this.handleClick } ref={ elem => this.domElement = elem }>
                 { content }
             </div>
         )

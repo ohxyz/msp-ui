@@ -10,7 +10,9 @@ export default class SearchList extends React.Component {
 
         this.itemFocused = null;
         this.domElement = null;
-        this.domElementTabIndex = Math.floor( Math.random() * Math.floor( 65535 ) );
+        this.searchListItemElement = null;
+
+        this.searchListItemHeight = 0;
 
         this.state = {
 
@@ -34,11 +36,6 @@ export default class SearchList extends React.Component {
 
         if ( event.key === 'ArrowDown' ) {
 
-            if ( indexOfItemFocused > 0 ) {
-
-                this.domElement.focus();
-            }
-
             if ( indexOfItemFocused < countOfItems - 1 ) {
 
                 indexOfItemFocused ++;
@@ -58,6 +55,8 @@ export default class SearchList extends React.Component {
             return;
         }
 
+        this.domElement.scrollTop = indexOfItemFocused * this.searchListItemHeight;
+
         this.itemFocused = this.state.items[ indexOfItemFocused ];
 
         if ( this.props.onListItemFocus instanceof Function ) {
@@ -74,6 +73,10 @@ export default class SearchList extends React.Component {
     }
     
     componentDidMount() {
+
+        let style = window.getComputedStyle( this.searchListItemElement.domElement );
+        
+        this.searchListItemHeight = parseInt( style.height, 10 );
 
         document.addEventListener( 'keydown', this.handleKeyDown );
     }
@@ -98,7 +101,6 @@ export default class SearchList extends React.Component {
             <div 
                 className="search-box__list"
                 ref={ elem => { this.domElement = elem; } }
-                tabIndex={ this.domElementTabIndex }
             >
             {
                 
@@ -118,6 +120,7 @@ export default class SearchList extends React.Component {
                             item={ item }
                             isFocused={ isFocused }
                             onSelect={ onPropsSelect }
+                            ref={ elem => this.searchListItemElement = elem }
                         />
                     );
                     
