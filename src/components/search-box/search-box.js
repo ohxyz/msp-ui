@@ -10,16 +10,19 @@ export default class SearchBox extends React.Component {
 
         super( props );
         
-        this.handleChange = this.handleChange.bind( this );
+        this.handleTextInputChange = this.handleTextInputChange.bind( this );
         this.handleSelect = this.handleSelect.bind( this );
         this.handleCrossIconClick = this.handleCrossIconClick.bind( this );
         this.handleClickOutside = this.handleClickOutside.bind( this );
-        this.handleFocus = this.handleFocus.bind( this );
-        this.handleBlur = this.handleBlur.bind( this );
+        this.handleTextInputFocus = this.handleTextInputFocus.bind( this );
+        this.handleTextInputBlur = this.handleTextInputBlur.bind( this );
         this.handleListItemFocus = this.handleListItemFocus.bind( this );
         this.handleKeyDown = this.handleKeyDown.bind( this );
+        this.showSearchList = this.showSearchList.bind( this );
+        this.clearSearchList = this.clearSearchList.bind( this );
 
         this.textInputElement = null;
+        this.searchListElement = null;
         this.domElement = null;
         this.itemFocused = null;
         this.isTextInputFocused = false;
@@ -49,28 +52,54 @@ export default class SearchBox extends React.Component {
         };
     }
 
-    handleChange() {
-
-        let text = this.textInputElement.value;
-        let itemsFiltered = [];
-
-        if ( text.length > 2 ) {
-
-            itemsFiltered = this.filterSearchItemsByText( text );
-        }
+    showSearchList( items ) {
 
         this.setState( { 
 
-            itemsFiltered: itemsFiltered,
+            itemsFiltered: items,
             shouldRenderList: true
         } );
     }
 
-    handleFocus() {
+    clearSearchList() {
+
+        this.setState( { 
+
+            itemsFiltered: [],
+            shouldRenderList: false
+        } );
+    }
+
+    handleTextInputChange() {
+
+        this.itemFocused = null;
+
+        let text = this.textInputElement.value;
+
+        if ( text.length <= 2 ) {
+
+            this.clearSearchList();
+
+            return;
+        }
+
+        let itemsFiltered = this.filterSearchItemsByText( text );
+
+        if ( itemsFiltered.length > 0 ) {
+
+            this.showSearchList( itemsFiltered );
+        }
+        else { 
+
+            this.clearSearchList();
+        }
+    }
+
+    handleTextInputFocus() {
 
         this.isTextInputFocused = true;
 
-        if ( this.state.itemsFiltered.length >= 0 ) {
+        if ( this.state.itemsFiltered.length > 0 ) {
 
             this.setState( {
 
@@ -79,7 +108,7 @@ export default class SearchBox extends React.Component {
         }
     }
 
-    handleBlur() {
+    handleTextInputBlur() {
 
         this.isTextInputFocused = false;
     }
@@ -106,7 +135,6 @@ export default class SearchBox extends React.Component {
     handleSelect( item ) {
 
         this.textInputElement.value = item.content;
-
         let itemsFiltered = this.filterSearchItemsByText( item.content );
 
         this.setState( {
@@ -121,12 +149,7 @@ export default class SearchBox extends React.Component {
 
         this.textInputElement.value = '';
 
-        this.setState( {
-
-            itemsFiltered: [],
-            shouldRenderList: false,
-
-        } );
+        this.clearSearchList();
     }
 
     handleClickOutside( event ) {
@@ -147,13 +170,19 @@ export default class SearchBox extends React.Component {
             return;
         }
 
-        if ( event.key === 'Enter' ) {
+        if ( event.key === 'Enter'
+                && ( this.itemFocused instanceof SearchItem ) === true ) {
 
             this.handleSelect( this.itemFocused );
         }
     }
 
     handleListItemFocus( item ) {
+
+        if ( item instanceof SearchItem === false ) {
+
+            return;
+        }
 
         this.itemFocused = item;
         this.textInputElement.value = item.content;
@@ -162,13 +191,13 @@ export default class SearchBox extends React.Component {
     componentDidMount() {
         
         document.addEventListener( 'mouseup', this.handleClickOutside );
-        this.textInputElement.addEventListener( 'keydown', this.handleKeyDown );
+        document.addEventListener( 'keydown', this.handleKeyDown );
     }
     
     componentWillUnmount() {
 
         document.removeEventListener( 'mouseup', this.handleClickOutside );
-        this.textInputElement.removeEventListener( 'keydown', this.handleKeyDown );
+        document.removeEventListener( 'keydown', this.handleKeyDown );
     }
 
     renderCount() {
@@ -193,9 +222,9 @@ export default class SearchBox extends React.Component {
                     type="text" 
                     className="search-box__field"
                     placeholder={ this.state.placeholder }
-                    onChange={ this.handleChange }
-                    onFocus={ this.handleFocus }
-                    onBlur={ this.handleBlur }
+                    onChange={ this.handleTextInputChange }
+                    onFocus={ this.handleTextInputFocus }
+                    onBlur={ this.handleTextInputBlur }
                     ref={ elem => this.textInputElement = elem }
                 />
                 <span className="search-box__clear" onClick={ this.handleCrossIconClick }>
@@ -219,6 +248,7 @@ export default class SearchBox extends React.Component {
                     items={ this.state.itemsFiltered }
                     onSelect={ this.handleSelect }
                     onListItemFocus={ this.handleListItemFocus }
+                    ref={ elem => { this.searchListElement = elem; } }
                 />
             </div>
         );

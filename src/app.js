@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SearchBox from './components/search-box/search-box.js';
 
 require( '../less/main.less' );
 
