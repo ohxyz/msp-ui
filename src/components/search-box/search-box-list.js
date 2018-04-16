@@ -7,6 +7,7 @@ export default class SearchList extends React.Component {
 
         super( props );
         this.handleKeyDown = this.handleKeyDown.bind( this );
+        this.syncScrollBar = this.syncScrollBar.bind( this );
 
         this.itemFocused = null;
         this.domElement = null;
@@ -55,8 +56,6 @@ export default class SearchList extends React.Component {
             return;
         }
 
-        this.domElement.scrollTop = indexOfItemFocused * this.searchListItemHeight;
-
         this.itemFocused = this.state.items[ indexOfItemFocused ];
 
         if ( this.props.onListItemFocus instanceof Function ) {
@@ -70,12 +69,19 @@ export default class SearchList extends React.Component {
 
         } );
 
+        this.syncScrollBar( indexOfItemFocused );
+
+    }
+
+    syncScrollBar( indexOfItem ) {
+
+         this.domElement.scrollTop = indexOfItem * this.searchListItemHeight;
     }
     
     componentDidMount() {
 
         let style = window.getComputedStyle( this.searchListItemElement.domElement );
-        
+
         this.searchListItemHeight = parseInt( style.height, 10 );
 
         document.addEventListener( 'keydown', this.handleKeyDown );
