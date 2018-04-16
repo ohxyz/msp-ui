@@ -4,12 +4,12 @@ module.exports = env => {
 
     let environ = env.environ;
     let componentName = env.component;
-    let outputPath = path.join( __dirname, 'dist' );
+    let outputPath = path.join( __dirname, 'test/dev' );
     let entryPath = './src/app.js';
 
     if ( environ === 'prod' ) {
 
-        outputPath = path.join( __dirname , dist );
+        outputPath = path.join( __dirname , 'dist' );
     }
 
     let outputPathFragment = '';
