@@ -45,6 +45,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "faker": "^4.1.0",
     "http-server": "^0.11.1",
     "jest": "^22.4.3",
     "less": "^3.0.1",

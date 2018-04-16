@@ -20,6 +20,7 @@ export default class SearchBox extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind( this );
 
         this.textInputElement = null;
+        this.searchListElement = null;
         this.domElement = null;
         this.itemFocused = null;
         this.isTextInputFocused = false;
@@ -64,6 +65,8 @@ export default class SearchBox extends React.Component {
             itemsFiltered: itemsFiltered,
             shouldRenderList: true
         } );
+
+
     }
 
     handleFocus() {
@@ -155,6 +158,11 @@ export default class SearchBox extends React.Component {
 
     handleListItemFocus( item ) {
 
+        if ( item instanceof SearchItem === false ) {
+
+            return;
+        }
+
         this.itemFocused = item;
         this.textInputElement.value = item.content;
     }
@@ -219,6 +227,7 @@ export default class SearchBox extends React.Component {
                     items={ this.state.itemsFiltered }
                     onSelect={ this.handleSelect }
                     onListItemFocus={ this.handleListItemFocus }
+                    ref={ elem => { this.searchListElement = elem; } }
                 />
             </div>
         );

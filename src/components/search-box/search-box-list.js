@@ -9,6 +9,8 @@ export default class SearchList extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind( this );
 
         this.itemFocused = null;
+        this.domElement = null;
+        this.domElementTabIndex = Math.floor( Math.random() * Math.floor( 65535 ) );
 
         this.state = {
 
@@ -32,13 +34,15 @@ export default class SearchList extends React.Component {
 
         if ( event.key === 'ArrowDown' ) {
 
+            this.domElement.focus();
+
             if ( itemIndexFocused < countOfItems - 1 ) {
 
                 itemIndexFocused ++;
             }
             else {
 
-                itemIndexFocused = 0;
+                // itemIndexFocused = 0;
             }
         }
         else if ( event.key === 'ArrowUp' ) {
@@ -49,7 +53,7 @@ export default class SearchList extends React.Component {
             }
             else {
 
-                itemIndexFocused = countOfItems - 1;
+                // itemIndexFocused = countOfItems - 1;
             }
         }
         else {
@@ -94,7 +98,11 @@ export default class SearchList extends React.Component {
 
         return (
 
-            <div className="search-box__list">
+            <div 
+                className="search-box__list"
+                ref={ elem => { this.domElement = elem; } }
+                tabIndex={ this.domElementTabIndex }
+            >
             {
                 
                 items.map( ( item, key ) => {
