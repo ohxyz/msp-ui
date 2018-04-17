@@ -1,11 +1,11 @@
 import SearchBox from '../../../../../src/components/search-box/search-box.js';
+import { SearchItem } from '../../../../../src/components/search-box/data-model.js';
 
 describe( 'SearchBox React object', () => {
 
     // Stub
     let items = [
 
-        'Apple', 'Banana', 'Cat', 'Dog', 'Elphant',
         'abcd', 'abce', 'bcde', 'cdef', 'cefg', 'defg', 'efgh'
     ];
 
@@ -16,12 +16,20 @@ describe( 'SearchBox React object', () => {
 
     let searchBox = new SearchBox( props );
 
-    describe( 'FilterItemsByText method', () => { 
+    describe( 'filterSearchItemsByText method', () => { 
 
         test( 'has normal a argument', () => {
 
-            let filtered = searchBox.filterItemsByText( 'abc' );
-            expect( filtered ).toEqual( [ 'abcd', 'abce' ] );
+            let searchItem = new SearchItem( 'abc' );
+            let filtered = searchBox.filterSearchItemsByText( 'abc' );
+            let expected = [
+
+                { name: '', content: 'abcd' },
+                { name: '', content: 'abce' }
+
+            ]
+
+            expect( filtered ).toEqual( expected );
 
         } );
 
