@@ -2,21 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import EntityList from '../../../../src/components/entity-list/entity-list.js';
 import EntityStrip from '../../../../src/components/entity-list/entity-strip.js';
+import { EntityProfile } from '../../../../src/model/entity-profile.js';
 
 require( '../../../../less/components/entity-list.less' );
 
 const entitysOrgs = [
 
-    { 'org': 'abcd Education', name: 'abcd' },
-    { 'org': 'abce Health', name: 'abce health people' },
-    { 'org': 'abcde Transport' },
     { 'name': 'Mr abcdg ' },
-    { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
+    { 'name': 'abcd lady' },
 ];
+
+let e = new EntityProfile( { firstName: 'John', lastName: 'Town', group: 'Dept A', topGroup: 'Victoria' } );
+
 
 ReactDOM.render(
 
-    <entityStrip entity={ { 'org': 'abcd Education', name: 'abcd' } } />,
+    <EntityStrip entity={ e } />,
     document.getElementById( 'entity-strip' )
 );
 

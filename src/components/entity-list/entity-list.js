@@ -37,9 +37,7 @@ class UserList extends React.Component {
                 this.state.entities.map( () => { 
 
 
-
-
-                } );
+                } )
             }
             </div>
         )

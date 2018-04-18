@@ -1,0 +1,61 @@
+@import "../_variables";
+
+.entity-strip {
+
+    &__main {
+
+        position: relative;
+        border: @default-border;
+        padding: @default-padding;
+    }
+
+    &__dropdown {
+        
+        position: relative;
+        border: @default-border;
+        padding: @default-padding;
+    }
+
+    &__delete {
+
+        position: absolute;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        right: 0;
+        top: 0;
+
+    }
+
+    &__expand {
+
+        position: absolute;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        top: 40px;
+        right: 0;
+        user-select: none;
+    }
+
+    &__full-name {
+
+        display: inline-block;
+        font-size: 36px;
+    }
+
+    &__top-group {
+
+        display: inline-block;
+        font-size: 24px;
+        margin-left: 16px;
+    }
+
+    &__group {
+
+        display: inline-block;
+        font-size: 20px;
+    }
+}

@@ -2,7 +2,7 @@
  *
  * CommonJS styles eg. require, module.exports
  *
- * US English style eg. organisation
+ * US English style eg. organization
  */
 const util = require( '../core/util.js' );
 
@@ -20,19 +20,16 @@ class EntityProfile {
             name: '',
             emailAddress: '',
             level: '',
+            group: '',   // Organization, group, etc
+            topGroup: '', // Name of top level 
         };
 
         let argType = typeof arg;
 
-        this.fullName = 'N/A';
+        this.fullName = 'n/a';
+        this.type = 'n/a';
 
-        if ( argType === 'string'
-                || argType === 'number'
-                || argType === 'boolean' ) {
-
-            this.fullName = arg;
-        }
-        else if ( util.isObject( arg ) === true ) {
+        if ( util.isObject( arg ) === true ) {
 
             for ( let prop in obj ) {
 
@@ -42,22 +39,49 @@ class EntityProfile {
                 }
             }
         }
+        else if ( argType === 'string'
+                || argType === 'number'
+                || argType === 'boolean' ) {
+
+            this.fullName = arg;
+        }
 
         for( let prop in obj ) {
 
             this[ prop ] = obj[ prop ].toString();
         }
 
-        if ( this.firstName === '' && this.lastName === '' && this.name !== '' ) {
+        this.generateFullNameAndType();
+    }
 
-            this.fullName = this.name;
+    generateFullNameAndType() {
+
+        if ( this.firstName === '' && this.lastName === '' ) {
+
+            if ( this.name !== '' ) {
+
+                this.fullName = this.name.trim();
+                this.type = 'business';
+            }
+            else {
+
+                this.type = 'empty';
+            }
         }
-        else if ( ( this.firstName !== '' || this.lastName !== '' )
-                        && this.name === '' ) {
+        // this.firstName !== '' || this.lastName !== ''
+        else {
 
-            this.fullName = this.firstName + ' ' + this.lastName;
+            if ( this.name === '' ) {
+
+                this.fullName = ( this.firstName + ' ' + this.lastName ).trim();
+                this.type = 'human';
+            }
+            else {
+
+                this.fullName = ( this.firstName + ' ' + this.lastName + ' ' + this.name ).trim();
+                this.type = 'mixed';
+            }
         }
-
     }
 }
 

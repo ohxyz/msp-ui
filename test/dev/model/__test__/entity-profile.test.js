@@ -5,7 +5,7 @@ describe( 'EntityProfile object', () => {
     test( 'can accept an empty string as the argument.', () => { 
 
         let user = new datatype.EntityProfile();
-        expect( user.fullName ).toBe( 'N/A' );
+        expect( user.fullName ).toBe( 'n/a' );
 
     } );
 
@@ -40,6 +40,74 @@ describe( 'EntityProfile object', () => {
         let user = new datatype.EntityProfile( arg );
 
         expect( user ).not.toEqual( expect.objectContaining( arg ) );
+
+    } );
+    
+} );
+
+
+describe( 'EntityProfile\'s type and fullName', () => { 
+
+    test( 'type is business', () => { 
+
+        let arg = { firstName: '', lastName: '', name: 'corp' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.type ).toBe( 'business' );
+
+    } );
+
+    test( 'type is human', () => { 
+
+        let arg = { firstName: 'Tom', lastName: '' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.type ).toBe( 'human' );
+
+    } );
+
+    test( 'type is mixed', () => { 
+
+        let arg = { firstName: '', lastName: 'Rancie', name: 'Origin' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.type ).toBe( 'mixed' );
+
+    } );
+
+    test( 'type is empty', () => { 
+
+        let arg = {};
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.type ).toBe( 'empty' );
+
+    } );
+
+    test( 'type is empty again', () => { 
+
+        let arg = { name: '' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.type ).toBe( 'empty' );
+
+    } );
+
+    test( 'fullName is combined from firstName and LastName', () => { 
+
+        let arg = { firstName: 'Su', lastName: 'ba' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.fullName ).toBe( 'Su ba' );
+
+    } );
+
+    test( 'fullName is a business name', () => { 
+
+        let arg = { firstName: '', name: 'Origin' };
+        let user = new datatype.EntityProfile( arg );
+
+        expect( user.fullName ).toBe( 'Origin' );
 
     } );
 
