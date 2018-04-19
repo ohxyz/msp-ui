@@ -33,6 +33,7 @@ export default class SearchBox extends React.Component {
             placeholder: props.placeholder,
             items: props.items,
             name: props.name,
+            onPropsSelect: props.onSelect,
             searchItems: makeSearchItemsByFields( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false
@@ -49,6 +50,7 @@ export default class SearchBox extends React.Component {
             items: setDefault( nextProps.items, [] ),
             name: setDefault( nextProps.name, ''),
             placeholder: setDefault( nextProps.placeholder, ''),
+            onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             fields: setDefault( nextProps.fields, ''),
             searchItems: makeSearchItemsByFields( nextProps.items, nextProps.fields )
         };
@@ -138,6 +140,8 @@ export default class SearchBox extends React.Component {
 
         this.textInputElement.value = item.content;
         let itemsFiltered = this.filterSearchItemsByText( item.content );
+
+        this.state.onPropsSelect( item );
 
         this.setState( {
 

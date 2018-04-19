@@ -54,7 +54,8 @@ ReactDOM.render(
 
     <SearchBox
         id="seach-box-users"
-
+        name="my-box"
+        onSelect={ ( item ) => { console.log( '*', item ) } }
         placeholder="Search users by name, department or agency" 
         items={ usersOrgs } 
         fields={ [ 'org', 'name' ] }
