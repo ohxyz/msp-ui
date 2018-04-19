@@ -4,7 +4,7 @@
  *
  * US English style eg. organization
  */
-const util = require( '../core/util.js' );
+const util = require( '../helpers/util.js' );
 
 class EntityProfile {
 

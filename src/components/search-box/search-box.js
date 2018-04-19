@@ -2,7 +2,7 @@ import React from 'react';
 import SearchList from './search-box-list.js';
 import { componentManager } from '../core/component-manager.js';
 import { generateRandomString, setDefault, isDescendant } from '../core/util.js';
-import { SearchItem, makeSearchItemsByFields } from './data-model.js';
+import { SearchItem, makeSearchItems } from './data-model.js';
 
 export default class SearchBox extends React.Component {
 
@@ -34,12 +34,12 @@ export default class SearchBox extends React.Component {
             items: props.items,
             name: props.name,
             onPropsSelect: props.onSelect,
-            searchItems: makeSearchItemsByFields( props.items, props.fields ),
+            searchItems: makeSearchItems( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false,
             shouldRenderCount: true
         };
-
+        
         this.id = setDefault( props.id, generateRandomString() );
         componentManager.addComponent( this.id, this );
     }
@@ -53,7 +53,7 @@ export default class SearchBox extends React.Component {
             placeholder: setDefault( nextProps.placeholder, ''),
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             fields: setDefault( nextProps.fields, ''),
-            searchItems: makeSearchItemsByFields( nextProps.items, nextProps.fields ),
+            searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
             shouldRenderCount: setDefault( nextProps.shouldRenderCount, true )
         };
     }

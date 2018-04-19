@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchBox from '../../../../src/components/search-box/search-box.js';
 import SearchBoxList from '../../../../src/components/search-box/search-box-list.js';
+import { SearchItem } from '../../../../src/components/search-box/data-model.js';
+
 
 require( '../../../../less/components/search-box.less' );
 
@@ -19,6 +21,13 @@ const usersOrgs = [
     { 'org': 'abcde Transport' },
     { 'name': 'Mr abcdg ' },
     { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
+];
+
+const entities = [
+
+    { name: 'x', content: 'abcd', value: { a: 1, b: false } },
+    new SearchItem( { name: 'y', content: 'abce', value: { a: 3, b: 4 } } ),
+    new SearchItem( { content: 'bcde', value: { a: 5, b: 6 } } )
 ];
 
 /*
@@ -58,8 +67,7 @@ ReactDOM.render(
         onSelect={ ( item ) => { console.log( '*', item ) } }
         placeholder="Search users by name, department or agency"
         shouldRenderCount={ false }
-        items={ usersOrgs } 
-        fields={ [ 'org', 'name' ] }
+        items={ entities } 
     />,
     document.getElementById( 'search-box-1' )
 );

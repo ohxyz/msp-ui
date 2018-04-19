@@ -24,8 +24,8 @@ describe( 'SearchBox React object', () => {
             let filtered = searchBox.filterSearchItemsByText( 'abc' );
             let expected = [
 
-                { name: '', content: 'abcd' },
-                { name: '', content: 'abce' }
+                { name: '', content: 'abcd', value: null, },
+                { name: '', content: 'abce', value: null }
 
             ]
 

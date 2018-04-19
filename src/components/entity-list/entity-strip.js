@@ -1,5 +1,5 @@
 import React from 'react';
-import { setDefault } from '../../core/util.js';
+import { setDefault } from '../core/util.js';
 import { EntityProfile } from '../../model/entity-profile.js';
 
 

@@ -8,6 +8,7 @@ class SearchItem {
 
         this.name = '';
         this.content = '';
+        this.value = null;
 
         let type = typeof arg;
 
@@ -18,30 +19,36 @@ class SearchItem {
 
             this.content = arg.toString();
         }
-        else if ( util.isObject( arg ) === true ) {
+        else if ( util.isObject( arg ) === true || arg instanceof SearchItem === true ) {
 
-            let clone = Object.assign( { 
+            // shallow copy
+            let copy = Object.assign( { 
 
                 name: '',
-                content: ''
+                content: '',
+                value: null,
 
             }, arg );
 
-            this.name = clone.name;
-            this.content = clone.content.toString();
+            this.name = copy.name;
+            this.content = copy.content.toString();
+            this.value = copy.value;
         }
     }
 }
 
 
-function makeSearchItems( items ) {
+function makeSearchItemsByItems( items ) {
 
     if ( Array.isArray( items ) === false ) {
 
         return [];
     }
 
-    let searchItems = items.map( item => new SearchItem( item ) );
+    let searchItems = items.map( item => {
+
+        return new SearchItem( item );
+    } );
 
     return searchItems;
 }
@@ -66,12 +73,6 @@ function makeSearchItems( items ) {
  */
 
 function makeSearchItemsByFields( items, fields ) {
-
-    if ( Array.isArray( fields ) !== true
-            || fields.length === '' ) {
-
-        return makeSearchItems( items );
-    }
 
     let searchItems = [];
 
@@ -100,9 +101,22 @@ function makeSearchItemsByFields( items, fields ) {
     return searchItems;
 }
 
+
+function makeSearchItems( items, fields ) {
+
+    if ( Array.isArray( fields ) === true && fields.length > 0 ) {
+
+        return makeSearchItemsByFields( items, fields );
+    }
+
+    return makeSearchItemsByItems( items );
+
+}
+
 module.exports = {
 
     SearchItem,
     makeSearchItems,
+    makeSearchItemsByItems,
     makeSearchItemsByFields,
 };
