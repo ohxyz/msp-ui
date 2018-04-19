@@ -53,7 +53,8 @@ for ( let i = 0; i < NUM_OF_USERS; i ++ ) {
 ReactDOM.render(
 
     <SearchBox
-        id="seach-box-users" 
+        id="seach-box-users"
+
         placeholder="Search users by name, department or agency" 
         items={ usersOrgs } 
         fields={ [ 'org', 'name' ] }
