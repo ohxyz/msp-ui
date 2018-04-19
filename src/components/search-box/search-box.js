@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchList from './search-box-list.js';
-import { componentManager } from '../../core/component-manager.js';
-import { generateRandomString, setDefault, isDescendant } from '../../core/util.js';
+import { componentManager } from '../core/component-manager.js';
+import { generateRandomString, setDefault, isDescendant } from '../core/util.js';
 import { SearchItem, makeSearchItemsByFields } from './data-model.js';
 
 export default class SearchBox extends React.Component {

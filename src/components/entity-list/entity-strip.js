@@ -3,13 +3,13 @@ import { setDefault } from '../../core/util.js';
 import { EntityProfile } from '../../model/entity-profile.js';
 
 
-function getCloseIconText( shouldExpand ) {
+function getExpandIconText( shouldExpand ) {
 
     return shouldExpand === true ? 'remove' : 'add';
 
 }
 
-export default class entityStrip extends React.Component {
+export default class EntityStrip extends React.Component {
 
     constructor( props ) {
 
@@ -21,7 +21,7 @@ export default class entityStrip extends React.Component {
 
             entity: null,
             shouldDropDownExpanded: false,
-            closeIconText: 'add'
+            expandIconText: 'add'
         };
     }
 
@@ -33,7 +33,7 @@ export default class entityStrip extends React.Component {
 
             entity: setDefault( nextProps.entity, new EntityProfile() ),
             shouldDropDownExpanded: shouldExpand,
-            closeIconText: getCloseIconText( shouldExpand )
+            expandIconText: getExpandIconText( shouldExpand )
         };
     }
 
@@ -44,7 +44,7 @@ export default class entityStrip extends React.Component {
         this.setState( { 
 
             shouldDropDownExpanded: shouldExpand,
-            closeIconText: getCloseIconText( shouldExpand )
+            expandIconText: getExpandIconText( shouldExpand )
 
         } );
     }
@@ -75,7 +75,7 @@ export default class entityStrip extends React.Component {
                         className="entity-strip__expand material-icons" 
                         onClick={ this.handleExpandClick }
                     >
-                        { this.state.closeIconText }
+                        { this.state.expandIconText }
                     </div>
                     <div className="entity-strip__top-bar">
                         <span className="entity-strip__full-name">{ entity.fullName }</span>
