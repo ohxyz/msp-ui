@@ -25,7 +25,7 @@ const usersOrgs = [
 
 const entities = [
 
-    { name: 'x', content: 'abcd', value: { a: 1, b: false } },
+    { name: 'x', content: 'abcd', value: { id: '1234' } },
     new SearchItem( { name: 'y', content: 'abce', value: { a: 3, b: 4 } } ),
     new SearchItem( { content: 'bcde', value: { a: 5, b: 6 } } )
 ];
@@ -67,7 +67,8 @@ ReactDOM.render(
         onSelect={ ( item ) => { console.log( '*', item ) } }
         placeholder="Search users by name, department or agency"
         shouldRenderCount={ false }
-        items={ entities } 
+        items={ entities }
+        strikes={ 2 }
     />,
     document.getElementById( 'search-box-1' )
 );

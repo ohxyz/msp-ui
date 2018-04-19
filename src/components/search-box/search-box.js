@@ -4,6 +4,8 @@ import { componentManager } from '../core/component-manager.js';
 import { generateRandomString, setDefault, isDescendant } from '../core/util.js';
 import { SearchItem, makeSearchItems } from './data-model.js';
 
+const DEFAULT_NUMBER_OF_STRIKES = 3;
+
 export default class SearchBox extends React.Component {
 
     constructor( props ) {
@@ -37,7 +39,8 @@ export default class SearchBox extends React.Component {
             searchItems: makeSearchItems( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false,
-            shouldRenderCount: true
+            shouldRenderCount: true,
+            strikes: DEFAULT_NUMBER_OF_STRIKES
         };
         
         this.id = setDefault( props.id, generateRandomString() );
@@ -45,6 +48,13 @@ export default class SearchBox extends React.Component {
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
+
+        let numberOfStrikes = parseInt( nextProps.strikes, 10 );
+
+        if ( isNaN( numberOfStrikes ) || numberOfStrikes < 1 ) {
+
+            numberOfStrikes = DEFAULT_NUMBER_OF_STRIKES;
+        }
         
         return {
 
@@ -54,7 +64,8 @@ export default class SearchBox extends React.Component {
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             fields: setDefault( nextProps.fields, ''),
             searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
-            shouldRenderCount: setDefault( nextProps.shouldRenderCount, true )
+            shouldRenderCount: setDefault( nextProps.shouldRenderCount, true ),
+            strikes: numberOfStrikes
         };
     }
 
@@ -82,7 +93,7 @@ export default class SearchBox extends React.Component {
 
         let text = this.textInputElement.value;
 
-        if ( text.length <= 2 ) {
+        if ( text.length < this.state.strikes ) {
 
             this.clearSearchList();
 
