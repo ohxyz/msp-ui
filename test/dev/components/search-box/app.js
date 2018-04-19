@@ -4,7 +4,6 @@ import SearchBox from '../../../../src/components/search-box/search-box.js';
 import SearchBoxList from '../../../../src/components/search-box/search-box-list.js';
 import { SearchItem } from '../../../../src/components/search-box/data-model.js';
 
-
 require( '../../../../less/components/search-box.less' );
 
 const faker = require( 'faker' );
@@ -67,7 +66,8 @@ ReactDOM.render(
         onSelect={ ( item ) => { console.log( '*', item ) } }
         placeholder="Search users by name, department or agency"
         shouldRenderCount={ false }
-        items={ entities }
+        items={ usersOrgs }
+        fields={ [ 'org', 'name' ] }
         strikes={ 2 }
     />,
     document.getElementById( 'search-box-1' )

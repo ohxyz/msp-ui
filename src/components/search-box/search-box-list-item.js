@@ -19,9 +19,7 @@ export default class SearchListItem extends React.Component {
     render() {
 
         let item = this.props.item;
-        let content = item instanceof SearchItem
-                    ? item.content
-                    : item
+        let content = item.__content__;
         let isFocused = this.props.isFocused;
 
         let className = this.props.isFocused === true
