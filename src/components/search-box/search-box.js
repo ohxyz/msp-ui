@@ -36,7 +36,8 @@ export default class SearchBox extends React.Component {
             onPropsSelect: props.onSelect,
             searchItems: makeSearchItemsByFields( props.items, props.fields ),
             itemsFiltered: [],
-            shouldRenderList: false
+            shouldRenderList: false,
+            shouldRenderCount: true
         };
 
         this.id = setDefault( props.id, generateRandomString() );
@@ -52,7 +53,8 @@ export default class SearchBox extends React.Component {
             placeholder: setDefault( nextProps.placeholder, ''),
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             fields: setDefault( nextProps.fields, ''),
-            searchItems: makeSearchItemsByFields( nextProps.items, nextProps.fields )
+            searchItems: makeSearchItemsByFields( nextProps.items, nextProps.fields ),
+            shouldRenderCount: setDefault( nextProps.shouldRenderCount, true )
         };
     }
 
@@ -207,6 +209,11 @@ export default class SearchBox extends React.Component {
     }
 
     renderCount() {
+
+        if ( this.state.shouldRenderCount === false ) {
+
+            return;
+        }
 
         let count = this.state.itemsFiltered.length;
 
