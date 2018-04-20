@@ -29,7 +29,6 @@ const entities = [
     new SearchItem( { content: 'bcde', value: { a: 5, b: 6 } } )
 ];
 
-/*
 const NUM_OF_USERS = 100;
 
 let orgs = [
@@ -56,7 +55,6 @@ for ( let i = 0; i < NUM_OF_USERS; i ++ ) {
 
     users.push( user );
 }
-*/
 
 ReactDOM.render(
 
@@ -64,9 +62,10 @@ ReactDOM.render(
         id="seach-box-users"
         name="my-box"
         onSelect={ ( item ) => { console.log( '*', item ) } }
+        onIconClick= { obj => { console.log( '**', obj ); obj.showAllItems(); } }
         placeholder="Search users by name, department or agency"
-        shouldRenderCount={ false }
-        items={ usersOrgs }
+        items={ users }
+        iconStyle="add"
         fields={ [ 'org', 'name' ] }
         strikes={ 2 }
     />,

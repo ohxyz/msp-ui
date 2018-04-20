@@ -14,14 +14,16 @@ export default class SearchBox extends React.Component {
         
         this.handleTextInputChange = this.handleTextInputChange.bind( this );
         this.handleSelect = this.handleSelect.bind( this );
-        this.handleCrossIconClick = this.handleCrossIconClick.bind( this );
+        this.handleIconClick = this.handleIconClick.bind( this );
         this.handleClickOutside = this.handleClickOutside.bind( this );
         this.handleTextInputFocus = this.handleTextInputFocus.bind( this );
         this.handleTextInputBlur = this.handleTextInputBlur.bind( this );
         this.handleListItemFocus = this.handleListItemFocus.bind( this );
         this.handleKeyDown = this.handleKeyDown.bind( this );
+        this.clearSearch = this.clearSearch.bind( this );
         this.showSearchList = this.showSearchList.bind( this );
         this.clearSearchList = this.clearSearchList.bind( this );
+
 
         this.textInputElement = null;
         this.searchListElement = null;
@@ -36,11 +38,15 @@ export default class SearchBox extends React.Component {
             items: props.items,
             name: props.name,
             onPropsSelect: props.onSelect,
+            onPropsIconClick: props.onIconClick,
             searchItems: makeSearchItems( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false,
             shouldRenderCount: true,
+            shouldRenderIcon: true,
+            iconStyle: 'close',
             strikes: DEFAULT_NUMBER_OF_STRIKES
+
         };
         
         this.id = setDefault( props.id, generateRandomString() );
@@ -62,10 +68,13 @@ export default class SearchBox extends React.Component {
             name: setDefault( nextProps.name, ''),
             placeholder: setDefault( nextProps.placeholder, ''),
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
+            onPropsIconClick: setDefault( nextProps.onIconClick, new Function() ),
             fields: setDefault( nextProps.fields, ''),
             searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
             shouldRenderCount: setDefault( nextProps.shouldRenderCount, true ),
-            strikes: numberOfStrikes
+            shouldRenderIcon: setDefault( nextProps.shouldRenderIcon, true ),
+            strikes: numberOfStrikes,
+            iconStyle: setDefault( nextProps.iconStyle, 'close' )
         };
     }
 
@@ -140,8 +149,6 @@ export default class SearchBox extends React.Component {
             let searchItem = searchItems[ i ];
             let content = searchItem.__content__.toLowerCase();
 
-            console.log( text, content );
-
             if ( content.indexOf( text.toLowerCase() ) >= 0 ) {
 
                 itemsFiltered.push( searchItem );
@@ -166,11 +173,26 @@ export default class SearchBox extends React.Component {
         } );
     }
 
-    handleCrossIconClick() {
+    clearSearch() {
 
         this.textInputElement.value = '';
 
         this.clearSearchList();
+    }
+
+    showAllItems() {
+
+        this.setState( {
+
+            itemsFiltered: this.state.searchItems,
+            shouldRenderList: true
+
+        } );
+    }
+
+    handleIconClick() {
+
+        this.state.onPropsIconClick( this );
     }
 
     handleClickOutside( event ) {
@@ -239,6 +261,16 @@ export default class SearchBox extends React.Component {
         )
     }
 
+    renderIcon() {
+
+        return (
+
+            <span className="search-box__icon" onClick={ this.handleIconClick }>
+                <i className="material-icons">{ this.state.iconStyle }</i>
+            </span>
+        );
+    }
+
     renderHeader() {
 
         return (
@@ -254,9 +286,7 @@ export default class SearchBox extends React.Component {
                     onBlur={ this.handleTextInputBlur }
                     ref={ elem => this.textInputElement = elem }
                 />
-                <span className="search-box__clear" onClick={ this.handleCrossIconClick }>
-                     <i className="material-icons">close</i>
-                </span>
+                { this.renderIcon() }
             </div>
         );
     }

@@ -56,7 +56,7 @@ export default class EntityStrip extends React.Component {
             return (
 
                 <div className="entity-strip__dropdown">
-                    <div className="entity-strip__type">{ this.state.entity.type }</div>
+                    <div className="entity-strip__dropdown__content">User access level</div>
                 </div>
             );
         }
