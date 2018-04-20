@@ -167,14 +167,14 @@ export default class SearchBox extends React.Component {
         this.textInputElement.value = item.__content__;
         let itemsFiltered = this.filterSearchItemsByText( item.__content__ );
 
-        this.state.onPropsSelect( item );
-
         this.setState( {
 
             itemsFiltered: itemsFiltered,
             shouldRenderList: false
 
         } );
+
+        this.state.onPropsSelect( item, this );
     }
 
     clearSearch() {

@@ -61,7 +61,7 @@ ReactDOM.render(
     <SearchBox
         id="seach-box-users"
         name="my-box"
-        onSelect={ ( item ) => { console.log( '*', item ) } }
+        onSelect={ ( item, obj ) => { console.log( '*', item ); obj.clearSearch(); } }
         onIconClick= { obj => { console.log( '**', obj ); obj.showAllItems(); } }
         onChange= { obj => console.log( '***', obj ) }
         placeholder="Search users by name, department or agency"
