@@ -63,6 +63,7 @@ ReactDOM.render(
         name="my-box"
         onSelect={ ( item ) => { console.log( '*', item ) } }
         onIconClick= { obj => { console.log( '**', obj ); obj.showAllItems(); } }
+        onChange= { obj => console.log( '***', obj ) }
         placeholder="Search users by name, department or agency"
         items={ users }
         iconStyle="add"
