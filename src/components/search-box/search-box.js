@@ -138,21 +138,23 @@ export default class SearchBox extends React.Component {
         for ( let i = 0; i < searchItems.length; i ++ ) {
 
             let searchItem = searchItems[ i ];
-            let content = searchItem.content.toLowerCase();
+            let content = searchItem.__content__.toLowerCase();
+
+            console.log( text, content );
 
             if ( content.indexOf( text.toLowerCase() ) >= 0 ) {
 
                 itemsFiltered.push( searchItem );
             }
         }
-
+        
         return itemsFiltered;
     }
 
     handleSelect( item ) {
 
-        this.textInputElement.value = item.content;
-        let itemsFiltered = this.filterSearchItemsByText( item.content );
+        this.textInputElement.value = item.__content__;
+        let itemsFiltered = this.filterSearchItemsByText( item.__content__ );
 
         this.state.onPropsSelect( item );
 
@@ -204,7 +206,7 @@ export default class SearchBox extends React.Component {
         }
 
         this.itemFocused = item;
-        this.textInputElement.value = item.content;
+        this.textInputElement.value = item.__content__;
     }
 
     componentDidMount() {

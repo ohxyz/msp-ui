@@ -6,37 +6,30 @@ class SearchItem {
 
     constructor( arg ) {
 
-        this.name = '';
-        this.content = '';
-        this.value = null;
+        this.__content__ = '';
+        this.__field__ = '';
+        this.__origin__ = arg;
 
         let type = typeof arg;
 
-        // Todo: check null
         if ( type === 'string'
                 || type === 'number'
-                || type === 'boolean' ) {
+                || type === 'boolean') {
 
-            this.content = arg.toString();
+            this.__content__ = arg.toString();
+        }
+        else if ( arg === null ) {
+
+            this.__content__ = 'null';
         }
         else if ( util.isObject( arg ) === true || arg instanceof SearchItem === true ) {
 
-            // shallow copy
-            let copy = Object.assign( { 
+            this.__content__ = JSON.stringify( arg );
 
-                name: '',
-                content: '',
-                value: null,
-
-            }, arg );
-
-            this.name = copy.name;
-            this.content = copy.content.toString();
-            this.value = copy.value;
+            Object.assign( this, arg );
         }
     }
 }
-
 
 function makeSearchItemsByItems( items ) {
 
@@ -53,24 +46,7 @@ function makeSearchItemsByItems( items ) {
     return searchItems;
 }
 
-/* @example
- *  
- * @param {Array of JSON like object } eg.
- *         
- *     [ { first: 'name',  next: 'address',  last: 'number'  }
- *       { first: 'name2', next: 'address2', last: 'number2' } ]
- *
- * @param {Array of String } eg. 
- *         
- *     [ 'first', 'last' ]
- * 
- * @returns {Array of SeachItem } eg.
- *
- *     [ { name: 'first', content: 'name' },
- *       { name: 'last',  content: 'number'},
- *       { name: 'first', content: 'name2' },
- *       { name: 'last', content: 'number2'} ]
- */
+
 
 function makeSearchItemsByFields( items, fields ) {
 
@@ -85,12 +61,9 @@ function makeSearchItemsByFields( items, fields ) {
                 return ;
             }
 
-            let searchItem = new SearchItem( { 
-
-                name: fieldName,
-                content: item[ fieldName ]
-
-            } );
+            let searchItem = new SearchItem( item );
+            searchItem.__content__ = item[ fieldName ];
+            searchItem.__field__ = fieldName;
 
             searchItems.push( searchItem );
 
