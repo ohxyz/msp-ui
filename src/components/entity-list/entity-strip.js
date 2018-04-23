@@ -1,7 +1,6 @@
-import React from 'react';
-import { setDefault } from '../core/util.js';
-import { EntityProfile } from '../../model/entity-profile.js';
-
+const util = require( '../core/util.js' );
+const React = require( 'react' );
+const EntityProfile = require( '../../model/entity-profile.js' ).EntityProfile;
 
 function getExpandIconText( shouldExpand ) {
 
@@ -9,7 +8,7 @@ function getExpandIconText( shouldExpand ) {
 
 }
 
-export default class EntityStrip extends React.Component {
+class EntityStrip extends React.Component {
 
     constructor( props ) {
 
@@ -27,11 +26,11 @@ export default class EntityStrip extends React.Component {
 
     static getDerivedStateFromProps( nextProps, prevState ) {
 
-        let shouldExpand = setDefault( nextProps.shouldDropDownExpanded, false );
+        let shouldExpand = util.setDefault( nextProps.shouldDropDownExpanded, false );
         
         return {
 
-            entity: setDefault( nextProps.entity, new EntityProfile() ),
+            entity: util.setDefault( nextProps.entity, new EntityProfile() ),
             shouldDropDownExpanded: shouldExpand,
             expandIconText: getExpandIconText( shouldExpand )
         };
@@ -90,3 +89,10 @@ export default class EntityStrip extends React.Component {
         );
     }
 }
+
+
+module.exports = {
+
+    EntityStrip,
+};
+

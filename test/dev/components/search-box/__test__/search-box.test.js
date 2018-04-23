@@ -24,10 +24,10 @@ describe( 'SearchBox React object', () => {
             let filtered = searchBox.filterSearchItemsByText( 'abc' );
             let expected = [
 
-                { name: '', content: 'abcd', value: null, },
-                { name: '', content: 'abce', value: null }
+                { __content__: 'abcd', __origin__: 'abcd', '__field__': '' },
+                { __content__: 'abce', __origin__: 'abce', '__field__': '' },
 
-            ]
+            ];
 
             expect( filtered ).toEqual( expected );
 

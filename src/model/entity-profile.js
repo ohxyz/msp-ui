@@ -24,18 +24,20 @@ class EntityProfile {
             topGroup: '', // Name of top level 
         };
 
+        Object.assign( this, obj );
+
         let argType = typeof arg;
 
         this.fullName = 'n/a';
         this.type = 'n/a';
 
-        if ( util.isObject( arg ) === true ) {
+        if ( util.isObject( arg ) === true || arg instanceof EntityProfile ) {
 
-            for ( let prop in obj ) {
+            for ( let prop in arg ) {
 
                 if ( arg.hasOwnProperty( prop ) === true ) {
 
-                    obj[ prop ] = arg[ prop ];
+                    this[ prop ] = arg[ prop ].toString();
                 }
             }
         }
@@ -45,10 +47,9 @@ class EntityProfile {
 
             this.fullName = arg;
         }
+        else if ( arg === null ) {
 
-        for( let prop in obj ) {
-
-            this[ prop ] = obj[ prop ].toString();
+            this.fullName = 'null';
         }
 
         this.generateFullNameAndType();

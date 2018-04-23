@@ -2,13 +2,15 @@
  * 
  * Markups:
  * 
- * <UserList entities={ UserProfile[] } /> 
+ * <EntityList entities={ UserProfile[] } /> 
  *
  */
 
-import React from 'react';
+const React = require( 'react' );
+const util = require( '../core/util.js' );
+const EntityStrip = require( './entity-strip.js' ).EntityStrip;
 
-class UserList extends React.Component {
+class EntityList extends React.Component {
 
     constructor( props ) {
 
@@ -17,14 +19,14 @@ class UserList extends React.Component {
         this.state = {
 
             entities: []
-        }
+        };
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
         
         return {
 
-            entities: setDefault( nextProps.entities, [] )
+            entities: util.setDefault( nextProps.entities, [] )
         };
     }
 
@@ -32,16 +34,19 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-list">
+            <div className="entity-list">
             {
-                this.state.entities.map( () => { 
+                this.state.entities.map( ( entity, key ) => 
 
-
-                } )
+                    <EntityStrip key={ key } entity={ entity } />
+                )
             }
             </div>
-        )
+        );
     }
 }
 
-export default UserList;
+module.exports = {
+
+    EntityList
+}
