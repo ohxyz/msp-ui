@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { UserStrip } from '../../../../src/components/user-list/user-strip.js';
 import { UserList } from '../../../../src/components/user-list/user-list.js';
 import { UserProfile } from '../../../../src/model/user-profile.js';
@@ -8,9 +7,7 @@ import { UserProfile } from '../../../../src/model/user-profile.js';
 require( '../../../../less/components/user-list.less' );
 
 const faker = require( 'faker' );
-const NUM = 20;
-
-let user = new UserProfile( { firstName: 'John', lastName: 'Town', group: 'Dept A', topGroup: 'Victoria' } );
+const NUM = 30;
 let users = [];
 
 for ( let i = 0; i < NUM; i ++ ) {
