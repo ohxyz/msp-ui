@@ -6,7 +6,7 @@
  */
 const util = require( '../helpers/util.js' );
 
-class EntityProfile {
+class UserProfile {
 
     constructor( arg ) {
 
@@ -31,7 +31,7 @@ class EntityProfile {
         this.fullName = 'n/a';
         this.type = 'n/a';
 
-        if ( util.isObject( arg ) === true || arg instanceof EntityProfile ) {
+        if ( util.isObject( arg ) === true || arg instanceof UserProfile ) {
 
             for ( let prop in arg ) {
 
@@ -88,5 +88,5 @@ class EntityProfile {
 
 module.exports = {
 
-    EntityProfile
+    UserProfile
 };

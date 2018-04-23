@@ -1,6 +1,6 @@
 const util = require( '../core/util.js' );
 const React = require( 'react' );
-const EntityProfile = require( '../../model/entity-profile.js' ).EntityProfile;
+const UserProfile = require( '../../model/user-profile.js' ).UserProfile;
 
 function getExpandIconText( shouldExpand ) {
 
@@ -8,7 +8,7 @@ function getExpandIconText( shouldExpand ) {
 
 }
 
-class EntityStrip extends React.Component {
+class UserStrip extends React.Component {
 
     constructor( props ) {
 
@@ -18,7 +18,7 @@ class EntityStrip extends React.Component {
 
         this.state = {
 
-            entity: null,
+            user: null,
             shouldDropDownExpanded: false,
             expandIconText: 'add'
         };
@@ -30,7 +30,7 @@ class EntityStrip extends React.Component {
         
         return {
 
-            entity: util.setDefault( new EntityProfile( nextProps.entity ), new EntityProfile() ),
+            user: util.setDefault( new UserProfile( nextProps.user ), new UserProfile() ),
             shouldDropDownExpanded: shouldExpand,
             expandIconText: getExpandIconText( shouldExpand )
         };
@@ -54,8 +54,8 @@ class EntityStrip extends React.Component {
 
             return (
 
-                <div className="entity-strip__dropdown">
-                    <div className="entity-strip__dropdown__content">User access level</div>
+                <div className="user-strip__dropdown">
+                    <div className="user-strip__dropdown__content">User access level</div>
                 </div>
             );
         }
@@ -63,25 +63,25 @@ class EntityStrip extends React.Component {
 
     render() {
 
-        let entity = this.state.entity;
+        let user = this.state.user;
 
         return (
 
-            <div className="entity-strip">
-                <div className="entity-strip__main">
-                    <div className="entity-strip__delete material-icons">close</div>
+            <div className="user-strip">
+                <div className="user-strip__main">
+                    <div className="user-strip__delete material-icons">close</div>
                     <div 
-                        className="entity-strip__expand material-icons" 
+                        className="user-strip__expand material-icons" 
                         onClick={ this.handleExpandClick }
                     >
                         { this.state.expandIconText }
                     </div>
-                    <div className="entity-strip__top-bar">
-                        <span className="entity-strip__full-name">{ entity.fullName }</span>
-                        <span className="entity-strip__top-group">{ entity.topGroup }</span>
+                    <div className="user-strip__top-bar">
+                        <span className="user-strip__full-name">{ user.fullName }</span>
+                        <span className="user-strip__top-group">{ user.topGroup }</span>
                     </div>
-                    <div className="entity-strip__middle-bar">
-                        <div className="entity-strip__group">{ entity.group }</div>
+                    <div className="user-strip__middle-bar">
+                        <div className="user-strip__group">{ user.group }</div>
                     </div>
                 </div>
                 { this.renderDropDown() }
@@ -93,6 +93,6 @@ class EntityStrip extends React.Component {
 
 module.exports = {
 
-    EntityStrip,
+    UserStrip,
 };
 

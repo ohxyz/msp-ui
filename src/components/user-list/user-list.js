@@ -2,15 +2,15 @@
  * 
  * Markups:
  * 
- * <EntityList entities={ UserProfile[] } /> 
+ * <UserList users={ UserProfile[] } /> 
  *
  */
 
 const React = require( 'react' );
 const util = require( '../core/util.js' );
-const EntityStrip = require( './entity-strip.js' ).EntityStrip;
+const UserStrip = require( './user-strip.js' ).UserStrip;
 
-class EntityList extends React.Component {
+class UserList extends React.Component {
 
     constructor( props ) {
 
@@ -18,7 +18,7 @@ class EntityList extends React.Component {
 
         this.state = {
 
-            entities: [],
+            users: [],
             shouldRenderCount: true,
             onRenderCount: new Function()
         };
@@ -28,7 +28,7 @@ class EntityList extends React.Component {
         
         return {
 
-            entities: util.setDefault( nextProps.entities, [] ),
+            users: util.setDefault( nextProps.users, [] ),
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function ),
         };
@@ -41,12 +41,12 @@ class EntityList extends React.Component {
             return;
         }
 
-        let count = this.state.entities.length;
+        let count = this.state.users.length;
 
         return (
 
-            <div className="entity-list__count">
-                <span className="entity-list__count__literal">{ this.state.onRenderCount( count ) }</span>
+            <div className="user-list__count">
+                <span className="user-list__count__literal">{ this.state.onRenderCount( count ) }</span>
             </div>
 
         );
@@ -56,12 +56,12 @@ class EntityList extends React.Component {
 
         return (
 
-            <div className="entity-list">
+            <div className="user-list">
             { this.renderCount() }
             {
-                this.state.entities.map( ( entity, key ) => 
+                this.state.users.map( ( user, key ) => 
 
-                    <EntityStrip key={ key } entity={ entity } />
+                    <UserStrip key={ key } user={ user } />
                 )
             }
             </div>
@@ -71,5 +71,5 @@ class EntityList extends React.Component {
 
 module.exports = {
 
-    EntityList
+    UserList
 }
