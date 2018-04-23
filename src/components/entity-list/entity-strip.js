@@ -30,7 +30,7 @@ class EntityStrip extends React.Component {
         
         return {
 
-            entity: util.setDefault( nextProps.entity, new EntityProfile() ),
+            entity: util.setDefault( new EntityProfile( nextProps.entity ), new EntityProfile() ),
             shouldDropDownExpanded: shouldExpand,
             expandIconText: getExpandIconText( shouldExpand )
         };

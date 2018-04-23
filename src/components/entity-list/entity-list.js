@@ -18,7 +18,9 @@ class EntityList extends React.Component {
 
         this.state = {
 
-            entities: []
+            entities: [],
+            shouldRenderCount: true,
+            onRenderCount: new Function()
         };
     }
 
@@ -26,8 +28,28 @@ class EntityList extends React.Component {
         
         return {
 
-            entities: util.setDefault( nextProps.entities, [] )
+            entities: util.setDefault( nextProps.entities, [] ),
+            shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
+            onRenderCount: util.setDefault( nextProps.onRenderCount, new Function ),
         };
+    }
+
+    renderCount() {
+
+        if ( this.state.shouldRenderCount === false ) {
+
+            return;
+        }
+
+        let count = this.state.entities.length;
+
+        return (
+
+            <div className="entity-list__count">
+                <span className="entity-list__count__literal">{ this.state.onRenderCount( count ) }</span>
+            </div>
+
+        );
     }
 
     render() {
@@ -35,6 +57,7 @@ class EntityList extends React.Component {
         return (
 
             <div className="entity-list">
+            { this.renderCount() }
             {
                 this.state.entities.map( ( entity, key ) => 
 
