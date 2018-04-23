@@ -20,7 +20,8 @@ class UserList extends React.Component {
 
             users: [],
             shouldRenderCount: true,
-            onRenderCount: new Function()
+            onRenderCount: new Function(),
+            sortByFields: []
         };
     }
 
@@ -30,8 +31,23 @@ class UserList extends React.Component {
 
             users: util.setDefault( nextProps.users, [] ),
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
-            onRenderCount: util.setDefault( nextProps.onRenderCount, new Function ),
+            onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
+            sortByFields: util.setDefault( nextProps.sortByFields, [] )
         };
+    }
+
+    // Todo: sort by multiple fields. Right now only one
+    sortUsersByFields( users, fieldNames ) {
+
+        if ( Array.isArray( fieldNames) === false || fieldNames.length === 0 ) {
+
+            return users;
+        }
+
+        let field = fieldNames[ 0 ];
+
+        return users.sort( ( a, b ) => a[ field ].localeCompare( b[ field ] ) );
+
     }
 
     renderCount() {
@@ -54,12 +70,14 @@ class UserList extends React.Component {
 
     render() {
 
+        let users = this.sortUsersByFields( this.state.users, this.state.sortByFields );
+
         return (
 
             <div className="user-list">
             { this.renderCount() }
             {
-                this.state.users.map( ( user, key ) => 
+                users.map( ( user, key ) => 
 
                     <UserStrip key={ key } user={ user } />
                 )

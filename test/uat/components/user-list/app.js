@@ -26,13 +26,6 @@ for ( let i = 0; i < NUM; i ++ ) {
     users.push( user );
 }
 
-
-ReactDOM.render(
-
-    <UserStrip user={ user } />,
-    document.getElementById( 'user-strip' )
-);
-
 ReactDOM.render(
 
     <UserList 
