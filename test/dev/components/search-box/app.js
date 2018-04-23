@@ -61,10 +61,12 @@ ReactDOM.render(
     <SearchBox
         id="seach-box-users"
         name="my-box"
-        onSelect={ ( item, obj ) => { console.log( '*', item ); obj.clearSearch(); } }
+        onSelect={ ( item, self ) => { console.log( '*', item ); } }
         onIconClick= { obj => { console.log( '**', obj ); obj.showAllItems(); } }
         onChange= { obj => console.log( '***', obj ) }
         placeholder="Search users by name, department or agency"
+        onFocus={ self => { console.log( 'focus', self ); self.updateItems( [ 'xxx', 'yyy' ], [] ) } }
+        onBlur={ self => console.log( 'blur', self ) }
         items={ users }
         iconStyle="add"
         fields={ [ 'org', 'name' ] }
