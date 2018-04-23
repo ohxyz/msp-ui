@@ -15,7 +15,13 @@ const usersOrgs = [
     { 'org': 'abce Health', name: 'abce health people' },
     { 'org': 'abcde Transport' },
     { 'name': 'Mr abcdg ' },
-    { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
+    { 'name': 'abcd lady', 'org': 'abce LADY GROUP' },
+    { 'org': 'Testing Health', name: 'Test Health' },
+    { 'org': 'UAT Health', name: 'The health in Test' },
+    { 'org': 'New Transport' },
+    { 'name': 'Mr Jack' },
+    { 'name': 'Finance Testing', 'org': 'THE FINANCE GROUP' },
+    { 'name': 'abcd final', 'org': 'abce final GROUP' }
 ];
 
 ReactDOM.render(
@@ -30,8 +36,10 @@ ReactDOM.render(
 );
 
 
+/*
 ReactDOM.render(
 
     <SearchBox id="seach-box-orgs" placeholder="Search" items={ depts } />,
     document.getElementById( 'search-box-2' )
 );
+*/
