@@ -20,10 +20,6 @@ export default class SearchBox extends React.Component {
         this.handleTextInputBlur = this.handleTextInputBlur.bind( this );
         this.handleListItemFocus = this.handleListItemFocus.bind( this );
         this.handleKeyDown = this.handleKeyDown.bind( this );
-        this.clearSearch = this.clearSearch.bind( this );
-        this.showSearchList = this.showSearchList.bind( this );
-        this.clearSearchList = this.clearSearchList.bind( this );
-
 
         this.textInputElement = null;
         this.searchListElement = null;
@@ -40,6 +36,8 @@ export default class SearchBox extends React.Component {
             onPropsSelect: props.onSelect,
             onPropsIconClick: props.onIconClick,
             onPropsTextChange: props.onChange,
+            onPropsFocus: new Function(),
+            onPropsBlur: new Function(),
             searchItems: makeSearchItems( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false,
@@ -71,7 +69,9 @@ export default class SearchBox extends React.Component {
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             onPropsIconClick: setDefault( nextProps.onIconClick, new Function() ),
             onPropsTextChange: setDefault( nextProps.onChange, new Function() ),
-            fields: setDefault( nextProps.fields, ''),
+            onPropsFocus: setDefault( nextProps.onFocus, new Function() ),
+            onPropsBlur: setDefault( nextProps.onBlur, new Function() ),
+            fields: setDefault( nextProps.fields, [] ),
             searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
             shouldRenderCount: setDefault( nextProps.shouldRenderCount, true ),
             shouldRenderIcon: setDefault( nextProps.shouldRenderIcon, true ),
@@ -80,13 +80,37 @@ export default class SearchBox extends React.Component {
         };
     }
 
-    showSearchList( items ) {
+    updateItems( items, fields ) {
+
+        let fieldArray = [];
+
+        if ( fields === undefined || Array.isArray( fields ) === false) {
+
+            fieldArray = this.state.fields;
+        }
+
+        let searchItems = makeSearchItems( items, fieldArray );
+        let text = this.textInputElement.value;
+        let itemsFiltered = this.filterSearchItemsByText( searchItems, text );
 
         this.setState( { 
 
-            itemsFiltered: items,
-            shouldRenderList: true
+            items: items,
+            searchItems: searchItems,
+            itemsFiltered: itemsFiltered
         } );
+    }
+
+    showSearchList( items ) {
+
+        if ( Array.isArray( items ) === true && items.length > 0 ) {
+
+            this.setState( { 
+
+                itemsFiltered: items,
+                shouldRenderList: true
+            } );
+        }
     }
 
     clearSearchList() {
@@ -110,7 +134,7 @@ export default class SearchBox extends React.Component {
         }
         else { 
 
-            let itemsFiltered = this.filterSearchItemsByText( text );
+            let itemsFiltered = this.filterSearchItemsByText( this.state.searchItems, text );
 
             if ( itemsFiltered.length > 0 ) {
 
@@ -136,17 +160,19 @@ export default class SearchBox extends React.Component {
                 shouldRenderList: true
             } );
         }
+
+        this.state.onPropsFocus( this );
     }
 
     handleTextInputBlur() {
 
         this.isTextInputFocused = false;
+        this.state.onPropsBlur( this );
     }
 
-    filterSearchItemsByText( text ) {
+    filterSearchItemsByText( searchItems, text ) {
 
         let itemsFiltered = [];
-        let searchItems = this.state.searchItems;
 
         for ( let i = 0; i < searchItems.length; i ++ ) {
 
@@ -165,7 +191,7 @@ export default class SearchBox extends React.Component {
     handleSelect( item ) {
 
         this.textInputElement.value = item.__content__;
-        let itemsFiltered = this.filterSearchItemsByText( item.__content__ );
+        let itemsFiltered = this.filterSearchItemsByText( this.state.searchItems, item.__content__ );
 
         this.setState( {
 
@@ -190,7 +216,6 @@ export default class SearchBox extends React.Component {
 
             itemsFiltered: this.state.searchItems,
             shouldRenderList: true
-
         } );
     }
 
@@ -297,7 +322,8 @@ export default class SearchBox extends React.Component {
 
     renderContent() {
 
-        if ( this.state.shouldRenderList === false ) {
+        if ( this.state.shouldRenderList === false 
+                || this.state.itemsFiltered.length === 0 ) {
 
             return;
         }

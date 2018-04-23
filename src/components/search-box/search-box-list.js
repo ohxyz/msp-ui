@@ -80,6 +80,11 @@ export default class SearchList extends React.Component {
     
     componentDidMount() {
 
+        if ( this.searchListItemElement === null ) {
+
+            return;
+        }
+
         let style = window.getComputedStyle( this.searchListItemElement.domElement );
 
         this.searchListItemHeight = parseInt( style.height, 10 );
