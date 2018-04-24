@@ -1,4 +1,4 @@
-const UserProfile = require( '../../../../../src/components/user-list/data-model.js' ).UserProfile;
+const UserProfile = require( '../../../../../src/components/core/user-profile.js' ).UserProfile;
 
 describe( 'UserProfile class/object', () => {
 
@@ -66,12 +66,12 @@ describe( 'UserProfile class/object', () => {
 
 describe( 'UserProfile\'s type and fullName', () => { 
 
-    test( 'type is business', () => { 
+    test( 'type is organisation', () => { 
 
         let arg = { firstName: '', lastName: '', name: 'corp' };
         let user = new UserProfile( arg );
 
-        expect( user.type ).toBe( 'business' );
+        expect( user.type ).toBe( 'organisation' );
 
     } );
 

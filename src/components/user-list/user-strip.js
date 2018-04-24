@@ -1,6 +1,6 @@
 const util = require( '../core/util.js' );
 const React = require( 'react' );
-const UserProfile = require( './data-model.js' ).UserProfile;
+const UserProfile = require( '../core/user-profile.js' ).UserProfile;
 
 function getExpandIconText( shouldExpand ) {
 

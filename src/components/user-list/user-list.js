@@ -78,7 +78,6 @@ class UserList extends React.Component {
             { this.renderCount() }
             {
                 users.map( ( user, key ) => {
-                    console.log( user)
 
                     return <UserStrip key={ key } user={ user } />
                 } )
@@ -91,4 +90,4 @@ class UserList extends React.Component {
 module.exports = {
 
     UserList
-}
+};
