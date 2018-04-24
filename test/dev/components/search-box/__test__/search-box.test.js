@@ -18,10 +18,11 @@ describe( 'SearchBox React object', () => {
 
     describe( 'filterSearchItemsByText method', () => { 
 
-        test( 'has normal a argument', () => {
+        test( 'can filter searchItems by text', () => {
 
-            let searchItem = new SearchItem( 'abc' );
-            let filtered = searchBox.filterSearchItemsByText( 'abc' );
+            let searchItems = items.map( item => new SearchItem( item ) );
+
+            let filtered = searchBox.filterSearchItemsByText( searchItems, 'abc' );
             let expected = [
 
                 { __content__: 'abcd', __origin__: 'abcd', '__field__': '' },
