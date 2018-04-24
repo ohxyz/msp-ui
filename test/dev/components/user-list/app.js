@@ -3,33 +3,39 @@ import ReactDOM from 'react-dom';
 
 import { UserStrip } from '../../../../src/components/user-list/user-strip.js';
 import { UserList } from '../../../../src/components/user-list/user-list.js';
-import { UserProfile } from '../../../../src/model/user-profile.js';
+import { UserProfile } from '../../../../src/components/core/user-profile.js';
 
 require( '../../../../less/components/user-list.less' );
 
 const faker = require( 'faker' );
-const NUM = 20;
+const NUM = 10;
+const NUM_OF_SAME_FIRST_NAME = 5;
 
-let user = new UserProfile( { firstName: 'John', lastName: 'Town', group: 'Dept A', topGroup: 'Victoria' } );
+let userProfile = new UserProfile( { firstName: 'John', lastName: 'Town', group: 'Dept A', topGroup: 'Victoria' } );
 let users = [];
 
 for ( let i = 0; i < NUM; i ++ ) {
 
-    let user = {
+    let firstName = faker.name.firstName()
 
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        org: faker.company.companyName(),
-        topOrg: faker.commerce.department(),
+    for ( let j = 0; j < NUM_OF_SAME_FIRST_NAME; j ++ ) {
+
+        let user = {
+
+            firstName: firstName,
+            lastName: faker.name.lastName(),
+            org: faker.company.companyName(),
+            topOrg: faker.commerce.department(),
+
+        }
+
+        users.push( user );
     }
-
-    users.push( user );
 }
-
 
 ReactDOM.render(
 
-    <UserStrip user={ user } />,
+    <UserStrip user={ userProfile } />,
     document.getElementById( 'user-strip' )
 );
 
@@ -38,7 +44,7 @@ ReactDOM.render(
     <UserList 
         users={ users } 
         onRenderCount={ count => `In total, ${count} users found.` }
-        sortByFields={ [ 'firstName' ] }
+        sortByFields={ [ 'firstName', 'lastName' ] }
     />,
     document.getElementById( 'user-list' )
 );

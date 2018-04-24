@@ -44,9 +44,32 @@ class UserList extends React.Component {
             return users;
         }
 
-        let field = fieldNames[ 0 ];
+        // let field = fieldNames[ 0 ];
 
-        return users.sort( ( a, b ) => a[ field ].localeCompare( b[ field ] ) );
+        function compare( a, b, fields, fieldIndex ) {
+
+            let field = fields[ fieldIndex ];
+
+            return a[ field ].localeCompare( b[ field ] );
+        }
+
+        return users.sort( ( a, b ) => {
+
+            let result = 0;
+
+            for ( let i = 0; i < fieldNames.length; i ++ ) {
+
+                result = compare( a, b, fieldNames, i )
+
+                if ( result !== 0 ) {
+
+                    return result;
+                }
+            }
+
+            return result;
+
+        } );
 
     }
 
