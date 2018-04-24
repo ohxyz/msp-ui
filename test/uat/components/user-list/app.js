@@ -24,7 +24,7 @@ for ( let i = 0; i < NUM; i ++ ) {
             org: faker.company.companyName(),
             topOrg: faker.commerce.department(),
         }
-        
+
         users.push( user );
     }
 }
@@ -34,7 +34,7 @@ ReactDOM.render(
     <UserList 
         users={ users } 
         onRenderCount={ count => `In total, ${count} users found.` }
-        sortByFields={ [ 'firstName' ] }
+        sortByFields={ [ 'firstName', 'lastName' ] }
     />,
     document.getElementById( 'user-list' )
 );
