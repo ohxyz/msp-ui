@@ -78,10 +78,10 @@ class UserStrip extends React.Component {
                     </div>
                     <div className="user-strip__top-bar">
                         <span className="user-strip__full-name">{ user.fullName }</span>
-                        <span className="user-strip__top-group">{ user.topGroup }</span>
+                        <span className="user-strip__top-org">{ user.topOrg }</span>
                     </div>
                     <div className="user-strip__middle-bar">
-                        <div className="user-strip__group">{ user.group }</div>
+                        <div className="user-strip__org">{ user.org }</div>
                     </div>
                 </div>
                 { this.renderDropDown() }

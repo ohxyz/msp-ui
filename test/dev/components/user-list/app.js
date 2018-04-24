@@ -19,8 +19,8 @@ for ( let i = 0; i < NUM; i ++ ) {
 
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
-        group: faker.company.companyName(),
-        topGroup: faker.commerce.department(),
+        org: faker.company.companyName(),
+        topOrg: faker.commerce.department(),
     }
 
     users.push( user );

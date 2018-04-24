@@ -2,7 +2,7 @@
  *
  * CommonJS styles eg. require, module.exports
  *
- * US English style eg. organization
+ * AU English style eg. organisation
  */
 const util = require( '../core/util.js' );
 
@@ -20,8 +20,8 @@ class UserProfile {
             name: '',
             emailAddress: '',
             level: '',
-            group: '',   // Organization, group, etc
-            topGroup: '', // Name of top level 
+            org: '',   // Group, organisation, etc
+            topOrg: '', // Name of top level 
         };
 
         Object.assign( this, obj );
@@ -62,7 +62,7 @@ class UserProfile {
             if ( this.name !== '' ) {
 
                 this.fullName = this.name.trim();
-                this.type = 'business';
+                this.type = 'organisation';
             }
             else {
 
@@ -75,7 +75,7 @@ class UserProfile {
             if ( this.name === '' ) {
 
                 this.fullName = ( this.firstName + ' ' + this.lastName ).trim();
-                this.type = 'human';
+                this.type = 'person';
             }
             else {
 

@@ -75,12 +75,12 @@ describe( 'UserProfile\'s type and fullName', () => {
 
     } );
 
-    test( 'type is human', () => { 
+    test( 'type is person', () => { 
 
         let arg = { firstName: 'Tom', lastName: '' };
         let user = new UserProfile( arg );
 
-        expect( user.type ).toBe( 'human' );
+        expect( user.type ).toBe( 'person' );
 
     } );
 

@@ -77,10 +77,11 @@ class UserList extends React.Component {
             <div className="user-list">
             { this.renderCount() }
             {
-                users.map( ( user, key ) => 
+                users.map( ( user, key ) => {
+                    console.log( user)
 
-                    <UserStrip key={ key } user={ user } />
-                )
+                    return <UserStrip key={ key } user={ user } />
+                } )
             }
             </div>
         );
