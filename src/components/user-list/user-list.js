@@ -36,15 +36,12 @@ class UserList extends React.Component {
         };
     }
 
-    // Todo: sort by multiple fields. Right now only one
     sortUsersByFields( users, fieldNames ) {
 
         if ( Array.isArray( fieldNames) === false || fieldNames.length === 0 ) {
 
             return users;
         }
-
-        // let field = fieldNames[ 0 ];
 
         function compare( a, b, fields, fieldIndex ) {
 
@@ -70,7 +67,6 @@ class UserList extends React.Component {
             return result;
 
         } );
-
     }
 
     renderCount() {

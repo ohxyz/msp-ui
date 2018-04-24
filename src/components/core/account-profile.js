@@ -6,7 +6,7 @@
  */
 const util = require( './util.js' );
 
-class UserProfile {
+class AccountProfile {
 
     constructor( arg ) {
 
@@ -31,9 +31,11 @@ class UserProfile {
         this.fullName = 'n/a';
         this.type = 'n/a';
 
-        if ( util.isObject( arg ) === true || arg instanceof UserProfile ) {
+        if ( util.isObject( arg ) === true || arg instanceof AccountProfile ) {
 
-            for ( let prop in arg ) {
+            for ( let prop in obj ) {
+
+                console.log( '**', prop, arg );
 
                 if ( arg.hasOwnProperty( prop ) === true ) {
 
@@ -88,5 +90,5 @@ class UserProfile {
 
 module.exports = {
 
-    UserProfile
+    AccountProfile
 };

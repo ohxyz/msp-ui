@@ -1,4 +1,5 @@
 const UserStorage = require( '../../../../../src/components/core/user-storage.js' ).UserStorage;
+const dummySapString = require( './dummy-sap.js' ).dummySapString;
 
 describe( 'UserStorage', () => {
 
@@ -32,6 +33,20 @@ describe( 'UserStorage', () => {
         let object = new UserStorage( '{"d": {"results": ["a", null] } }' ).sapResults;
 
         expect( object ).toEqual( [ 'a', null ] );
+    } );
+
+} );
+
+describe( 'UserStorage that has SAP data', () => {
+
+    test( 'can process', () => { 
+
+        let userStorage = new UserStorage( dummySapString );
+
+        // userStorage.process();
+
+        console.log( userStorage );
+
     } );
 
 } );

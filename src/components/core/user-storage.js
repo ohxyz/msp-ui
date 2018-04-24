@@ -3,6 +3,7 @@
  */
 
 const util = require( '../core/util.js' );
+const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 
 class UserStorage {
 
@@ -13,6 +14,7 @@ class UserStorage {
         this.sapResults = null;
         this.users = [];
         this.orgs = [];
+        this.entities = []; // users + orgs
 
         this.validateSapRaw();
     }
@@ -50,13 +52,63 @@ class UserStorage {
         }
         catch( error ) {
 
-            throw new Error( '[MSP] SAP data should have a "d.results" array.' );
+            throw new Error( '[MSP] SAP data should have "d.results".' );
+        }
+
+        if ( Array.isArray( this.sapResults ) === false ) {
+
+            throw new Error( '[MSP] SAP data\'s "d.results" should be an array.' );
         }
     }
 
-    getUsers() {
+    process() {
 
-        
+        let hierarchyIds = [];
+
+        for( let node of this.sapResults ) {
+
+            if ( node.hasOwnProperty( 'AssignedAccounts') 
+                    && node.AssignedAccounts.hasOwnProperty( 'results') 
+                    && Array.isArray( node.AssignedAccounts.results ) === true ) {
+
+
+                let results = node.AssignedAccounts.results;
+                console.log( results );
+                this.processAccounts( results );
+
+            }
+        }
+    }
+
+    processAccounts( accounts ) {
+
+        for ( let account of accounts ) {
+
+            console.log( 1, account );
+
+            let profile = new AccountProfile( {
+
+                accountId: account.AccountID,
+                hierarchyId: account.HierarchyID,
+                name: account.Name,
+                firstName: account.FirstName,
+                lastName: account.LastName
+
+            } );
+
+            console.log( 2, profile );
+
+            if ( profile.type === 'organisation' ) {
+
+                this.orgs.push( profile );
+            }
+            else if ( profile.type === 'person' ) {
+
+                this.users.push( profile );
+            }
+
+            this.entities.push( profile );
+        }
     }
 
 }

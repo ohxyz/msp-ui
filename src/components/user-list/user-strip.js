@@ -1,6 +1,6 @@
 const util = require( '../core/util.js' );
 const React = require( 'react' );
-const UserProfile = require( '../core/user-profile.js' ).UserProfile;
+const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 
 function getExpandIconText( shouldExpand ) {
 
@@ -30,7 +30,7 @@ class UserStrip extends React.Component {
         
         return {
 
-            user: util.setDefault( new UserProfile( nextProps.user ), new UserProfile() ),
+            user: util.setDefault( new AccountProfile( nextProps.user ), new AccountProfile() ),
             shouldDropDownExpanded: shouldExpand,
             expandIconText: getExpandIconText( shouldExpand )
         };
