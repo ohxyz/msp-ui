@@ -35,8 +35,6 @@ class AccountProfile {
 
             for ( let prop in obj ) {
 
-                console.log( '**', prop, arg );
-
                 if ( arg.hasOwnProperty( prop ) === true ) {
 
                     this[ prop ] = arg[ prop ].toString();

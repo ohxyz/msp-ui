@@ -5,7 +5,7 @@
 const util = require( '../core/util.js' );
 const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 
-class UserStorage {
+class BusinessPartnerStorage {
 
     constructor( sapRaw ) {
 
@@ -14,7 +14,7 @@ class UserStorage {
         this.sapResults = null;
         this.users = [];
         this.orgs = [];
-        this.entities = []; // users + orgs
+        this.accounts = []; // users + orgs
 
         this.validateSapRaw();
     }
@@ -73,7 +73,7 @@ class UserStorage {
 
 
                 let results = node.AssignedAccounts.results;
-                console.log( results );
+
                 this.processAccounts( results );
 
             }
@@ -83,8 +83,6 @@ class UserStorage {
     processAccounts( accounts ) {
 
         for ( let account of accounts ) {
-
-            console.log( 1, account );
 
             let profile = new AccountProfile( {
 
@@ -96,8 +94,6 @@ class UserStorage {
 
             } );
 
-            console.log( 2, profile );
-
             if ( profile.type === 'organisation' ) {
 
                 this.orgs.push( profile );
@@ -107,7 +103,7 @@ class UserStorage {
                 this.users.push( profile );
             }
 
-            this.entities.push( profile );
+            this.accounts.push( profile );
         }
     }
 
@@ -115,5 +111,5 @@ class UserStorage {
 
 module.exports = {
 
-    UserStorage,
+    BusinessPartnerStorage,
 };
