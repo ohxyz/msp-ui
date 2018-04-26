@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { UserStrip } from '../../../../src/components/user-list/user-strip.js';
 import { UserList } from '../../../../src/components/user-list/user-list.js';
 import { UserProfile } from '../../../../src/components/core/user-profile.js';
-
-require( '../../../../less/components/user-list.less' );
+import '../../../../less/components/user-list.less';
 
 const faker = require( 'faker' );
 const NUM = 10;
@@ -24,8 +22,8 @@ for ( let i = 0; i < NUM; i ++ ) {
 
             firstName: firstName,
             lastName: faker.name.lastName(),
-            org: faker.company.companyName(),
-            topOrg: faker.commerce.department(),
+            orgName: faker.company.companyName(),
+            topOrgName: faker.commerce.department(),
 
         }
 
