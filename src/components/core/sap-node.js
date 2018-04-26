@@ -5,10 +5,16 @@ class SapNode {
 
     constructor( rawNode ) {
 
+        if ( rawNode === undefined ) {
+
+            rawNode = {};
+        }
+
         this.hierarchyId = util.setDefault( rawNode.HierarchyID, '-1' );
         this.parentId = util.setDefault( rawNode.ParentID, '-1' );
         this.description = util.setDefault( rawNode.Description );
         this.rawNode = rawNode;
+        this.parent = null;
 
         Object.assign( this, this.getAccounts( this.rawNode ) );
     }
@@ -50,7 +56,6 @@ class SapNode {
 
                 accounts.push( accountProfile );
             }
-
         }
 
         return {
