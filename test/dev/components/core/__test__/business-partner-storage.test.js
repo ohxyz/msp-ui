@@ -28,7 +28,7 @@ describe( 'BusinessPartnerStorage', () => {
 
         let bps = new BusinessPartnerStorage( { d: { results: [ 'a', null ] } } );
 
-        bps.process();        
+        bps.process();
         expect( bps.sapResults ).toEqual( [ 'a', null ] );
     } );
 
@@ -59,7 +59,8 @@ describe( 'BusinessPartnerStorage that has valid SAP data', () => {
 
     } );
 
-    test( 'can assign users to an orgnisation', () => { 
+    test( 'can assign users to an orgnisation', () => {
+
 
         let account = bps.accounts[ 3 ];
         expect( account.users[ 1 ].firstName ).toBe( 'Jan-Marie' );
@@ -68,9 +69,11 @@ describe( 'BusinessPartnerStorage that has valid SAP data', () => {
 
     test( 'can assign Parent', () => { 
 
-        let node = bps.nodes[ 8 ].Parent.Parent.Parent;
+        let node = bps.nodes[ 8 ].parent.parent.parent;
 
-        expect( node.Level ).toBe( '1' );
+        console.log( node );
+
+        expect( node.level ).toBe( '1' );
     } )
 
 } );

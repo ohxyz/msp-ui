@@ -1,11 +1,11 @@
 const util = require( './util.js' );
 const AccountProfile = require( './account-profile.js' ).AccountProfile;
 
-class SapNode {
+class HierarchyNode {
 
     constructor( rawNode ) {
 
-        if ( rawNode === undefined ) {
+        if ( util.isObject( rawNode ) === false ) {
 
             rawNode = {};
         }
@@ -13,6 +13,7 @@ class SapNode {
         this.hierarchyId = util.setDefault( rawNode.HierarchyID, '-1' );
         this.parentId = util.setDefault( rawNode.ParentID, '-1' );
         this.description = util.setDefault( rawNode.Description );
+        this.level = util.setDefault( rawNode.Level, '-1' );
         this.rawNode = rawNode;
         this.parent = null;
 
@@ -48,6 +49,7 @@ class SapNode {
                 if ( accountProfile.type === 'organisation' ) {
 
                     orgs.push( accountProfile );
+                    accountProfile.users = users;
                 }
                 else if ( accountProfile.type === 'person' ) {
 
@@ -71,6 +73,6 @@ class SapNode {
 
 module.exports = {
 
-    SapNode,
+    HierarchyNode,
 }
 

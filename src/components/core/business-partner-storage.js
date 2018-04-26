@@ -4,7 +4,7 @@
 
 const util = require( '../core/util.js' );
 const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
-const SapNode = require( '../core/sap-node.js' ).SapNode;
+const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
 class BusinessPartnerStorage {
 
@@ -16,16 +16,16 @@ class BusinessPartnerStorage {
         this.users = [];
         this.orgs = [];
         this.accounts = []; // users + orgs
-        this.nodes = []; // Each node in sapResults plus additional info
+        this.nodes = []; // HierarchyNodes
 
         /*
          *
          * @example [
          *
-         *     { "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307": SapNode }
-         *     { "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802": SapNode },
-         *     { "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801": SapNode },
-         *     { "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303": SapNode }
+         *     { "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307": HierarchyNode }
+         *     { "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802": HierarchyNode },
+         *     { "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801": HierarchyNode },
+         *     { "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303": HierarchyNode }
          * ]
          */
          this.mapOfHierarchyIdAndNode = { };
@@ -77,13 +77,13 @@ class BusinessPartnerStorage {
 
         this.validateSapRaw();
 
-        let lastNode = new SapNode();
-        let lastParentNode = new SapNode();
-        let sapNodes = this.sapResults.map( result => new SapNode( result ) );
+        let lastNode = new HierarchyNode();
+        let lastParentNode = new HierarchyNode();
+        let hierarchyNodes = this.sapResults.map( result => new HierarchyNode( result ) );
 
-        for ( let i = 0; i < sapNodes.length; i ++ ) {
+        for ( let i = 0; i < hierarchyNodes.length; i ++ ) {
 
-            let currentNode = sapNodes[ i ];
+            let currentNode = hierarchyNodes[ i ];
             let hierarchyId = currentNode.hierarchyId;
 
             if ( currentNode.parentId === lastNode.hierarchyId ) {
