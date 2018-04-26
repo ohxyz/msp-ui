@@ -1,4 +1,8 @@
-const UserStorage = require( '../../../../src/components/core/user-storage.js' ).UserStorage;
-const dummySapString = require( './__test__/dummy-sap.js' ).dummySapString;
+const BusinessPartnerStorage = require( '../../../../src/components/core/business-partner-storage.js' ).BusinessPartnerStorage;
+const dummySapObject = require( './__test__/dummy-sap.js' ).dummySapObject;
 
-let us = new UserStorage( dummySapString );
+let bps = new BusinessPartnerStorage( dummySapObject );
+
+
+bps.process();
+

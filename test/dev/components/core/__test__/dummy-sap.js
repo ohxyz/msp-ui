@@ -1,4 +1,4 @@
-const dummySapString = 
+const dummySapObject = 
 {
   "d" : {
     "results" : [
@@ -706,5 +706,5 @@ const dummySapString =
 
 module.exports = {
 
-  dummySapString,
+  dummySapObject,
 };

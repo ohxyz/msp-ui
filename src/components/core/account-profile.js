@@ -21,7 +21,7 @@ class AccountProfile {
             emailAddress: '',
             level: '',
             org: '',   // Group, organisation, etc
-            topOrg: '', // Name of top level 
+            topOrg: '', // Name of top level
         };
 
         Object.assign( this, obj );
@@ -62,7 +62,9 @@ class AccountProfile {
             if ( this.name !== '' ) {
 
                 this.fullName = this.name.trim();
+                this.org = this.fullName;
                 this.type = 'organisation';
+                this.users = []; // if type is organisation, then `users` will be user accounts in that organisation
             }
             else {
 
