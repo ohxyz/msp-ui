@@ -70,10 +70,24 @@ describe( 'BusinessPartnerStorage that has valid SAP data', () => {
     test( 'can assign Parent', () => { 
 
         let node = bps.nodes[ 8 ].parent.parent.parent;
-
-        console.log( node );
-
         expect( node.level ).toBe( '1' );
-    } )
+    } );
+
+    test( 'can get users by hierarchy ID', () => { 
+
+        let hid = "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802";
+        let users = bps.getUsersByHierarchyId( hid );
+
+        expect( users.length ).toBe( 1 );
+    } );
+
+    test( 'can get users by hierarchy ID until some level', () => { 
+
+        let hid = "CA2B1FE6-D50C-1ED8-8AFB-D6D075228702";
+        let users = bps.getUsersByHierarchyId( hid, 2 );
+
+        expect( users.length ).toBe( 3 );
+    } );
+
 
 } );

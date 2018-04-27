@@ -20,16 +20,17 @@ class AccountProfile {
             name: '',
             emailAddress: '',
             level: '',
-            org: '',   // Group, organisation, etc
-            topOrg: '', // Name of top level
+            org: null,
+            orgs: [],
+            topOrg: '',
+            topOrgName: '',
+            fullName: 'n/a',
+            type: 'n/a'
         };
 
         Object.assign( this, obj );
 
         let argType = typeof arg;
-
-        this.fullName = 'n/a';
-        this.type = 'n/a';
 
         if ( util.isObject( arg ) === true || arg instanceof AccountProfile ) {
 
@@ -37,7 +38,7 @@ class AccountProfile {
 
                 if ( arg.hasOwnProperty( prop ) === true ) {
 
-                    this[ prop ] = arg[ prop ].toString();
+                    this[ prop ] = arg[ prop ];
                 }
             }
         }

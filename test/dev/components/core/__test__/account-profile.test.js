@@ -34,15 +34,6 @@ describe( 'AccountProfile class/object', () => {
 
     } );
 
-    test( 'will convert properties value to a string', () => {
-
-        let arg = { name: 'tom', 'accountId': 123 };
-        let user = new AccountProfile( arg );
-
-        expect( user ).not.toEqual( expect.objectContaining( arg ) );
-
-    } );
-
     test( 'does not have the property it does not want', () => {
 
         let arg = { name: 'tom', 'accountId': 123, email: 'ab@cd.efg' };

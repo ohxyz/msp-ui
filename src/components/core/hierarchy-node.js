@@ -17,10 +17,10 @@ class HierarchyNode {
         this.rawNode = rawNode;
         this.parent = null;
 
-        Object.assign( this, this.getAccounts( this.rawNode ) );
+        Object.assign( this, this.assignAccounts( this.rawNode ) );
     }
 
-    getAccounts( node ) {
+    assignAccounts( node ) {
 
         let accounts = [];
         let users = [];
@@ -30,7 +30,6 @@ class HierarchyNode {
                 && util.isObject( node.AssignedAccounts )
                 && node.AssignedAccounts.hasOwnProperty( 'results' ) 
                 && Array.isArray( node.AssignedAccounts.results ) === true ) {
-
 
             for ( let account of node.AssignedAccounts.results ) {
 
@@ -48,16 +47,37 @@ class HierarchyNode {
 
                 if ( accountProfile.type === 'organisation' ) {
 
-                    orgs.push( accountProfile );
                     accountProfile.users = users;
+                    orgs.push( accountProfile );
+                    
                 }
                 else if ( accountProfile.type === 'person' ) {
 
+                    accountProfile.orgs = orgs;
                     users.push( accountProfile );
                 }
 
+                accountProfile.level = this.level;
                 accounts.push( accountProfile );
             }
+
+            // orgName is the concated by all org names
+            let orgName = orgs.reduceRight( ( allOrgNames, org ) => { 
+
+                return org.name + ', ' + allOrgNames;
+
+            }, '' ).slice( 0, -2 );
+                    
+            users.forEach( user => { 
+
+                user.orgName = orgName;
+
+                if ( orgs.length > 0 ) {
+
+                    user.org = orgs[ 0 ];
+                }
+
+            } );
         }
 
         return {
@@ -66,7 +86,6 @@ class HierarchyNode {
             users: users,
             orgs: orgs
         };
-
     }
 
 }

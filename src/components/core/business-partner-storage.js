@@ -106,6 +106,13 @@ class BusinessPartnerStorage {
                 }
             }
 
+            for ( let user of currentNode.users ) {
+
+                if ( currentNode.parent !== null  ) {
+
+                }
+            }
+
             this.users.push( ...currentNode.users );
             this.orgs.push( ...currentNode.orgs );
             this.accounts.push( ...currentNode.accounts );
@@ -117,18 +124,34 @@ class BusinessPartnerStorage {
         }
     }
 
-    getUsersByHierarchyId( hierarchyId ) {
+    getUsersByHierarchyId( hierarchyId, untilLevel = 1 ) {
 
         let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
         let users = node.users;
+        let topOrg = null;
+        let topOrgName = '';
+        let levelLiteral = untilLevel.toString();
 
-        while ( node.parent !== null ) {
+        while ( node.parent !== null && node.level !== levelLiteral ) {
 
             let parent = node.parent;
+
+            if ( parent.orgs.length > 0 ) {
+
+                let parentOrg = parent.orgs[ 0 ];
+
+                topOrg = parentOrg;
+                topOrgName = parentOrg.name;
+            }
             
             users.push( ...parent.users );
-
             node = parent;
+        }
+
+        for ( let user of users ) {
+
+            user.topOrg = topOrg;
+            user.topOrgName = topOrgName;
         }
 
         return users;
