@@ -6,7 +6,7 @@ const util = require( '../core/util.js' );
 const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
-class BusinessPartnerStorage {
+class HierarchyStorage {
 
     constructor( sapRaw, shouldProcess = false ) {
 
@@ -167,5 +167,5 @@ class BusinessPartnerStorage {
 
 module.exports = {
 
-    BusinessPartnerStorage,
+    HierarchyStorage,
 };
