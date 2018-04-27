@@ -70,7 +70,11 @@ class SearchUsers extends React.Component {
 
         return (
 
-            <UserList users={ this.state.usersFound } />
+            <UserList 
+                users={ this.state.usersFound }
+                onRenderCount={ count => `In total, ${count} users found.` }
+                sortByFields={ [ 'firstName', 'lastName' ] }
+            />
         );
     }
 

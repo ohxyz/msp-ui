@@ -29,19 +29,19 @@ export default class SearchBox extends React.Component {
 
         this.state = {
 
-            fields: props.fields,
-            placeholder: props.placeholder,
-            items: props.items,
-            name: props.name,
-            onPropsSelect: props.onSelect,
-            onPropsIconClick: props.onIconClick,
-            onPropsTextChange: props.onChange,
+            fields: [],
+            placeholder: '',
+            items: [],
+            name: '',
+            onPropsSelect: new Function(),
+            onPropsIconClick: new Function(),
+            onPropsTextChange: new Function(),
             onPropsFocus: new Function(),
             onPropsBlur: new Function(),
             searchItems: makeSearchItems( props.items, props.fields ),
             itemsFiltered: [],
             shouldRenderList: false,
-            shouldRenderCount: true,
+            shouldRenderCount: false,
             shouldRenderIcon: true,
             iconStyle: 'close',
             strikes: DEFAULT_NUMBER_OF_STRIKES
@@ -73,7 +73,7 @@ export default class SearchBox extends React.Component {
             onPropsBlur: setDefault( nextProps.onBlur, new Function() ),
             fields: setDefault( nextProps.fields, [] ),
             searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
-            shouldRenderCount: setDefault( nextProps.shouldRenderCount, true ),
+            shouldRenderCount: setDefault( nextProps.shouldRenderCount, false ),
             shouldRenderIcon: setDefault( nextProps.shouldRenderIcon, true ),
             strikes: numberOfStrikes,
             iconStyle: setDefault( nextProps.iconStyle, 'close' )

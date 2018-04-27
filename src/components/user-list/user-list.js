@@ -87,7 +87,6 @@ class UserList extends React.Component {
             <div className="user-list__count">
                 <span className="user-list__count__literal">{ this.state.onRenderCount( count ) }</span>
             </div>
-
         );
     }
 
