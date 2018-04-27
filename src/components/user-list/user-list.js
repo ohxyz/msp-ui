@@ -2,13 +2,14 @@
  * 
  * Markups:
  * 
- * <UserList users={ UserProfile[] } /> 
+ * <UserList users={ AccountProfile[] } /> 
  *
  */
 
 const React = require( 'react' );
 const util = require( '../core/util.js' );
 const UserStrip = require( './user-strip.js' ).UserStrip;
+const componentManager = require( '../core/component-manager.js' ).componentManager;
 
 class UserList extends React.Component {
 
@@ -23,6 +24,9 @@ class UserList extends React.Component {
             onRenderCount: new Function(),
             sortByFields: []
         };
+
+        this.id = util.setDefault( props.id, util.generateRandomString() );
+        componentManager.addComponent( this.id, this );
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {

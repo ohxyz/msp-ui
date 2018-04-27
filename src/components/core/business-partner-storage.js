@@ -8,7 +8,7 @@ const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
 class BusinessPartnerStorage {
 
-    constructor( sapRaw ) {
+    constructor( sapRaw, shouldProcess = false ) {
 
         this.sapRaw = sapRaw;
         this.sapObject = null;
@@ -29,6 +29,11 @@ class BusinessPartnerStorage {
          * ]
          */
          this.mapOfHierarchyIdAndNode = { };
+
+         if ( shouldProcess === true ) {
+
+            this.process();
+         }
     }
 
     validateSapRaw() {

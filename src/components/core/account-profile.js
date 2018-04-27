@@ -23,6 +23,7 @@ class AccountProfile {
             org: null,
             orgs: [],
             topOrg: '',
+            orgName: '',
             topOrgName: '',
             fullName: 'n/a',
             type: 'n/a'
