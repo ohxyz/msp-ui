@@ -38,7 +38,7 @@ export default class SearchBox extends React.Component {
             onPropsTextChange: new Function(),
             onPropsFocus: new Function(),
             onPropsBlur: new Function(),
-            searchItems: makeSearchItems( props.items, props.fields ),
+            searchItems: [],
             itemsFiltered: [],
             shouldRenderList: false,
             shouldRenderCount: false,
