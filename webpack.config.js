@@ -4,6 +4,7 @@ module.exports = env => {
 
     let environ = env.environ;
     let componentName = env.component;
+    let appName = env.app;
     let outputPath = path.join( __dirname, 'test/dev' );
     let entryPath = './src/app.js';
 
@@ -15,15 +16,22 @@ module.exports = env => {
     let outputPathFragment = '';
     let fileName = '';
 
-    // Todo: check componentName's actual type, eg. '', undefined or null
-    if ( componentName ) {
+    if ( environ === 'uat' || environ === 'dev' ) { 
 
-        if ( environ === 'uat' || environ === 'dev' ) {
+        // Todo: check componentName's actual type, eg. '', undefined or null
+        if ( componentName ) {
 
             componentFolder = path.join( __dirname, 'test', environ, 'components', componentName );
 
             entryPath = path.join( componentFolder, 'app.js' );
             outputPath = componentFolder;
+        }
+        else if ( appName ) {
+
+            appFolder = path.join( __dirname, 'test', environ, 'apps', appName );
+
+            entryPath = path.join( appFolder, 'app.js' );
+            outputPath = appFolder;
         }
     }
 

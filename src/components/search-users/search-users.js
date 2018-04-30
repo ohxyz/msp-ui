@@ -2,6 +2,7 @@ const React = require( 'react' );
 const util = require( '../core/util.js' );
 const SearchBox = require( '../search-box/search-box.js' ).SearchBox;
 const UserList = require( '../user-list/user-list.js' ).UserList;
+const componentManager = require( '../core/component-manager.js' ).componentManager;
 
 class SearchUsers extends React.Component {
 
@@ -9,33 +10,37 @@ class SearchUsers extends React.Component {
 
         super( props );
 
-        this.onSearchBoxItemSelect = this.onSearchBoxItemSelect.bind( this );
+        this.handleSearchBoxItemSelect = this.handleSearchBoxItemSelect.bind( this );
 
         this.state = {
 
             storage: null,
             usersFound: [],
+            shouldRenderUserList: false,
         };
+
+        this.id = util.setDefault( props.id, util.generateRandomString() );
+        componentManager.addComponent( this.id, this );
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
 
-        let bps = nextProps.storage;
+        let storage = nextProps.storage;
 
-        if ( bps === undefined ) {
+        if ( storage === undefined ) {
 
-            throw new Error( '[MSP] SearchUsers component must have a BusinessPartnerStorage instance as property.' );
+            throw new Error( '[MSP] SearchUsers component must have a HierarchyStorage instance as property.' );
         }
 
-        bps.process();
+        storage.process();
 
         return {
 
-            storage: bps
-        }
+            storage: storage
+        };
     }
 
-    onSearchBoxItemSelect( item, searchBox ) {
+    handleSearchBoxItemSelect( item, searchBox ) {
 
         let account = item.__origin__;
         let users = this.state.storage.getUsersByHierarchyId( account.hierarchyId );
@@ -47,7 +52,8 @@ class SearchUsers extends React.Component {
 
         this.setState( { 
 
-            usersFound: users
+            usersFound: users,
+            shouldRenderUserList: true
 
         } );
     }
@@ -56,11 +62,12 @@ class SearchUsers extends React.Component {
 
         return (
 
-            <SearchBox 
+            <SearchBox
+                id="search-box"
                 items={ this.state.storage.accounts }
                 fields={ [ 'fullName' ] }
                 strikes={ 3 }
-                onSelect={ this.onSearchBoxItemSelect }
+                onSelect={ this.handleSearchBoxItemSelect }
                 onIconClick={ self => self.clearSearch() }
             />
         );
@@ -68,9 +75,15 @@ class SearchUsers extends React.Component {
 
     renderUserList() {
 
+        if( this.state.shouldRenderUserList === false ) {
+
+            return;
+        }
+
         return (
 
-            <UserList 
+            <UserList
+                id="user-list"
                 users={ this.state.usersFound }
                 onRenderCount={ count => `In total, ${count} users found.` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
@@ -86,7 +99,7 @@ class SearchUsers extends React.Component {
                 { this.renderSearchBox() }
                 { this.renderUserList() }
             </div>
-        )
+        );
     }
 }
 

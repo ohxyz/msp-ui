@@ -8,8 +8,10 @@ import '../../../../less/components/search-users.less';
 
 let storage = new HierarchyStorage( dummySapObject );
 
-ReactDOM.render(
+console.log( storage );
 
-    <SearchUsers storage={ storage } />,
+ReactDOM.render(
+    
+    <SearchUsers is="search-users" storage={ storage } />,
     document.getElementById( 'search-users' )
 );

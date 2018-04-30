@@ -24,8 +24,7 @@ for ( let i = 0; i < NUM; i ++ ) {
             lastName: faker.name.lastName(),
             orgName: faker.company.companyName(),
             topOrgName: faker.commerce.department(),
-
-        }
+        };
 
         users.push( user );
     }

@@ -24,7 +24,7 @@ export default class SearchListItem extends React.Component {
 
         let className = this.props.isFocused === true
                       ? 'search-box__list-item search-box__list-item--focused'
-                      : 'search-box__list-item'
+                      : 'search-box__list-item';
 
         return (
 

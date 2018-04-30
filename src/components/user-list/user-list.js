@@ -10,6 +10,7 @@ const React = require( 'react' );
 const util = require( '../core/util.js' );
 const UserStrip = require( './user-strip.js' ).UserStrip;
 const componentManager = require( '../core/component-manager.js' ).componentManager;
+const MessageBox = require( '../message-box/message-box.js' ).MessageBox;
 
 class UserList extends React.Component {
 
@@ -37,6 +38,7 @@ class UserList extends React.Component {
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
             sortByFields: util.setDefault( nextProps.sortByFields, [] )
+
         };
     }
 
@@ -84,8 +86,35 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-list__count">
-                <span className="user-list__count__literal">{ this.state.onRenderCount( count ) }</span>
+            <div className="user-count">
+                <span className="user-count__literal">{ this.state.onRenderCount( count ) }</span>
+            </div>
+        );
+    }
+
+    renderUserList( users ) {
+
+        if ( users.length === 0 ) {
+
+            return (
+
+                <MessageBox 
+                    type="info"
+                    title="No users found"
+                    content="That orgnisation has no registered users"
+                />
+            );
+        }
+
+        return (
+
+            <div className="user-list">
+            {
+                users.map( ( user, key ) => {
+
+                    return <UserStrip key={ key } user={ user } />
+                } )
+            }
             </div>
         );
     }
@@ -96,15 +125,10 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-list">
-            { this.renderCount() }
-            {
-                users.map( ( user, key ) => {
-
-                    return <UserStrip key={ key } user={ user } />
-                } )
-            }
-            </div>
+            <React.Fragment>
+                { this.renderCount() }
+                { this.renderUserList( users ) }
+            </React.Fragment>
         );
     }
 }
