@@ -22,6 +22,7 @@ class UserList extends React.Component {
 
             users: [],
             shouldRenderCount: true,
+            countIconStyle: '',
             onRenderCount: new Function(),
             sortByFields: []
         };
@@ -37,8 +38,8 @@ class UserList extends React.Component {
             users: util.setDefault( nextProps.users, [] ),
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
-            sortByFields: util.setDefault( nextProps.sortByFields, [] )
-
+            sortByFields: util.setDefault( nextProps.sortByFields, [] ),
+            countIconStyle: util.setDefault( nextProps.countIconStyle, 'perm_identity' )
         };
     }
 
@@ -87,6 +88,7 @@ class UserList extends React.Component {
         return (
 
             <div className="user-count">
+                <i className="material-icons">{ this.state.countIconStyle }</i>
                 <span className="user-count__literal">{ this.state.onRenderCount( count ) }</span>
             </div>
         );

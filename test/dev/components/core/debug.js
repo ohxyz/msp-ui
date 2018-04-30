@@ -1,8 +1,7 @@
-const BusinessPartnerStorage = require( '../../../../src/components/core/business-partner-storage.js' ).BusinessPartnerStorage;
-const dummySapObject = require( './__test__/dummy-sap.js' ).dummySapObject;
+const HierarchyStorage = require( '../../../../src/components/core/hierarchy-storage.js' ).HierarchyStorage;
+const dummySapObject = require( '../../dummies/sap.js' ).dummySapObject;
 
-let bps = new BusinessPartnerStorage( dummySapObject );
+let storage = new HierarchyStorage( dummySapObject );
 
-
-bps.process();
+storage.process();
 

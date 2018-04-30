@@ -1,5 +1,5 @@
 const HierarchyStorage = require( '../../../../../src/components/core/hierarchy-storage.js' ).HierarchyStorage;
-const dummySapObject = require( './dummy-sap.js' ).dummySapObject;
+const dummySapObject = require( '../../../dummies/sap.js' ).dummySapObject;
 
 describe( 'HierarchyStorage', () => {
 
@@ -48,9 +48,9 @@ describe( 'HierarchyStorage that has valid SAP data', () => {
     let storage = new HierarchyStorage( dummySapObject );
     storage.process();
 
-    test( 'can get users', () => { 
+    test( 'has a list of acounts', () => { 
 
-        expect( storage.users.length > 0 ).toBe( true );
+        expect( storage.accounts.length > 0 ).toBe( true );
     } );
 
     test( 'can get parent ID of it\'s node', () => { 
@@ -89,5 +89,32 @@ describe( 'HierarchyStorage that has valid SAP data', () => {
         expect( users.length ).toBe( 3 );
     } );
 
+    test( 'throws an error when adding a user but can not find Hierarchy ID', () => { 
+
+        let user = { hierarchyId: '1234', firstName: 'Tom', lastName: 'Lu', emailAddress: 'tom.lu@tom.lu' };
+        expect( () => storage.addUser( user ) ).toThrow();
+
+    } );
+
+    test( 'can add a user', () => {
+
+        let hid = "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303";
+        let user = { hierarchyId: hid, firstName: 'Tom', lastName: 'Lu', emailAddress: 'tom.lu@tom.lu' };
+
+        storage.addUser( user );
+
+        expect( storage.nodes[ 3 ].accounts.length ).toBe( 2 );
+
+    } );
+
+    test( 'can add a user again', () => {
+
+        let hid = "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303";
+        let user = { hierarchyId: hid, firstName: 'Tom', lastName: 'Cruise', emailAddress: 'tom.cruise@tom.cruise' };
+
+        storage.addUser( user );
+        
+        expect( storage.nodes[ 3 ].users.length ).toBe( 2 );
+    } );
 
 } );

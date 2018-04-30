@@ -11,10 +11,7 @@ class HierarchyStorage {
     constructor( sapRaw, shouldProcess = false ) {
 
         this.sapRaw = sapRaw;
-        this.sapObject = null;
         this.sapResults = null;
-        this.users = [];
-        this.orgs = [];
         this.accounts = []; // users + orgs
         this.nodes = []; // HierarchyNodes
 
@@ -32,15 +29,21 @@ class HierarchyStorage {
 
          if ( shouldProcess === true ) {
 
-            this.process();
+            this.process( this.sapRaw );
          }
     }
 
-    validateSapRaw() {
+    /* 
+     *
+     * @param content can be a JSON string or an object
+     */
+    validateSapRaw( content ) {
 
-        if ( util.isObject( this.sapRaw ) ===  true ) {
+        let sapObject = null;
 
-            this.sapObject = this.sapRaw;
+        if ( util.isObject( content ) ===  true ) {
+
+            sapObject = content;
         }
         else {
 
@@ -48,7 +51,7 @@ class HierarchyStorage {
 
             try {
 
-                parsed = JSON.parse( this.sapRaw );
+                parsed = JSON.parse( content );
             }
             catch( error ) {
 
@@ -60,16 +63,25 @@ class HierarchyStorage {
                 throw new Error( '[MSP] SAP data should be parsed to an object.');
             }
 
-            this.sapObject = parsed;
+            sapObject = parsed;
         }
 
-        try {
+        if ( sapObject.hasOwnProperty( 'results' )
+                && Array.isArray( sapObject.results ) === true ) {
 
-            this.sapResults = this.sapObject.d.results;
+            this.sapResults = sapObject.results;
+
         }
-        catch( error ) {
+        else {
 
-            throw new Error( '[MSP] SAP data should have "d.results".' );
+            try {
+
+                this.sapResults = sapObject.d.results;
+            }
+            catch( error ) {
+
+                throw new Error( '[MSP] SAP data should have "d.results".' );
+            }
         }
 
         if ( Array.isArray( this.sapResults ) === false ) {
@@ -80,7 +92,7 @@ class HierarchyStorage {
 
     process() {
 
-        this.validateSapRaw();
+        this.validateSapRaw( this.sapRaw );
 
         let lastNode = new HierarchyNode();
         let lastParentNode = new HierarchyNode();
@@ -118,8 +130,6 @@ class HierarchyStorage {
                 }
             }
 
-            this.users.push( ...currentNode.users );
-            this.orgs.push( ...currentNode.orgs );
             this.accounts.push( ...currentNode.accounts );
 
             this.mapOfHierarchyIdAndNode[ hierarchyId ] = currentNode;
@@ -160,6 +170,32 @@ class HierarchyStorage {
         }
 
         return users;
+    }
+
+    addUser( { hierarchyId, firstName, lastName, emailAddress } ) {
+
+        let account = new AccountProfile( { 
+
+            hierarchyId,
+            firstName,
+            lastName,
+            emailAddress
+        } );
+
+        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
+
+        account.orgs = node.orgs;
+
+        if ( node === undefined ) {
+
+            throw new Error( '[MSP] Failed to find Hierarchy ID when adding a user.' );
+        }
+
+        node.accounts.push( account );
+        node.users.push( account );
+        this.accounts.push( account );
+
+        return account;
     }
 
 }

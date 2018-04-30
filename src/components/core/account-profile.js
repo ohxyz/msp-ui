@@ -80,6 +80,11 @@ class AccountProfile {
 
                 this.fullName = ( this.firstName + ' ' + this.lastName ).trim();
                 this.type = 'person';
+
+                if ( this.orgs.length > 0 ) {
+
+                    this.orgName = this.orgs[ 0 ].fullName;
+                }
             }
             else {
 

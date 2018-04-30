@@ -67,7 +67,8 @@ class HierarchyNode {
                 return org.name + ', ' + allOrgNames;
 
             }, '' ).slice( 0, -2 );
-                    
+            
+
             users.forEach( user => { 
 
                 user.orgName = orgName;

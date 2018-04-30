@@ -85,7 +85,7 @@ class SearchUsers extends React.Component {
             <UserList
                 id="user-list"
                 users={ this.state.usersFound }
-                onRenderCount={ count => `In total, ${count} users found.` }
+                onRenderCount={ count => `${count} users found.` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
             />
         );
