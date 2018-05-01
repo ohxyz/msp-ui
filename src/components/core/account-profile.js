@@ -20,11 +20,10 @@ class AccountProfile {
             name: '',
             emailAddress: '',
             level: '',
-            org: null,
             orgs: [],
-            topOrg: '',
-            orgName: '',
-            topOrgName: '',
+            topOrg: null,
+            orgName: 'n/a',
+            topOrgName: 'n/a',
             fullName: 'n/a',
             type: 'n/a'
         };
@@ -57,6 +56,23 @@ class AccountProfile {
         this.generateFullNameAndType();
     }
 
+    generateOrgName( orgs ) {
+
+        let orgName = 'n/a';
+
+        if ( util.isNotEmptyArray( orgs ) ) {
+
+            // orgName is the concated by all org names
+            orgName = this.orgs.reduceRight( ( allOrgNames, org ) => { 
+
+                return org.name + ', ' + allOrgNames;
+
+            }, '' ).slice( 0, -2 );
+        }
+
+        return orgName;
+    }
+
     generateFullNameAndType() {
 
         if ( this.firstName === '' && this.lastName === '' ) {
@@ -64,7 +80,6 @@ class AccountProfile {
             if ( this.name !== '' ) {
 
                 this.fullName = this.name.trim();
-                this.org = this.fullName;
                 this.type = 'organisation';
                 this.users = []; // if type is organisation, then `users` will be user accounts in that organisation
             }
@@ -80,11 +95,8 @@ class AccountProfile {
 
                 this.fullName = ( this.firstName + ' ' + this.lastName ).trim();
                 this.type = 'person';
+                this.orgName = this.generateOrgName( this.orgs );
 
-                if ( this.orgs.length > 0 ) {
-
-                    this.orgName = this.orgs[ 0 ].fullName;
-                }
             }
             else {
 

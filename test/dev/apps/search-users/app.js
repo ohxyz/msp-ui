@@ -12,6 +12,7 @@ let elem = document.getElementById( 'search-users-app' );
 
 let app = new SearchUsersApp( {
 
+    id: 'searchUsers',
     sapData: dummySapObject,
     domElement: elem
 
@@ -57,7 +58,5 @@ button4.addEventListener( 'click', () => {
     }
 
     app.addUser( user );
-
-
 } );
 

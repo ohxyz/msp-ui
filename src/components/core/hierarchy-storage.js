@@ -174,17 +174,15 @@ class HierarchyStorage {
 
     addUser( { hierarchyId, firstName, lastName, emailAddress } ) {
 
+        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
         let account = new AccountProfile( { 
 
-            hierarchyId,
-            firstName,
-            lastName,
-            emailAddress
+            hierarchyId: hierarchyId,
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: emailAddress,
+            orgs: node.orgs
         } );
-
-        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
-
-        account.orgs = node.orgs;
 
         if ( node === undefined ) {
 
@@ -197,7 +195,6 @@ class HierarchyStorage {
 
         return account;
     }
-
 }
 
 

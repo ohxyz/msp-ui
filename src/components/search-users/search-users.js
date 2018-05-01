@@ -49,7 +49,7 @@ class SearchUsers extends React.Component {
 
             users = [ account ];
         }
-
+        
         this.setState( { 
 
             usersFound: users,

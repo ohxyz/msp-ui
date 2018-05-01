@@ -25,6 +25,7 @@ class HierarchyNode {
         let accounts = [];
         let users = [];
         let orgs = [];
+        let orgName = '';
 
         if ( node.hasOwnProperty( 'AssignedAccounts')
                 && util.isObject( node.AssignedAccounts )
@@ -58,25 +59,13 @@ class HierarchyNode {
                 }
 
                 accountProfile.level = this.level;
+                orgName = accountProfile.generateOrgName( orgs );
                 accounts.push( accountProfile );
             }
-
-            // orgName is the concated by all org names
-            let orgName = orgs.reduceRight( ( allOrgNames, org ) => { 
-
-                return org.name + ', ' + allOrgNames;
-
-            }, '' ).slice( 0, -2 );
-            
-
+                    
             users.forEach( user => { 
 
                 user.orgName = orgName;
-
-                if ( orgs.length > 0 ) {
-
-                    user.org = orgs[ 0 ];
-                }
 
             } );
         }

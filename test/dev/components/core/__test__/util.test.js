@@ -15,3 +15,22 @@ describe( 'isObject function', () => {
     } );
 
 } );
+
+describe( 'isNotEmptyArray', () => { 
+
+    test( 'has null as argument', () => { 
+
+        expect( util.isNotEmptyArray( null ) ).toBe( false );
+    } );
+
+    test( 'has an array ', () => { 
+
+        expect( util.isNotEmptyArray( [ null ] ) ).toBe( true );
+    } );
+
+    test( 'has an empty array ', () => { 
+
+        expect( util.isNotEmptyArray( [] ) ).toBe( false );
+    } );
+
+} )

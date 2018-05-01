@@ -2,15 +2,22 @@ const React = require( 'react' );
 const ReactDOM = require( 'react-dom' );
 const SearchUsers = require( '../../components/search-users/search-users.js' ).SearchUsers;
 const HierarchyStorage = require( '../../components/core/hierarchy-storage.js' ).HierarchyStorage;
+const appManager = require( '../core/app-manager.js' ).appManager;
 
 class SearchUsersApp { 
 
-    constructor( { sapData, domElement } ) {
+    constructor( { id, sapData, domElement } ) {
 
         this.sapData = sapData;
         this.domElement = domElement;
         this.hierarchyStorage = new HierarchyStorage( sapData );
         this.searchUsersComponent = <SearchUsers storage={ this.hierarchyStorage } />;
+
+        if ( typeof id === 'string' ) {
+
+            appManager.addApp( id, this );
+        }
+
     }
 
     reload( sapData ) {

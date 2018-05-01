@@ -29,6 +29,7 @@ function setDefault( defaultValue, otherValue ) {
     return defaultValue;
 }
 
+
 function isDescendant( childElem, parentElem ) {
     
     let node = childElem.parentNode;
@@ -45,10 +46,17 @@ function isDescendant( childElem, parentElem ) {
     return false;
 }
 
+
+function isNotEmptyArray( arg ) {
+
+    return Array.isArray( arg ) && arg.length > 0;
+}
+
 module.exports = {
 
     isDescendant,
     isObject,
     generateRandomString,
-    setDefault
+    setDefault,
+    isNotEmptyArray,
 };
