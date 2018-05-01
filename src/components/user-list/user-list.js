@@ -87,9 +87,9 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-count">
+            <div className="user-list__count">
                 <i className="material-icons">{ this.state.countIconStyle }</i>
-                <span className="user-count__literal">{ this.state.onRenderCount( count ) }</span>
+                <span className="user-list__count__literal">{ this.state.onRenderCount( count ) }</span>
             </div>
         );
     }
@@ -110,7 +110,7 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-list">
+            <div className="user-list__users">
             {
                 users.map( ( user, key ) => {
 
@@ -127,10 +127,10 @@ class UserList extends React.Component {
 
         return (
 
-            <React.Fragment>
+            <div className="user-list">
                 { this.renderCount() }
                 { this.renderUserList( users ) }
-            </React.Fragment>
+            </div>
         );
     }
 }
