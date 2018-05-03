@@ -1,4 +1,4 @@
-import util from '../../util/util.js';
+import util from '../../helpers/util.js';
 import React from 'react';
 import { AccountProfile } from '../core/account-profile.js';
 

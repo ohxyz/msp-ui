@@ -2,7 +2,7 @@
  * 
  */
  
-const util = require( '../../util/util.js' );
+const util = require( '../../helpers/util.js' );
 
 class ComponentManager {
 

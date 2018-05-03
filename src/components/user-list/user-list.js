@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import util from '../../util/util.js';
+import util from '../../helpers/util.js';
 import { UserStrip } from './user-strip.js';
 import { MessageBox } from '../message-box/message-box.js';
 import { componentManager } from '../core/component-manager.js';

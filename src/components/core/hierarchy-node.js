@@ -1,4 +1,4 @@
-const util = require( '../../util/util.js' );
+const util = require( '../../helpers/util.js' );
 const AccountProfile = require( './account-profile.js' ).AccountProfile;
 
 class HierarchyNode {

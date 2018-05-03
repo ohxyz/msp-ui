@@ -1,5 +1,5 @@
 import React from 'react';
-import util from '../../util/util.js';
+import util from '../../helpers/util.js';
 import { SearchBox } from '../search-box/search-box.js';
 import { UserList } from '../user-list/user-list.js';
 import { componentManager } from '../core/component-manager.js';
@@ -41,7 +41,7 @@ class SearchUsers extends React.Component {
     }
 
     showAllUsers() {
-        
+
         let allUsers = this.state.storage.getAllUsers();
 
         this.setState( {

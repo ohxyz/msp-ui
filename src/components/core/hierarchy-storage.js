@@ -2,7 +2,7 @@
  *
  */
 
-const util = require( '../../util/util.js' );
+const util = require( '../../helpers/util.js' );
 const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
@@ -193,7 +193,7 @@ class HierarchyStorage {
         }
 
         allUsers = Array.from( new Set( allUsers ) );
-        
+
         return allUsers;
     }
 

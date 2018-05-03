@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchList from './search-box-list.js';
 import { componentManager } from '../core/component-manager.js';
-import { generateRandomString, setDefault, isDescendant } from '../../util/util.js';
+import { generateRandomString, setDefault, isDescendant } from '../../helpers/util.js';
 import { SearchItem, makeSearchItems } from './data-model.js';
 
 const DEFAULT_NUMBER_OF_STRIKES = 3;
