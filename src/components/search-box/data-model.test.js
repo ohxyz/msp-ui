@@ -1,4 +1,4 @@
-const datatype = require( '../../../../../src/components/search-box/data-model.js' );
+const datatype = require( './data-model.js' );
 
 describe( 'SearchItem object', () => {
 

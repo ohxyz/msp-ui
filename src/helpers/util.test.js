@@ -1,4 +1,4 @@
-const util = require( '../../../../../src/components/core/util.js' );
+const util = require( './util.js' );
 
 describe( 'isObject function', () => { 
 

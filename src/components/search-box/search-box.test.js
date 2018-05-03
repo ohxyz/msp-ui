@@ -1,5 +1,5 @@
-import SearchBox from '../../../../../src/components/search-box/search-box.js';
-import { SearchItem } from '../../../../../src/components/search-box/data-model.js';
+import SearchBox from './search-box.js';
+import { SearchItem } from './data-model.js';
 
 describe( 'SearchBox React object', () => {
 
