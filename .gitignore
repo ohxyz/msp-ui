@@ -7,3 +7,5 @@ node_modules
 # avn optional version file
 .node-version
 
+# Use yarn.lock instead of package-lock.json
+package-lock.json
