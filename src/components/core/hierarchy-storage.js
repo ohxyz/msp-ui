@@ -145,6 +145,12 @@ class HierarchyStorage {
     getUsersByHierarchyId( hierarchyId, untilLevel = 1 ) {
 
         let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
+
+        if ( node === undefined ) {
+
+            return [];
+        }
+
         let users = node.users;
         let topOrg = null;
         let topOrgName = '';

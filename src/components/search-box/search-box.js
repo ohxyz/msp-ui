@@ -35,7 +35,7 @@ export default class SearchBox extends React.Component {
             name: '',
             onPropsSelect: new Function(),
             onPropsIconClick: new Function(),
-            onPropsTextChange: new Function(),
+            onPropsChange: new Function(),
             onPropsFocus: new Function(),
             onPropsBlur: new Function(),
             searchItems: [],
@@ -68,7 +68,7 @@ export default class SearchBox extends React.Component {
             placeholder: setDefault( nextProps.placeholder, ''),
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             onPropsIconClick: setDefault( nextProps.onIconClick, new Function() ),
-            onPropsTextChange: setDefault( nextProps.onChange, new Function() ),
+            onPropsChange: setDefault( nextProps.onChange, new Function() ),
             onPropsFocus: setDefault( nextProps.onFocus, new Function() ),
             onPropsBlur: setDefault( nextProps.onBlur, new Function() ),
             fields: setDefault( nextProps.fields, [] ),
@@ -127,6 +127,7 @@ export default class SearchBox extends React.Component {
         this.itemFocused = null;
 
         let text = this.textInputElement.value;
+        let itemsFiltered = [];
 
         if ( text.length < this.state.strikes ) {
 
@@ -134,7 +135,7 @@ export default class SearchBox extends React.Component {
         }
         else { 
 
-            let itemsFiltered = this.filterSearchItemsByText( this.state.searchItems, text );
+            itemsFiltered = this.filterSearchItemsByText( this.state.searchItems, text );
 
             if ( itemsFiltered.length > 0 ) {
 
@@ -146,7 +147,7 @@ export default class SearchBox extends React.Component {
             }
         }
 
-        this.state.onPropsTextChange( this );
+        this.state.onPropsChange( itemsFiltered, this );
     }
 
     handleTextInputFocus() {

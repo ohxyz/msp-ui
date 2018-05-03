@@ -11,6 +11,7 @@ class SearchUsers extends React.Component {
         super( props );
 
         this.handleSearchBoxItemSelect = this.handleSearchBoxItemSelect.bind( this );
+        this.handleTextChange = this.handleTextChange.bind( this );
 
         this.state = {
 
@@ -55,11 +56,15 @@ class SearchUsers extends React.Component {
     handleSearchBoxItemSelect( item, searchBox ) {
 
         let account = item.__origin__;
-        let users = this.state.storage.getUsersByHierarchyId( account.hierarchyId );
+        let users = [];
 
         if ( account.type === 'person' ) {
 
             users = [ account ];
+        }
+        else {
+            
+            users = this.state.storage.getUsersByHierarchyId( account.hierarchyId );
         }
         
         this.setState( { 
@@ -68,6 +73,19 @@ class SearchUsers extends React.Component {
             shouldRenderUserList: true
 
         } );
+    }
+
+    handleTextChange( itemsFound ) {
+
+        if ( itemsFound.length === 0 ) {
+
+            this.setState( {
+
+                usersFound: [],
+                shouldRenderUserList: true
+
+            } );
+        }
     }
 
     renderSearchBox() {
@@ -81,6 +99,7 @@ class SearchUsers extends React.Component {
                 strikes={ 3 }
                 onSelect={ this.handleSearchBoxItemSelect }
                 onIconClick={ self => self.clearSearch() }
+                onChange={ this.handleTextChange }
             />
         );
     }
