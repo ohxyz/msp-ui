@@ -1,6 +1,6 @@
 /* Data types only used in the component */
 
-const util = require( '../core/util.js' );
+const util = require( '../../util/util.js' );
 
 class SearchItem {
 

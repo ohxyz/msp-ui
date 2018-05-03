@@ -1,4 +1,4 @@
-const util = require( '../core/util.js' );
+const util = require( '../../util/util.js' );
 const React = require( 'react' );
 
 class MessageBox extends React.Component {

@@ -4,7 +4,7 @@
  *
  * AU English style eg. organisation
  */
-const util = require( './util.js' );
+const util = require( '../../util/util.js' );
 
 class AccountProfile {
 

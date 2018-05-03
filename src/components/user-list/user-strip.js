@@ -1,6 +1,6 @@
-const util = require( '../core/util.js' );
-const React = require( 'react' );
-const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
+import util from '../../util/util.js';
+import React from 'react';
+import { AccountProfile } from '../core/account-profile.js';
 
 function getExpandIconText( shouldExpand ) {
 

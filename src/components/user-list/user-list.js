@@ -6,11 +6,11 @@
  *
  */
 
-const React = require( 'react' );
-const util = require( '../core/util.js' );
-const UserStrip = require( './user-strip.js' ).UserStrip;
-const componentManager = require( '../core/component-manager.js' ).componentManager;
-const MessageBox = require( '../message-box/message-box.js' ).MessageBox;
+import React from 'react';
+import util from '../../util/util.js';
+import { UserStrip } from './user-strip.js';
+import { MessageBox } from '../message-box/message-box.js';
+import { componentManager } from '../core/component-manager.js';
 
 class UserList extends React.Component {
 

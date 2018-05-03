@@ -1,8 +1,8 @@
-const React = require( 'react' );
-const util = require( '../core/util.js' );
-const SearchBox = require( '../search-box/search-box.js' ).SearchBox;
-const UserList = require( '../user-list/user-list.js' ).UserList;
-const componentManager = require( '../core/component-manager.js' ).componentManager;
+import React from 'react';
+import util from '../../util/util.js';
+import { SearchBox } from '../search-box/search-box.js';
+import { UserList } from '../user-list/user-list.js';
+import { componentManager } from '../core/component-manager.js';
 
 class SearchUsers extends React.Component {
 
@@ -36,8 +36,20 @@ class SearchUsers extends React.Component {
 
         return {
 
-            storage: storage
+            storage: storage,
         };
+    }
+
+    showAllUsers() {
+        
+        let allUsers = this.state.storage.getAllUsers();
+
+        this.setState( {
+
+            usersFound: allUsers,
+            shouldRenderUserList: true
+
+        } );
     }
 
     handleSearchBoxItemSelect( item, searchBox ) {

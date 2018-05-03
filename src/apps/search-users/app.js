@@ -1,8 +1,8 @@
-const React = require( 'react' );
-const ReactDOM = require( 'react-dom' );
-const SearchUsers = require( '../../components/search-users/search-users.js' ).SearchUsers;
-const HierarchyStorage = require( '../../components/core/hierarchy-storage.js' ).HierarchyStorage;
-const appManager = require( '../core/app-manager.js' ).appManager;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { SearchUsers } from '../../components/search-users/search-users.js';
+import { HierarchyStorage } from '../../components/core/hierarchy-storage.js';
+import { appManager } from '../core/app-manager.js';
 
 class SearchUsersApp { 
 
@@ -11,30 +11,32 @@ class SearchUsersApp {
         this.sapData = sapData;
         this.domElement = domElement;
         this.hierarchyStorage = new HierarchyStorage( sapData );
-        this.searchUsersComponent = <SearchUsers storage={ this.hierarchyStorage } />;
+        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } />;
+        this.searchUsersReactComponent = null;
 
         if ( typeof id === 'string' ) {
 
             appManager.addApp( id, this );
         }
-
     }
 
     reload( sapData ) {
 
         this.hierarchyStorage = new HierarchyStorage( sapData );
-        this.searchUsersComponent = <SearchUsers storage={ this.hierarchyStorage } />;
+        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } />;
         this.unload();
         this.load();
     }
 
     load() {
 
-        ReactDOM.render( this.searchUsersComponent, this.domElement );
+        this.searchUsersReactComponent = ReactDOM.render( this.searchUsersReactElement, this.domElement );
+        this.searchUsersReactComponent.showAllUsers();
     }
 
     unload() {
 
+        this.searchUsersReactComponent = null;
         return ReactDOM.unmountComponentAtNode( this.domElement );
     }
 
@@ -51,6 +53,7 @@ class SearchUsersApp {
     addUser( user ) {
 
         this.hierarchyStorage.addUser( user );
+        this.searchUsersReactComponent.showAllUsers();
     }
 }
 

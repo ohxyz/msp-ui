@@ -2,7 +2,7 @@
  *
  */
 
-const util = require( '../core/util.js' );
+const util = require( '../../util/util.js' );
 const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
@@ -14,6 +14,7 @@ class HierarchyStorage {
         this.sapResults = null;
         this.accounts = []; // users + orgs
         this.nodes = []; // HierarchyNodes
+        this.isProcessed = false;
 
         /*
          *
@@ -137,6 +138,8 @@ class HierarchyStorage {
 
             lastNode = currentNode;
         }
+
+        this.isProcessed = true;
     }
 
     getUsersByHierarchyId( hierarchyId, untilLevel = 1 ) {
@@ -170,6 +173,28 @@ class HierarchyStorage {
         }
 
         return users;
+    }
+
+    getAllUsers() {
+
+        if ( this.isProcessed === false ) {
+
+            this.process();
+        }
+
+        let allUsers = [];
+
+        for ( let node of this.nodes ) {
+
+            let hierarchyId = node.hierarchyId;
+            let users = this.getUsersByHierarchyId( hierarchyId );
+
+            allUsers.push( ...users );
+        }
+
+        allUsers = Array.from( new Set( allUsers ) );
+        
+        return allUsers;
     }
 
     addUser( { hierarchyId, firstName, lastName, emailAddress } ) {
