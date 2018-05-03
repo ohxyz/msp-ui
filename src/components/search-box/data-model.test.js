@@ -59,7 +59,3 @@ describe( 'makeSearchItemsByFields function', () => {
 
     } );
 } );
-
-
-
-

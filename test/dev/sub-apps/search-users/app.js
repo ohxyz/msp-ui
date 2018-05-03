@@ -5,9 +5,6 @@ const faker = require( 'faker' );
 
 require( '../../../../less/components/search-users.less' );
 
-console.log( dummySapObject );
-console.log( dummySapObject2 );
-
 let elem = document.getElementById( 'search-users-app' );
 
 let app = new SearchUsersApp( {
