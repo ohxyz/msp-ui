@@ -1,4 +1,4 @@
-const AccountProfile = require( './account-profile.js' ).AccountProfile;
+const AccountProfile = require( '../account-profile.js' ).AccountProfile;
 
 describe( 'AccountProfile class/object', () => {
 

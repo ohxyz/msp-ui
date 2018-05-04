@@ -1,4 +1,4 @@
-const HierarchyNode = require( './hierarchy-node.js' ).HierarchyNode;
+const HierarchyNode = require( '../hierarchy-node.js' ).HierarchyNode;
 const dummySapObject = require( './sap.dummy.js' ).dummySapObject;
 
 describe( 'HierarchyNode', () => {
