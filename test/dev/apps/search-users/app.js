@@ -1,4 +1,4 @@
-const SearchUsersApp = require( '../../../../src/sub-apps/search-users/index.js').SearchUsersApp;
+const SearchUsersApp = require( '../../../../src/apps/search-users/index.js').SearchUsersApp;
 const dummySapObject = require( '../../dummies/sap.js' ).dummySapObject;
 const dummySapObject2 = require( '../../dummies/sap2.js' ).dummySapObject2;
 const faker = require( 'faker' );

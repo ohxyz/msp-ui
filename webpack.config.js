@@ -4,7 +4,7 @@ module.exports = env => {
 
     let environ = env.environ;
     let componentName = env.component;
-    let appName = env.subapp;
+    let appName = env.app;
     let outputPath = path.join( __dirname, 'test/dev' );
     let entryPath = './src/app.js';
 
@@ -28,7 +28,7 @@ module.exports = env => {
         }
         else if ( appName ) {
 
-            appFolder = path.join( __dirname, 'test', environ, 'sub-apps', appName );
+            appFolder = path.join( __dirname, 'test', environ, 'apps', appName );
 
             entryPath = path.join( appFolder, 'app.js' );
             outputPath = appFolder;
