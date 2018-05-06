@@ -62,7 +62,7 @@ class AccountProfile {
 
         if ( util.isNotEmptyArray( orgs ) ) {
 
-            // orgName is the concated by all org names
+            // orgName is the value concated by all org names
             orgName = this.orgs.reduceRight( ( allOrgNames, org ) => { 
 
                 return org.name + ', ' + allOrgNames;

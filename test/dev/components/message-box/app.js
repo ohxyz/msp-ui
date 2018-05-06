@@ -28,6 +28,6 @@ ReactDOM.render(
 
 ReactDOM.render( 
 
-    <MessageBox type={ m2.type } title={ m2.title } content={ m2.content } />,
+    <MessageBox type="default" title={ m2.title } content={ m2.content } />,
     document.getElementById( 'message-box-2' )
 );

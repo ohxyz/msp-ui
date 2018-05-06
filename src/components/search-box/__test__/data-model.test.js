@@ -12,18 +12,6 @@ describe( 'SearchItem object', () => {
     
 } );
 
-
-describe( 'makeSearchItemsByItems function', () => {
-
-    let fn = datatype.makeSearchItemsByItems;
-
-    test( 'can accept an empty argument', () => {
-
-
-    } );
-
-} );
-
 describe( 'makeSearchItemsByFields function', () => {
 
     let fn = datatype.makeSearchItemsByFields;

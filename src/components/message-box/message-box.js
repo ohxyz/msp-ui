@@ -1,6 +1,8 @@
 const util = require( '../../helpers/util.js' );
 const React = require( 'react' );
 
+const DEFAULT_ICON_STYLE = 'info';
+
 class MessageBox extends React.Component {
 
     constructor( props ) {
@@ -17,7 +19,6 @@ class MessageBox extends React.Component {
 
         this.mapOfTypeAndIcon = {
 
-            'default': 'message',
             'warning': 'warning',
             'error': 'cancel',
             'success': 'check circle',
@@ -30,20 +31,28 @@ class MessageBox extends React.Component {
         let className = 'message-box';
         let iconLiteral = this.state.iconStyle;
         let messageType = this.state.type;
+        let defaultIconStyle = 'info';
 
-        if ( messageType !== '' ) {
-
-            className += ' message-box--' + messageType;
-        }
-
-        if ( iconLiteral === '' && messageType !== '' ) {
+        if ( iconLiteral === '' ) {
 
             iconLiteral = this.mapOfTypeAndIcon[ messageType ];
 
-            if ( typeof iconLiteral === 'undefined' ) {
+            if ( iconLiteral === undefined ) {
 
-                iconLiteral = this.mapOfTypeAndIcon[ messageType ];
+                iconLiteral = DEFAULT_ICON_STYLE;
             }
+        }
+        else {
+
+            if ( messageType !== '' ) {
+
+                className += ' message-box--' + messageType;
+            }
+            else {
+
+                className += ' message-box--info';
+            }
+
         }
 
         return (

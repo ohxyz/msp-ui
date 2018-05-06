@@ -1,5 +1,5 @@
 const HierarchyStorage = require( '../hierarchy-storage.js' ).HierarchyStorage;
-const dummySapObject = require( './sap.dummy.js' ).dummySapObject;
+const dummySapObject = require( './sap.stub.js' ).dummySapObject;
 
 describe( 'HierarchyStorage', () => {
 

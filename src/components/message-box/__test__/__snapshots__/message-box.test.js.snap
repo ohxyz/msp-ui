@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should render by iconStyle when type is also there 1`] = `
+<div
+  className="message-box message-box--warning"
+>
+  <i
+    className="material-icons"
+  >
+    info
+  </i>
+  <div
+    className="message-box__title"
+  >
+    Hi
+  </div>
+  <div
+    className="message-box__content"
+  >
+    Hello there!
+  </div>
+</div>
+`;
+
 exports[`should render with defaults 1`] = `
 <div
   className="message-box"
@@ -7,7 +29,7 @@ exports[`should render with defaults 1`] = `
   <i
     className="material-icons"
   >
-    
+    info
   </i>
   <div
     className="message-box__title"

@@ -11,3 +11,13 @@ it( 'should render with defaults', () => {
     expect( tree ).toMatchSnapshot();
 
 } );
+
+it( 'should render by iconStyle when type is also there', () => { 
+
+    const tree = renderer
+        .create( <MessageBox iconStyle="info" type="warning" title="Hi" content="Hello there!"/> )
+        .toJSON();
+
+    expect( tree ).toMatchSnapshot();
+
+} );
