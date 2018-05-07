@@ -9,3 +9,6 @@ node_modules
 
 # Use yarn.lock instead of package-lock.json
 package-lock.json
+
+# Jest coverage reports
+coverage
