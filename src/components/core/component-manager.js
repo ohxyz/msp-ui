@@ -48,5 +48,6 @@ if ( Window && window instanceof Window === true ) {
 
 module.exports = {
 
-    componentManager
+    componentManager,
+    ComponentManager
 };

@@ -35,5 +35,6 @@ describe( 'SearchBox React object', () => {
         } );
 
     } );
-
+    
 } );
+
