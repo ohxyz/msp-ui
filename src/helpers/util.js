@@ -34,9 +34,10 @@ function isDescendant( childElem, parentElem ) {
     
     let node = childElem.parentNode;
     
-    while ( node !== null ) {
+    while ( node !== null && node.parentNode !== undefined ) {
         
         if ( node === parentElem ) {
+
             return true;
         }
         
@@ -51,8 +52,6 @@ function isNotEmptyArray( arg ) {
 
     return Array.isArray( arg ) && arg.length > 0;
 }
-
-
 
 module.exports = {
 

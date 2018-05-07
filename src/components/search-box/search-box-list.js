@@ -80,7 +80,9 @@ export default class SearchList extends React.Component {
     
     componentDidMount() {
 
-        if ( this.searchListItemElement === null ) {
+        // Check this.searchListItemElement.domElement in case there is no SearchListItem
+        if ( this.searchListItemElement === null 
+                || this.searchListItemElement.domElement === null ) {
 
             return;
         }

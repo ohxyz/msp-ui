@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render with default settings 1`] = `
+<div
+  className="search-box__list"
+>
+  <div
+    className="search-box__list-item"
+    onClick={[Function]}
+  >
+    Item content
+  </div>
+  <div
+    className="search-box__list-item"
+    onClick={[Function]}
+  >
+    Item content 2
+  </div>
+  <div
+    className="search-box__list-item"
+    onClick={[Function]}
+  >
+    Item content 3
+  </div>
+</div>
+`;
