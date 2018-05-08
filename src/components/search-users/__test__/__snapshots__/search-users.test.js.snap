@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render with defaults 1`] = `
+<div
+  id="search-users-section"
+>
+  <div
+    className="search-box"
+  >
+    <div
+      className="search-box__header"
+    >
+      <input
+        className="search-box__field"
+        name=""
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder=""
+        type="text"
+      />
+      <span
+        className="search-box__icon"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons"
+        >
+          close
+        </i>
+      </span>
+    </div>
+  </div>
+</div>
+`;

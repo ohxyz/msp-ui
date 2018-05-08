@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render with defaults 1`] = `
+<div
+  className="user-strip"
+>
+  <div
+    className="user-strip__main"
+  >
+    <div
+      className="user-strip__delete material-icons"
+    >
+      close
+    </div>
+    <div
+      className="user-strip__expand material-icons"
+      onClick={[Function]}
+    >
+      add
+    </div>
+    <div
+      className="user-strip__top-bar"
+    >
+      <span
+        className="user-strip__full-name"
+      >
+        Full Name
+      </span>
+      <span
+        className="user-strip__top-org"
+      >
+        Top Orgnisation Name
+      </span>
+    </div>
+    <div
+      className="user-strip__middle-bar"
+    >
+      <div
+        className="user-strip__org"
+      >
+        Orgnisation Name
+      </div>
+    </div>
+  </div>
+</div>
+`;
