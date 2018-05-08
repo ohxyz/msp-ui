@@ -97,6 +97,7 @@ class SearchUsers extends React.Component {
                 items={ this.state.storage.accounts }
                 fields={ [ 'fullName' ] }
                 strikes={ 3 }
+                placeholder="Search users by name, department or agency"
                 onSelect={ this.handleSearchBoxItemSelect }
                 onIconClick={ self => self.clearSearch() }
                 onChange={ this.handleTextChange }

@@ -22,10 +22,10 @@ class AccountProfile {
             level: '',
             orgs: [],
             topOrg: null,
-            orgName: 'n/a',
-            topOrgName: 'n/a',
-            fullName: 'n/a',
-            type: 'n/a'
+            orgName: '',
+            topOrgName: '',
+            fullName: '',
+            type: ''
         };
 
         Object.assign( this, obj );
@@ -58,7 +58,7 @@ class AccountProfile {
 
     generateOrgName( orgs ) {
 
-        let orgName = 'n/a';
+        let orgName = '';
 
         if ( util.isNotEmptyArray( orgs ) ) {
 
