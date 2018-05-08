@@ -15,9 +15,9 @@ const depts = [
 
 const usersOrgs = [
 
+    { 'org': 'abcde Transport' },
     { 'org': 'abcd Education', name: 'abcd' },
     { 'org': 'abce Health', name: 'abce health people' },
-    { 'org': 'abcde Transport' },
     { 'name': 'Mr abcdg ' },
     { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
 ];
@@ -69,7 +69,8 @@ ReactDOM.render(
         onBlur={ self => console.log( 'blur', self ) }
         items={ users }
         iconStyle="add"
-        fields={ [ 'org', 'name' ] }
+        fields={ [ 'name' ] }
+        indexOfFieldsToSort={ 0 }
         strikes={ 3 }
     />,
     document.getElementById( 'search-box-1' )

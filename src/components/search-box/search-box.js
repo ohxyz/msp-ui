@@ -30,6 +30,7 @@ export default class SearchBox extends React.Component {
         this.state = {
 
             fields: [],
+            indexOfFieldsToSort: -1,
             placeholder: '',
             items: [],
             name: '',
@@ -72,6 +73,7 @@ export default class SearchBox extends React.Component {
             onPropsFocus: setDefault( nextProps.onFocus, new Function() ),
             onPropsBlur: setDefault( nextProps.onBlur, new Function() ),
             fields: setDefault( nextProps.fields, [] ),
+            indexOfFieldsToSort: setDefault( nextProps.indexOfFieldsToSort, -1 ),
             searchItems: makeSearchItems( nextProps.items, nextProps.fields ),
             shouldRenderCount: setDefault( nextProps.shouldRenderCount, false ),
             shouldRenderIcon: setDefault( nextProps.shouldRenderIcon, true ),
@@ -185,8 +187,35 @@ export default class SearchBox extends React.Component {
                 itemsFiltered.push( searchItem );
             }
         }
-        
+
         return itemsFiltered;
+    }
+
+    sortByIndexOfFields( { items, fields, index } ) {
+
+        let indexOfFields = parseInt( index, 10 );
+
+        if ( Array.isArray( fields ) === true 
+                && indexOfFields <= fields.length - 1 ) {
+
+            let fieldName = fields[ indexOfFields ];
+
+            items.sort( ( a, b ) => {
+
+                if ( typeof a !== 'object' || typeof b !== 'object' ) {
+
+                    return false;
+                }
+                else if ( a.hasOwnProperty( fieldName ) === false 
+                            || b.hasOwnProperty( fieldName ) === false ) {
+
+                    return false;
+                }
+
+                return a[ fieldName ].localeCompare( b[ fieldName ] );
+
+            } );
+        }
     }
 
     handleSelect( item ) {
@@ -328,6 +357,14 @@ export default class SearchBox extends React.Component {
 
             return;
         }
+
+        this.sortByIndexOfFields( {
+
+            items: this.state.itemsFiltered,
+            fields: this.state.fields,
+            index: this.state.indexOfFieldsToSort
+
+        } );
 
         return (
 
