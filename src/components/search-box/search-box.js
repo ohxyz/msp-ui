@@ -26,9 +26,12 @@ export default class SearchBox extends React.Component {
         this.domElement = null;
         this.itemFocused = null;
         this.isTextInputFocused = false;
+        this.text = '';
 
         this.state = {
 
+            domElementId: undefined,
+            textInputElementId: undefined,
             fields: [],
             indexOfFieldsToSort: -1,
             placeholder: '',
@@ -64,6 +67,8 @@ export default class SearchBox extends React.Component {
         
         return {
 
+            domElementId: setDefault( nextProps.id, undefined ),
+            textInputElementId: setDefault( nextProps.inputId, undefined ),
             items: setDefault( nextProps.items, [] ),
             name: setDefault( nextProps.name, ''),
             placeholder: setDefault( nextProps.placeholder, ''),
@@ -130,6 +135,8 @@ export default class SearchBox extends React.Component {
 
         let text = this.textInputElement.value;
         let itemsFiltered = [];
+
+        this.text = text;
 
         if ( text.length < this.state.strikes ) {
 
@@ -335,7 +342,8 @@ export default class SearchBox extends React.Component {
         return (
 
             <div className="search-box__header">
-                <input 
+                <input
+                    id={ this.state.textInputElementId }
                     type="text" 
                     className="search-box__field"
                     name={ this.state.name }
@@ -383,7 +391,7 @@ export default class SearchBox extends React.Component {
 
         return (
 
-            <div className="search-box" ref={ elem => { this.domElement = elem; } } >
+            <div id={ this.state.domElementId } className="search-box" ref={ elem => { this.domElement = elem; } } >
                 { this.renderCount() }
                 { this.renderHeader() }
                 { this.renderContent() }

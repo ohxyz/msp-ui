@@ -13,6 +13,8 @@ class SearchUsers extends React.Component {
         this.handleSearchBoxItemSelect = this.handleSearchBoxItemSelect.bind( this );
         this.handleTextChange = this.handleTextChange.bind( this );
 
+        this.numberOfStrikes = 3;
+
         this.state = {
 
             storage: null,
@@ -75,9 +77,21 @@ class SearchUsers extends React.Component {
         } );
     }
 
-    handleTextChange( itemsFound ) {
+    handleTextChange( usersFound, searchBox ) {
 
-        if ( itemsFound.length === 0 ) {
+        if ( searchBox.text.length <= this.numberOfStrikes 
+                && searchBox.text.length > 0 ) {
+
+            return;
+        }
+        else if ( searchBox.text.length === 0 ) {
+
+            this.showAllUsers();
+            
+            return;
+        }
+
+        if ( usersFound.length === 0 ) {
 
             this.setState( {
 
@@ -96,7 +110,7 @@ class SearchUsers extends React.Component {
                 id="search-box"
                 items={ this.state.storage.accounts }
                 fields={ [ 'fullName' ] }
-                strikes={ 3 }
+                strikes={ this.numberOfStrikes }
                 placeholder="Search users by name, department or agency"
                 onSelect={ this.handleSearchBoxItemSelect }
                 onIconClick={ self => { self.clearSearch(); this.showAllUsers(); } }

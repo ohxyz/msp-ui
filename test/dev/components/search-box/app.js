@@ -60,6 +60,7 @@ ReactDOM.render(
 
     <SearchBox
         id="seach-box-users"
+        inputId="search-box-input-id"
         name="my-box"
         onSelect={ ( item, self ) => { console.log( '*', item ); } }
         onIconClick= { obj => { console.log( '**', obj ); obj.showAllItems(); } }
