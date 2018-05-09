@@ -209,7 +209,12 @@ export default class SearchBox extends React.Component {
 
             items.sort( ( a, b ) => {
 
-                if ( typeof a !== 'object' || typeof b !== 'object' ) {
+                if ( a instanceof SearchItem === true 
+                        && b instanceof SearchItem === true ) {
+
+                    return a.__content__.localeCompare( b.__content__ );
+                }
+                else if ( typeof a !== 'object' || typeof b !== 'object' ) {
 
                     return false;
                 }
@@ -218,8 +223,10 @@ export default class SearchBox extends React.Component {
 
                     return false;
                 }
+                else {
 
-                return a[ fieldName ].localeCompare( b[ fieldName ] );
+                    return a[ fieldName ].localeCompare( b[ fieldName ] );
+                }
 
             } );
         }

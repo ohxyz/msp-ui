@@ -10,7 +10,7 @@ let elem = document.getElementById( 'search-users-app' );
 let app = new SearchUsersApp( {
 
     id: 'searchUsers',
-    sapData: dummySapObject,
+    sapData: dummySapObject2.userHierarchy,
     domElement: elem
 
 } );

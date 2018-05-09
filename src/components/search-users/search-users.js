@@ -110,6 +110,7 @@ class SearchUsers extends React.Component {
                 id="search-box"
                 items={ this.state.storage.accounts }
                 fields={ [ 'fullName' ] }
+                indexOfFieldsToSort={ 0 }
                 strikes={ this.numberOfStrikes }
                 placeholder="Search users by name, department or agency"
                 onSelect={ this.handleSearchBoxItemSelect }

@@ -37,7 +37,7 @@ it( 'renders with default settings', () => {
 } );
 
 
-describe( 'SearchBox React object', () => {
+describe( 'SearchBox React component instance', () => {
 
     // Stub
     let items = [
@@ -99,6 +99,12 @@ describe( 'SearchBox React object', () => {
         let result = searchBox.renderCount();
 
         expect( result.props.children[ 0 ].props.children ).toBe( 0 );
+    } );
+
+    describe( 'sortByIndexOfFields method', () => {
+
+        
+
     } );
 
 } );
