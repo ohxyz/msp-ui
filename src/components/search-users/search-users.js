@@ -90,16 +90,6 @@ class SearchUsers extends React.Component {
             
             return;
         }
-
-        if ( usersFound.length === 0 ) {
-
-            this.setState( {
-
-                usersFound: [],
-                shouldRenderUserList: true
-
-            } );
-        }
     }
 
     renderSearchBox() {
