@@ -6,17 +6,19 @@ exports[`should render with defaults 1`] = `
 >
   <div
     className="search-box"
+    id="search-box"
   >
     <div
       className="search-box__header"
     >
       <input
         className="search-box__field"
+        id={undefined}
         name=""
         onBlur={[Function]}
         onChange={[Function]}
         onFocus={[Function]}
-        placeholder=""
+        placeholder="Search users by name, department or agency"
         type="text"
       />
       <span

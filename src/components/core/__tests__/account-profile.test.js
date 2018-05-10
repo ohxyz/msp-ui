@@ -5,7 +5,7 @@ describe( 'AccountProfile class/object', () => {
     test( 'can accept an empty string as the argument.', () => { 
 
         let user = new AccountProfile();
-        expect( user.fullName ).toBe( 'n/a' );
+        expect( user.fullName ).toBe( '' );
 
     } );
 

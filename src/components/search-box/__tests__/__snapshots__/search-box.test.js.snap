@@ -3,12 +3,14 @@
 exports[`renders with default settings 1`] = `
 <div
   className="search-box"
+  id="seach-box-users"
 >
   <div
     className="search-box__header"
   >
     <input
       className="search-box__field"
+      id={undefined}
       name="my-box"
       onBlur={[Function]}
       onChange={[Function]}

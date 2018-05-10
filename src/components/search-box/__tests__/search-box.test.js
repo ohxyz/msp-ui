@@ -48,7 +48,7 @@ describe( 'SearchBox React component instance', () => {
     describe( 'static method: getDerivedStateFromProps', () => { 
 
         let state = SearchBox.getDerivedStateFromProps( {}, {} );
-        expect( Object.keys( state ).length ).toBe( 14 );
+        expect( Object.keys( state ).length ).toBe( 17 );
 
     } );
     
