@@ -3,6 +3,7 @@
 exports[`should render with defaults 1`] = `
 <div
   className="user-list"
+  id={undefined}
 >
   <div
     className="user-list__count"

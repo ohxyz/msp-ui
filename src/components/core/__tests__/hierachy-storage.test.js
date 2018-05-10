@@ -1,5 +1,6 @@
 const HierarchyStorage = require( '../hierarchy-storage.js' ).HierarchyStorage;
-const dummySapObject = require( './sap.stub.js' ).dummySapObject;
+const dummySapObject = require( '../__mocks__/sap.stub.js' ).dummySapObject;
+const sessionObject = require( '../__mocks__/sap2.stub.js' ).dummySapObject;
 
 describe( 'HierarchyStorage', () => {
 
@@ -46,6 +47,7 @@ describe( 'HierarchyStorage', () => {
 describe( 'HierarchyStorage that has valid SAP data', () => {
 
     let storage = new HierarchyStorage( dummySapObject );
+
     storage.process();
 
     test( 'has a list of acounts', () => { 
@@ -60,7 +62,6 @@ describe( 'HierarchyStorage that has valid SAP data', () => {
     } );
 
     test( 'can assign users to an orgnisation', () => {
-
 
         let account = storage.accounts[ 3 ];
         expect( account.users[ 1 ].firstName ).toBe( 'Jan-Marie' );
@@ -117,4 +118,27 @@ describe( 'HierarchyStorage that has valid SAP data', () => {
         expect( storage.nodes[ 3 ].users.length ).toBe( 2 );
     } );
 
+} );
+
+
+describe( 'HierarchyStorage that has SAP data from session', () => {
+
+    let storage = new HierarchyStorage( sessionObject.userHierarchy );
+    storage.process();
+
+    test( 'can get 0 users by hierarchy ID', () => { 
+
+        let hid = "00215A9B-AA4A-1EE7-83A4-CFB9DBFF038B";
+        let users = storage.getUsersByHierarchyId( hid );
+
+        expect( users.length ).toBe( 0 );
+    } );
+
+    test( 'can get 10 users by hierarchy ID', () => { 
+
+        let hid = "00215A9C-536A-1ED8-929B-5E0739B2D4B7";
+        let users = storage.getUsersByHierarchyId( hid );
+
+        expect( users.length ).toBe( 10 );
+    } );
 } );

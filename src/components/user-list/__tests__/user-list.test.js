@@ -27,3 +27,25 @@ it( 'should render with defaults', () => {
     expect( tree ).toMatchSnapshot();
 
 } );
+
+describe( 'UserList Instance', () => {
+
+    let ul = new UserList( { id: 'user-list' } );
+    let users = [
+
+        { 'org': 'abcde Transport' },
+        { 'org': 'abcd Education', name: 'abcd' },
+        { 'org': 'abce Health', name: 'abce health people' },
+        { 'name': 'Mr abcdg ' },
+        { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
+    ];
+
+    test( 'sortUsersByFields method', () => { 
+
+        let results = ul.sortUsersByFields( users, [ 'name' ] );
+
+        expect( results[ 1 ].name ).toBe( 'abcd' );
+        expect( results[ 2 ].name ).toBe( 'abcd lady' );
+    } );
+
+} );

@@ -15,3 +15,12 @@ it( 'should render with defaults', () => {
     expect( tree ).toMatchSnapshot();
 
 } );
+
+describe( 'SearchUsers Class', () => { 
+
+    test( 'static method should throw an error', () => {
+        
+        expect( () => SearchUsers.getDerivedStateFromProps( {} ) ).toThrow();
+    } ) 
+
+} );

@@ -97,7 +97,8 @@ class SearchUsers extends React.Component {
         return (
 
             <SearchBox
-                id="search-box"
+                id="seach-users-box"
+                inputId="search-users-field"
                 items={ this.state.storage.accounts }
                 fields={ [ 'fullName' ] }
                 indexOfFieldsToSort={ 0 }
@@ -120,7 +121,7 @@ class SearchUsers extends React.Component {
         return (
 
             <UserList
-                id="user-list"
+                id="search-users-list"
                 users={ this.state.usersFound }
                 onRenderCount={ count => `${count} users found.` }
                 sortByFields={ [ 'firstName', 'lastName' ] }

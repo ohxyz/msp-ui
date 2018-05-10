@@ -32,11 +32,12 @@ export default class SearchBox extends React.Component {
 
             domElementId: undefined,
             textInputElementId: undefined,
+            name: undefined,
             fields: [],
             indexOfFieldsToSort: -1,
             placeholder: '',
             items: [],
-            name: '',
+            text: '',
             onPropsSelect: new Function(),
             onPropsIconClick: new Function(),
             onPropsChange: new Function(),
@@ -69,8 +70,9 @@ export default class SearchBox extends React.Component {
 
             domElementId: setDefault( nextProps.id, undefined ),
             textInputElementId: setDefault( nextProps.inputId, undefined ),
+            name: setDefault( nextProps.name, undefined ),
             items: setDefault( nextProps.items, [] ),
-            name: setDefault( nextProps.name, ''),
+            text: setDefault( nextProps.text, '' ),
             placeholder: setDefault( nextProps.placeholder, ''),
             onPropsSelect: setDefault( nextProps.onSelect, new Function() ),
             onPropsIconClick: setDefault( nextProps.onIconClick, new Function() ),
@@ -235,13 +237,13 @@ export default class SearchBox extends React.Component {
     handleSelect( item ) {
 
         this.textInputElement.value = item.__content__;
+        this.textInputElement.dataset.text = item.__content__;
         let itemsFiltered = this.filterSearchItemsByText( this.state.searchItems, item.__content__ );
 
         this.setState( {
 
             itemsFiltered: itemsFiltered,
-            shouldRenderList: false
-
+            shouldRenderList: false,
         } );
 
         this.state.onPropsSelect( item, this );
@@ -250,6 +252,7 @@ export default class SearchBox extends React.Component {
     clearSearch() {
 
         this.textInputElement.value = '';
+        this.textInputElement.dataset.text = '';
 
         this.clearSearchList();
     }
@@ -354,6 +357,7 @@ export default class SearchBox extends React.Component {
                     type="text" 
                     className="search-box__field"
                     name={ this.state.name }
+                    data-text={ this.text }
                     placeholder={ this.state.placeholder }
                     onChange={ this.handleTextInputChange }
                     onFocus={ this.handleTextInputFocus }

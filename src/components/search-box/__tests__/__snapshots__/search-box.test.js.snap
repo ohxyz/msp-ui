@@ -10,6 +10,7 @@ exports[`renders with default settings 1`] = `
   >
     <input
       className="search-box__field"
+      data-text=""
       id={undefined}
       name="my-box"
       onBlur={[Function]}

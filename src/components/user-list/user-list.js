@@ -20,6 +20,7 @@ class UserList extends React.Component {
 
         this.state = {
 
+            domElementId: undefined,
             users: [],
             shouldRenderCount: true,
             countIconStyle: '',
@@ -35,6 +36,7 @@ class UserList extends React.Component {
         
         return {
 
+            domElementId: util.setDefault( nextProps.id, undefined ),
             users: util.setDefault( nextProps.users, [] ),
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
@@ -54,7 +56,15 @@ class UserList extends React.Component {
 
             let field = fields[ fieldIndex ];
 
-            return a[ field ].localeCompare( b[ field ] );
+            if ( a[ field ] === undefined || b[ field ] === undefined ) {
+
+                return false;
+            }
+            else {
+
+                return a[ field ].localeCompare( b[ field ] );
+            }
+
         }
 
         return users.sort( ( a, b ) => {
@@ -127,7 +137,7 @@ class UserList extends React.Component {
 
         return (
 
-            <div className="user-list">
+            <div id={ this.state.domElementId } className="user-list">
                 { this.renderCount() }
                 { this.renderUserList( users ) }
             </div>

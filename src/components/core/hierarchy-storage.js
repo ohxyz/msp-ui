@@ -178,6 +178,8 @@ class HierarchyStorage {
             user.topOrgName = topOrgName;
         }
 
+        users = Array.from( new Set( users ) );
+
         return users;
     }
 
