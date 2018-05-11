@@ -131,11 +131,11 @@ export default class SearchBox extends React.Component {
         } );
     }
 
-    handleTextInputChange() {
+    handleTextInputChange( event ) {
 
         this.itemFocused = null;
 
-        let text = this.textInputElement.value;
+        let text = event.target.value;
         let itemsFiltered = [];
 
         this.text = text;

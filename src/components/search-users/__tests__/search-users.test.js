@@ -24,3 +24,17 @@ describe( 'SearchUsers Class', () => {
     } ) 
 
 } );
+
+describe( 'SearchUsers Instance', () => { 
+
+    let component = new SearchUsers( {} );
+
+    test( 'will call showAllusers when searchbox \'s text is empty', () => { 
+
+        component.showAllUsers = jest.fn();
+        component.handleTextChange( [],  { text: '' } );
+
+        expect( component.showAllUsers.mock.calls.length ).toBe( 1 );
+    } )
+
+} );
