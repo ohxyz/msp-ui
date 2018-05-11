@@ -1,6 +1,6 @@
 const HierarchyStorage = require( '../hierarchy-storage.js' ).HierarchyStorage;
-const dummySapObject = require( '../__mocks__/sap.stub.js' ).dummySapObject;
-const sessionObject = require( '../__mocks__/sap2.stub.js' ).dummySapObject;
+const dummySapObject = require( '../__mocks__/sap.stub.json' );
+const sessionObject = require( '../__mocks__/sap2.stub.json' );
 
 describe( 'HierarchyStorage', () => {
 
@@ -24,6 +24,7 @@ describe( 'HierarchyStorage', () => {
         expect( () => storage.validateSapRaw() ).toThrow();
 
     } );
+
 
     test( 'can get an object when argument is an object', () => {
 
