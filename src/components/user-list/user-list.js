@@ -17,6 +17,7 @@ class UserList extends React.Component {
     constructor( props ) {
 
         super( props );
+        this.handleDeleteUser = this.handleDeleteUser.bind( this );
 
         this.state = {
 
@@ -86,6 +87,11 @@ class UserList extends React.Component {
         } );
     }
 
+    handleDeleteUser( user ) {
+
+        console.log( 1, user );
+    }
+
     renderCount() {
 
         if ( this.state.shouldRenderCount === false ) {
@@ -113,7 +119,7 @@ class UserList extends React.Component {
                 <MessageBox 
                     type="info"
                     title="No users found"
-                    content="That orgnisation has no registered users"
+                    content="That organisation has no registered users"
                 />
             );
         }
@@ -124,7 +130,15 @@ class UserList extends React.Component {
             {
                 users.map( ( user, key ) => {
 
-                    return <UserStrip key={ key } user={ user } />
+                    return (
+
+                        <UserStrip 
+                            key={ key } 
+                            user={ user }
+                            onDeleteUserYesClick={ this.handleDeleteUser }
+                        />
+                    );
+
                 } )
             }
             </div>
