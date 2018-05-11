@@ -11,13 +11,27 @@ class SearchUsersApp {
         this.sapData = sapData;
         this.domElement = domElement;
         this.hierarchyStorage = new HierarchyStorage( sapData );
-        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } />;
+        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } onDeleteUser={ this.deleteUser } />;
         this.searchUsersReactComponent = null;
 
         if ( typeof id === 'string' ) {
 
             appManager.addApp( id, this );
         }
+    }
+
+    deleteUser( user ) {
+
+        console.log( 5, user );
+
+        // Todo: Wire up Jordan's delete call
+        let promise = new Promise( ( resolve, reject ) => {
+
+            setTimeout( () => resolve( user ), 1000 );
+
+        } );
+
+        return promise;
     }
 
     reload( sapData ) {

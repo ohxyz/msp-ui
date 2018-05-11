@@ -133,18 +133,20 @@ class UserStrip extends React.Component {
 
             <div className="user-strip__delete-user">
                 <div className="user-strip__confirmation-text">Are you sure want to delete this user?</div>
-                <button 
-                    className="user-strip__delete-user-yes"
-                    onClick={ this.handleDeleteUserYesButtonClick }
-                >
-                    Yes
-                </button>
-                <button 
-                    className="user-strip__delete-user-no"
-                    onClick={ this.handleDeleteUserNoButtonClick }
-                >   
-                    No
-                </button>
+                <div className="user-strip__confirmation-buttons">
+                    <button 
+                        className="user-strip__delete-user-yes"
+                        onClick={ this.handleDeleteUserYesButtonClick }
+                    >
+                        Yes
+                    </button>
+                    <button 
+                        className="user-strip__delete-user-no"
+                        onClick={ this.handleDeleteUserNoButtonClick }
+                    >   
+                        No
+                    </button>
+                </div>
             </div>
         );
     }

@@ -26,7 +26,8 @@ class UserList extends React.Component {
             shouldRenderCount: true,
             countIconStyle: '',
             onRenderCount: new Function(),
-            sortByFields: []
+            sortByFields: [],
+            onPropsDeleteUser: new Function()
         };
 
         this.id = util.setDefault( props.id, util.generateRandomString() );
@@ -42,7 +43,8 @@ class UserList extends React.Component {
             shouldRenderCount: util.setDefault( nextProps.shouldRenderCount, true ),
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
             sortByFields: util.setDefault( nextProps.sortByFields, [] ),
-            countIconStyle: util.setDefault( nextProps.countIconStyle, 'perm_identity' )
+            countIconStyle: util.setDefault( nextProps.countIconStyle, 'perm_identity' ),
+            onPropsDeleteUser: util.setDefault( nextProps.onDeleteUser, new Function() )
         };
     }
 
@@ -89,7 +91,39 @@ class UserList extends React.Component {
 
     handleDeleteUser( user ) {
 
-        console.log( 1, user );
+        let deleteUserPromise = this.state.onPropsDeleteUser( user );
+
+        deleteUserPromise.then( user => {
+
+            this.removeUser( user );
+
+        } );
+    }
+
+    removeUser( user ) {
+
+        if ( util.isNotEmptyArray( this.state.users ) === false ) {
+
+            return;
+        }
+
+        let index = this.state.users.indexOf( user );
+        let users = this.state.users.slice();
+
+        console.log( 'before remove', index, this.state.users );
+
+        users.splice( index, 1 );
+
+        console.log( 'after remove', index, users );
+
+        this.setState( {
+
+            users: users
+
+        } );
+
+        // Return users for test purpose
+        return users;
     }
 
     renderCount() {
@@ -135,7 +169,7 @@ class UserList extends React.Component {
                         <UserStrip 
                             key={ key } 
                             user={ user }
-                            onDeleteUserYesClick={ this.handleDeleteUser }
+                            onDeleteUserYesClick={ () => this.handleDeleteUser( user ) }
                         />
                     );
 
@@ -157,6 +191,7 @@ class UserList extends React.Component {
             </div>
         );
     }
+
 }
 
 module.exports = {

@@ -20,6 +20,7 @@ class SearchUsers extends React.Component {
             storage: null,
             usersFound: [],
             shouldRenderUserList: false,
+            onPropsDeleteUser: new Function()
         };
 
         this.id = util.setDefault( props.id, util.generateRandomString() );
@@ -40,6 +41,7 @@ class SearchUsers extends React.Component {
         return {
 
             storage: storage,
+            onPropsDeleteUser: util.setDefault( nextProps.onDeleteUser, new Function() )
         };
     }
 
@@ -125,6 +127,7 @@ class SearchUsers extends React.Component {
                 users={ this.state.usersFound }
                 onRenderCount={ count => `${count} users found.` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
+                onDeleteUser={ this.state.onPropsDeleteUser }
             />
         );
     }

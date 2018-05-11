@@ -9,6 +9,7 @@ exports[`should render with defaults 1`] = `
   >
     <div
       className="user-strip__delete material-icons"
+      onClick={[Function]}
     >
       close
     </div>
@@ -16,7 +17,7 @@ exports[`should render with defaults 1`] = `
       className="user-strip__expand material-icons"
       onClick={[Function]}
     >
-      add
+      keyboard_arrow_down
     </div>
     <div
       className="user-strip__top-bar"

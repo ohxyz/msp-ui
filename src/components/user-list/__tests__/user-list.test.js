@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserList } from '../user-list.js';
-import renderer from 'react-test-renderer';
+import TestRenderer from 'react-test-renderer';
 
 it( 'should render with defaults', () => {
 
@@ -20,7 +20,7 @@ it( 'should render with defaults', () => {
 
     let users = [ user1, user2 ];
     
-    const tree = renderer
+    const tree = TestRenderer
         .create( <UserList users={ users }/> )
         .toJSON();
 
@@ -30,7 +30,6 @@ it( 'should render with defaults', () => {
 
 describe( 'UserList Instance', () => {
 
-    let ul = new UserList( { id: 'user-list' } );
     let users = [
 
         { 'org': 'abcde Transport' },
@@ -40,12 +39,26 @@ describe( 'UserList Instance', () => {
         { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
     ];
 
-    test( 'sortUsersByFields method', () => { 
+    let testRenderer = TestRenderer.create( <UserList id="user-list-2" users={ users } /> );
+    let testRoot = testRenderer.root;
+    let testInstance = testRoot.instance;
 
-        let results = ul.sortUsersByFields( users, [ 'name' ] );
+    test( 'sortUsersByFields method can sort users by name', () => {
+
+        let testInstance = new UserList( { id: 'user-list' } );
+        let results = testInstance.sortUsersByFields( users, [ 'name' ] );
 
         expect( results[ 1 ].name ).toBe( 'abcd' );
         expect( results[ 2 ].name ).toBe( 'abcd lady' );
+    } );
+
+    test( 'removeUser method can remove a user', () => { 
+
+        let userToRemove = users[ 1 ];
+        let usersLeft = testInstance.removeUser( userToRemove );
+
+        expect( users.length ).toBe( 5 );
+        expect( usersLeft.length ).toBe( 4 );
     } );
 
 } );
