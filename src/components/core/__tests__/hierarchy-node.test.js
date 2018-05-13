@@ -1,5 +1,5 @@
 const HierarchyNode = require( '../hierarchy-node.js' ).HierarchyNode;
-const dummySapObject = require( '../__mocks__/sap.stub.js' ).dummySapObject;
+const dummySapObject = require( '../__mocks__/sap.stub.json' );
 
 describe( 'HierarchyNode', () => {
 
