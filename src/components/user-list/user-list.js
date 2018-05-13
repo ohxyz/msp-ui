@@ -110,11 +110,7 @@ class UserList extends React.Component {
         let index = this.state.users.indexOf( user );
         let users = this.state.users.slice();
 
-        console.log( 'before remove', index, this.state.users );
-
         users.splice( index, 1 );
-
-        console.log( 'after remove', index, users );
 
         this.setState( {
 

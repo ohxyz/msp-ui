@@ -21,7 +21,7 @@ let m2 = {
 
 ReactDOM.render( 
 
-    <MessageBox iconStyle={ m1.icon } title={ m1.title } content={ m1.content } />,
+    <MessageBox iconStyle={ m1.icon } title={ m1.title } content={ m1.content } seconds={ 2 } />,
     document.getElementById( 'message-box-1' )
 );
 

@@ -11,10 +11,12 @@ class MessageBox extends React.Component {
 
         this.state = {
 
-            type: util.setDefault( props.type, '' ),
-            iconStyle: util.setDefault( props.iconStyle, '' ),
-            title: util.setDefault( props.title, '' ),
-            content: util.setDefault( props.content, '' )
+            type: '',
+            iconStyle: '',
+            title: '',
+            content: '',
+            shouldDisplay: true,
+            secondsToClose: 0,
         };
 
         this.mapOfTypeAndIcon = {
@@ -26,7 +28,50 @@ class MessageBox extends React.Component {
         };
     }
 
+    static getDerivedStateFromProps( nextProps, prevState ) {
+        
+        return {
+
+            type: util.setDefault( nextProps.type, '' ),
+            iconStyle: util.setDefault( nextProps.iconStyle, '' ),
+            title: util.setDefault( nextProps.title, '' ),
+            content: util.setDefault( nextProps.content, '' ),
+            shouldDisplay: util.setDefault( nextProps.shouldDisplay, true ),
+            secondsToClose: util.setDefault( nextProps.seconds, 0 ),
+        };
+    }
+
+    closeInSeconds( seconds ) {
+
+        let ms = parseInt( seconds, 10 ) * 1000;
+
+        setTimeout( () => { 
+
+            this.setState( {
+
+                shouldDisplay: false
+
+            } );
+        
+        }, ms );
+    }
+
+    componentDidMount() {
+
+        let seconds = this.state.secondsToClose;
+
+        if ( seconds > 0 ) {
+
+            this.closeInSeconds( seconds );
+        }
+    }
+
     render() {
+
+        if ( this.state.shouldDisplay === false ) {
+
+            return null;
+        }
 
         let className = 'message-box';
         let iconLiteral = this.state.iconStyle;
@@ -52,7 +97,6 @@ class MessageBox extends React.Component {
 
                 className += ' message-box--info';
             }
-
         }
 
         return (
