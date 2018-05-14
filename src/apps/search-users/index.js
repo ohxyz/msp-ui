@@ -24,7 +24,7 @@ class SearchUsersApp {
 
         console.log( 5, user );
 
-        let httpStatusCode = 500;
+        let httpStatusCode = 200;
         let httpStatusCodeLiteral = httpStatusCode.toString();
 
         // Todo: Wire up Jordan's delete call

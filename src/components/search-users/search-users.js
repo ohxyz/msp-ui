@@ -125,6 +125,8 @@ class SearchUsers extends React.Component {
 
     handleDeleteUserPromise( user ) {
 
+        console.log( '*', user );
+
         let promise = this.state.onPropsDeleteUser( user );
 
         promise
@@ -139,8 +141,6 @@ class SearchUsers extends React.Component {
 
             } )
             .catch( errorCode => {
-
-                console.log ( '**', errorCode );
 
                 let errorCodeLiteral = errorCode.toString();
                 let messageCode = '';
