@@ -2,6 +2,8 @@ import React from 'react';
 import util from '../../helpers/util.js';
 import { SearchBox } from '../search-box/search-box.js';
 import { UserList } from '../user-list/user-list.js';
+import { MessageBox } from '../message-box/message-box.js';
+
 import { componentManager } from '../core/component-manager.js';
 
 class SearchUsers extends React.Component {
@@ -12,6 +14,7 @@ class SearchUsers extends React.Component {
 
         this.handleSearchBoxItemSelect = this.handleSearchBoxItemSelect.bind( this );
         this.handleTextChange = this.handleTextChange.bind( this );
+        this.handleDeleteUserPromise = this.handleDeleteUserPromise.bind( this );
 
         this.numberOfStrikes = 3;
 
@@ -19,7 +22,10 @@ class SearchUsers extends React.Component {
 
             storage: null,
             usersFound: [],
+            userToDelete: null,
             shouldRenderUserList: false,
+            shouldRenderMessageBox: false,
+            messageBoxType: '',
             onPropsDeleteUser: new Function()
         };
 
@@ -113,6 +119,50 @@ class SearchUsers extends React.Component {
         );
     }
 
+    handleDeleteUserPromise( user ) {
+
+        let promise = this.state.onPropsDeleteUser( user );
+
+        promise.then( () => {
+
+            this.setState( { 
+
+                shouldRenderMessageBox: true,
+                messageBoxType: 'success',
+                userToDelete: user
+            } );
+
+        } );
+
+        return promise;
+    }
+
+    renderMessageBox( type, user ) {
+
+        let title = '';
+        let content = '';
+
+        if ( type === 'success' ) {
+
+            title = 'Deletion achieved';
+            content = `You've deleted the user account for <em>${ user.fullName }</em>.`;
+        }
+        else if ( type === 'error' ) {
+
+            title = 'Oops. Delete user failed.';
+            content = "Sorry - something's gone wrong in creating this user account. Please try again later.";
+        }
+        else {
+
+            return null;
+        }
+
+        return (
+
+            <MessageBox type={ type } title={ title } content={ content } seconds={ 10 } />
+        );
+    }
+
     renderUserList() {
 
         if( this.state.shouldRenderUserList === false ) {
@@ -127,16 +177,27 @@ class SearchUsers extends React.Component {
                 users={ this.state.usersFound }
                 onRenderCount={ count => `${count} users found.` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
-                onDeleteUser={ this.state.onPropsDeleteUser }
+                onDeleteUser={ this.handleDeleteUserPromise }
             />
         );
     }
 
     render() {
 
+        let userToDelete = this.state.userToDelete;
+        let messageBoxType = this.state.messageBoxType;
+
+        let shouldRenderMessageBox = this.state.shouldRenderMessageBox === true 
+                                        && messageBoxType !== '' 
+                                        && userToDelete !== null;
+
+        let messageBox = shouldRenderMessageBox === true 
+                       ? this.renderMessageBox( messageBoxType, userToDelete )
+                       : null;
         return (
 
             <div id="search-users-section">
+                { messageBox }
                 { this.renderSearchBox() }
                 { this.renderUserList() }
             </div>
