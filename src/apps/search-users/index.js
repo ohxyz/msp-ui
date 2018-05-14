@@ -24,11 +24,20 @@ class SearchUsersApp {
 
         console.log( 5, user );
 
+        let httpStatusCode = 500;
+        let httpStatusCodeLiteral = httpStatusCode.toString();
+
         // Todo: Wire up Jordan's delete call
         let promise = new Promise( ( resolve, reject ) => {
 
-            // setTimeout( () => resolve( user ), 1000 );
-            setTimeout( () => reject( user ), 1000 );
+            if ( httpStatusCodeLiteral === '200' ) {
+
+                setTimeout( () => resolve( user ), 1000 );
+            }
+            else { 
+
+                setTimeout( () => reject( httpStatusCodeLiteral ), 1000 );
+            }
 
         } );
 

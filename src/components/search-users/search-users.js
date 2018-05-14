@@ -6,6 +6,9 @@ import { MessageBox } from '../message-box/message-box.js';
 import { componentManager } from '../core/component-manager.js';
 
 const SECONDS_TO_DISMISS_MESSAGE_BOX = 10;
+const SUCCESS_CODE = '200';
+const ERROR_CODE_4XX = '4xx';
+const ERROR_CODE_5XX = '5xx';
 
 class SearchUsers extends React.Component {
 
@@ -26,7 +29,7 @@ class SearchUsers extends React.Component {
             userToDelete: null,
             shouldRenderUserList: false,
             shouldRenderMessageBox: false,
-            messageBoxType: '',
+            messageCode: '',
             onPropsDeleteUser: new Function()
         };
 
@@ -130,17 +133,31 @@ class SearchUsers extends React.Component {
                 this.setState( { 
 
                     shouldRenderMessageBox: true,
-                    messageBoxType: 'success',
+                    messageCode: SUCCESS_CODE,
                     userToDelete: user
                 } );
 
             } )
-            .catch( () => { 
+            .catch( errorCode => {
+
+                console.log ( '**', errorCode );
+
+                let errorCodeLiteral = errorCode.toString();
+                let messageCode = '';
+
+                if ( errorCodeLiteral[ 0 ] === '4' ) {
+
+                    messageCode = ERROR_CODE_4XX;
+                }
+                else if ( errorCodeLiteral[ 0 ] === '5' ) {
+
+                    messageCode = ERROR_CODE_5XX;
+                }
 
                 this.setState( { 
 
                     shouldRenderMessageBox: true,
-                    messageBoxType: 'error',
+                    messageCode: messageCode,
                     userToDelete: user
                 } );
 
@@ -149,20 +166,34 @@ class SearchUsers extends React.Component {
         return promise;
     }
 
-    renderMessageBox( type, user ) {
+    renderMessageBox( messageCode, user ) {
 
+        let type = '';
         let title = '';
         let content = '';
 
-        if ( type === 'success' ) {
+        if ( messageCode === SUCCESS_CODE ) {
 
+            type = 'success';
             title = 'Deletion achieved';
             content = <React.Fragment>You've deleted the user account for <em>{ user.fullName }</em>.</React.Fragment>;
         }
-        else if ( type === 'error' ) {
+        else if ( messageCode === ERROR_CODE_4XX ) {
 
+            type = 'error';
             title = 'Oops. Delete user failed.';
-            content = "Sorry - something's gone wrong in creating this user account. Please try again later.";
+            content = (
+
+                <React.Fragment>
+                    Sorry - something's gone wrong in deleting this user. Please contact your <em>Origin Account Manager</em>.
+                </React.Fragment>
+            );
+        }
+        else if ( messageCode === ERROR_CODE_5XX ) {
+
+            type = 'error';
+            title = 'Oops. Delete user failed.';
+            content = "Sorry - something's gone wrong in deleting this user account. Please try again later.";
         }
         else {
 
@@ -202,14 +233,14 @@ class SearchUsers extends React.Component {
     render() {
 
         let userToDelete = this.state.userToDelete;
-        let messageBoxType = this.state.messageBoxType;
+        let messageCode = this.state.messageCode;
 
         let shouldRenderMessageBox = this.state.shouldRenderMessageBox === true 
-                                        && messageBoxType !== '' 
+                                        && messageCode !== '' 
                                         && userToDelete !== null;
 
         let messageBox = shouldRenderMessageBox === true 
-                       ? this.renderMessageBox( messageBoxType, userToDelete )
+                       ? this.renderMessageBox( messageCode, userToDelete )
                        : null;
         return (
 
