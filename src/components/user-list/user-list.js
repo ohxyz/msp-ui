@@ -17,7 +17,7 @@ class UserList extends React.Component {
     constructor( props ) {
 
         super( props );
-        this.handleDeleteUser = this.handleDeleteUser.bind( this );
+        this.handleDeleteUserSuccessPromise = this.handleDeleteUserSuccessPromise.bind( this );
 
         this.state = {
 
@@ -89,15 +89,21 @@ class UserList extends React.Component {
         } );
     }
 
-    handleDeleteUser( user ) {
+    handleDeleteUserSuccessPromise( user ) {
 
         let deleteUserPromise = this.state.onPropsDeleteUser( user );
 
-        deleteUserPromise.then( user => {
+        deleteUserPromise
+            .then( user => {
 
-            this.removeUser( user );
+                this.removeUser( user );
 
-        } );
+            } )
+            .catch( () => {
+
+                // Put a empty function here to avoid error displayed in Chrome's console
+
+            } );
     }
 
     removeUser( user ) {
@@ -165,7 +171,7 @@ class UserList extends React.Component {
                         <UserStrip 
                             key={ key } 
                             user={ user }
-                            onDeleteUserYesClick={ () => this.handleDeleteUser( user ) }
+                            onDeleteUserYesClick={ () => this.handleDeleteUserSuccessPromise( user ) }
                         />
                     );
 

@@ -27,7 +27,8 @@ class SearchUsersApp {
         // Todo: Wire up Jordan's delete call
         let promise = new Promise( ( resolve, reject ) => {
 
-            setTimeout( () => resolve( user ), 1000 );
+            // setTimeout( () => resolve( user ), 1000 );
+            setTimeout( () => reject( user ), 1000 );
 
         } );
 

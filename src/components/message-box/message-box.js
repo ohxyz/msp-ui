@@ -2,6 +2,7 @@ const util = require( '../../helpers/util.js' );
 const React = require( 'react' );
 
 const DEFAULT_ICON_STYLE = 'info';
+const DEFAULT_SECONDS_TO_DISMISS = -1;
 
 class MessageBox extends React.Component {
 
@@ -16,14 +17,14 @@ class MessageBox extends React.Component {
             title: '',
             content: '',
             shouldDisplay: true,
-            secondsToClose: 0,
+            secondsToDismiss: 0,
         };
 
         this.mapOfTypeAndIcon = {
 
             'warning': 'warning',
             'error': 'cancel',
-            'success': 'check circle',
+            'success': 'check_circle',
             'info': 'info',
         };
     }
@@ -37,13 +38,13 @@ class MessageBox extends React.Component {
             title: util.setDefault( nextProps.title, '' ),
             content: util.setDefault( nextProps.content, '' ),
             shouldDisplay: util.setDefault( nextProps.shouldDisplay, true ),
-            secondsToClose: util.setDefault( nextProps.seconds, 0 ),
+            secondsToDismiss: util.setDefault( nextProps.seconds, DEFAULT_SECONDS_TO_DISMISS ),
         };
     }
 
-    closeInSeconds( seconds ) {
+    dismissInSeconds( seconds ) {
 
-        let ms = parseInt( seconds, 10 ) * 1000;
+        let milliseconds = parseInt( seconds, 10 ) * 1000;
 
         setTimeout( () => { 
 
@@ -53,16 +54,16 @@ class MessageBox extends React.Component {
 
             } );
         
-        }, ms );
+        }, milliseconds );
     }
 
     componentDidMount() {
 
-        let seconds = this.state.secondsToClose;
+        let seconds = this.state.secondsToDismiss;
 
         if ( seconds > 0 ) {
 
-            this.closeInSeconds( seconds );
+            this.dismissInSeconds( seconds );
         }
     }
 

@@ -3,8 +3,9 @@ import util from '../../helpers/util.js';
 import { SearchBox } from '../search-box/search-box.js';
 import { UserList } from '../user-list/user-list.js';
 import { MessageBox } from '../message-box/message-box.js';
-
 import { componentManager } from '../core/component-manager.js';
+
+const SECONDS_TO_DISMISS_MESSAGE_BOX = 10;
 
 class SearchUsers extends React.Component {
 
@@ -123,16 +124,27 @@ class SearchUsers extends React.Component {
 
         let promise = this.state.onPropsDeleteUser( user );
 
-        promise.then( () => {
+        promise
+            .then( () => {
 
-            this.setState( { 
+                this.setState( { 
 
-                shouldRenderMessageBox: true,
-                messageBoxType: 'success',
-                userToDelete: user
+                    shouldRenderMessageBox: true,
+                    messageBoxType: 'success',
+                    userToDelete: user
+                } );
+
+            } )
+            .catch( () => { 
+
+                this.setState( { 
+
+                    shouldRenderMessageBox: true,
+                    messageBoxType: 'error',
+                    userToDelete: user
+                } );
+
             } );
-
-        } );
 
         return promise;
     }
@@ -145,7 +157,7 @@ class SearchUsers extends React.Component {
         if ( type === 'success' ) {
 
             title = 'Deletion achieved';
-            content = `You've deleted the user account for <em>${ user.fullName }</em>.`;
+            content = <React.Fragment>You've deleted the user account for <em>{ user.fullName }</em>.</React.Fragment>;
         }
         else if ( type === 'error' ) {
 
@@ -159,7 +171,12 @@ class SearchUsers extends React.Component {
 
         return (
 
-            <MessageBox type={ type } title={ title } content={ content } seconds={ 10 } />
+            <MessageBox 
+                type={ type } 
+                title={ title } 
+                content={ content } 
+                seconds={ SECONDS_TO_DISMISS_MESSAGE_BOX } 
+            />
         );
     }
 
