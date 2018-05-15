@@ -96,7 +96,6 @@ class UserList extends React.Component {
         deleteUserPromise
             .then( user => {
 
-                console.log( '^^^^^^^^^^', user );
                 this.removeUser( user );
 
             } )
@@ -105,6 +104,8 @@ class UserList extends React.Component {
                 // Put a empty function here to avoid error displayed in Chrome's console
 
             } );
+
+        return deleteUserPromise;
     }
 
     removeUser( user ) {

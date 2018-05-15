@@ -32,36 +32,16 @@ describe( 'UserStrip instance', () => {
         mockFn.mockClear();
     });
 
-    test( "changes it's state after calling handleExpandIconClick", () => { 
+    test( "changes it's state after calling handleChevronIconClick", () => { 
 
-        userList.handleExpandIconClick();
+        userList.handleChevronIconClick();
         expect( mockFn.mock.calls.length ).toBe( 1 );
 
     } );
 
     test( "changes it's state after calling handleDeleteIconClick", () => { 
 
-        userList.handleExpandIconClick();
-        expect( mockFn.mock.calls.length ).toBe( 1 );
-
-    } );
-
-    test( "changes it's state after calling renderDropDownContent for AccessLevelBox", () => { 
-
-        userList.renderAccessLevelsBox = mockFn;
-        userList.state.shouldRenderAccessLevelsBox = true;
-        userList.renderDropDownContent();
-
-        expect( mockFn.mock.calls.length ).toBe( 1 );
-
-    } );
-
-    test( "changes it's state after calling renderDropDownContent for DeleteUserBox", () => { 
-
-        userList.renderDeleteUserBox = mockFn;
-        userList.state.shouldRenderDeleteUserBox = true;
-        userList.renderDropDownContent();
-
+        userList.handleDeleteIconClick();
         expect( mockFn.mock.calls.length ).toBe( 1 );
 
     } );
@@ -69,6 +49,7 @@ describe( 'UserStrip instance', () => {
     test( "calls it's prop's onDeleteUserYesButtonClick", () => { 
 
         userList.state.onPropsDeleteUserYesClick = mockFn;
+        mockFn.mockReturnValue( new Promise( ( resolve, reject ) => {} ) );
         userList.handleDeleteUserYesButtonClick();
 
         expect( mockFn.mock.calls.length ).toBe( 1 );
@@ -90,6 +71,5 @@ describe( 'UserStrip instance', () => {
         expect( mockFn.mock.calls.length ).toBe( 1 );
         
     } );
-
 
 } );

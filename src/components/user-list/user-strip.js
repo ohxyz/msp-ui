@@ -14,7 +14,7 @@ class UserStrip extends React.Component {
 
         super( props );
 
-        this.handleExpandIconClick = this.handleExpandIconClick.bind( this );
+        this.handleChevronIconClick = this.handleChevronIconClick.bind( this );
         this.handleDeleteIconClick = this.handleDeleteIconClick.bind( this );
         this.handleDeleteUserYesButtonClick = this.handleDeleteUserYesButtonClick.bind( this );
         this.handleDeleteUserNoButtonClick = this.handleDeleteUserNoButtonClick.bind( this );
@@ -22,48 +22,30 @@ class UserStrip extends React.Component {
         this.state = {
 
             user: null,
-            shouldDropDownExpanded: false,
             shouldRenderDeleteUserBox: false,
             shouldRenderAccessLevelsBox: false,
-            expandIconText: 'keyboard_arrow_down',
+            chevronIconText: 'keyboard_arrow_down',
             onPropsDeleteUserYesClick: new Function(),
         };
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
-
-        let shouldExpand = util.setDefault( nextProps.shouldDropDownExpanded, false );
         
         return {
 
             user: util.setDefault( new AccountProfile( nextProps.user ), new AccountProfile() ),
-            shouldDropDownExpanded: shouldExpand,
-            expandIconText: getExpandIconText( shouldExpand ),
             onPropsDeleteUserYesClick: util.setDefault( nextProps.onDeleteUserYesClick, new Function() )
         };
     }
 
-    handleExpandIconClick() {
+    handleChevronIconClick() {
 
-        let shouldExpand = true;
-        let shouldRenderAccessLevelsBox = true;
-
-        if ( this.state.shouldDropDownExpanded === false ) {
-
-            shouldExpand = true;
-        }
-        else {
-
-            shouldRenderAccessLevelsBox = true;
-            shouldExpand = this.state.shouldRenderDeleteUserBox;
-        }
+        let shouldExpand = !this.state.shouldRenderAccessLevelsBox;
 
         this.setState( { 
 
-            shouldDropDownExpanded: shouldExpand,
-            shouldRenderAccessLevelsBox: shouldRenderAccessLevelsBox,
-            shouldRenderDeleteUserBox: false,
-            expandIconText: getExpandIconText( shouldExpand )
+            shouldRenderAccessLevelsBox: shouldExpand,
+            chevronIconText: getExpandIconText( shouldExpand )
 
         } );
     }
@@ -72,59 +54,43 @@ class UserStrip extends React.Component {
 
         this.setState( { 
 
-            shouldDropDownExpanded: true,
             shouldRenderDeleteUserBox: true
-        } );
 
+        } );
     }
 
     handleDeleteUserYesButtonClick() {
 
-        this.state.onPropsDeleteUserYesClick( this.state.user );
+        let promise = this.state.onPropsDeleteUserYesClick( this.state.user );
+
+        promise.then( () => { 
+
+            this.setState( {
+
+                shouldRenderDeleteUserBox: false,
+                shouldRenderAccessLevelsBox: false
+
+            } );
+            
+        } );
     }
 
     handleDeleteUserNoButtonClick() {
 
         this.setState( { 
 
-            shouldDropDownExpanded: false,
             shouldRenderDeleteUserBox: false
         } );
     }
 
-    renderDropDownContent() {
-
-        if ( this.state.shouldRenderDeleteUserBox === true ) {
-
-            return this.renderDeleteUserBox();
-        }
-        else if ( this.state.shouldRenderAccessLevelsBox === true ) {
-
-            return this.renderAccessLevelsBox();
-        }
-
-        return;
-    }
-
-    renderDropDown() {
-
-        if ( this.state.shouldDropDownExpanded === true ) {
-
-            return (
-
-                <div className="user-strip__dropdown">
-                    <div className="user-strip__dropdown-content">
-                    { this.renderDropDownContent() }
-                    </div>
-                </div>
-            );
-        }
-    }
-
     renderAccessLevelsBox() {
 
-        return 'User Access Levels';
+        return (
 
+            <div className="user-strip__access-level">
+                User Access Levels
+            </div>
+        );   
     }
 
     renderDeleteUserBox() {
@@ -167,9 +133,9 @@ class UserStrip extends React.Component {
                     </div>
                     <div 
                         className="user-strip__expand material-icons" 
-                        onClick={ this.handleExpandIconClick }
+                        onClick={ this.handleChevronIconClick }
                     >
-                        { this.state.expandIconText }
+                        { this.state.chevronIconText }
                     </div>
                     <div className="user-strip__top-bar">
                         <span className="user-strip__full-name">{ user.fullName }</span>
@@ -179,7 +145,8 @@ class UserStrip extends React.Component {
                         <div className="user-strip__org">{ user.orgName }</div>
                     </div>
                 </div>
-                { this.renderDropDown() }
+                { this.state.shouldRenderAccessLevelsBox && this.renderAccessLevelsBox() }
+                { this.state.shouldRenderDeleteUserBox && this.renderDeleteUserBox() }
             </div>
         );
     }
