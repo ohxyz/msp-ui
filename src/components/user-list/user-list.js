@@ -96,6 +96,7 @@ class UserList extends React.Component {
         deleteUserPromise
             .then( user => {
 
+                console.log( '^^^^^^^^^^', user );
                 this.removeUser( user );
 
             } )

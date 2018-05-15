@@ -28,6 +28,13 @@ describe( 'SearchUsers Class', () => {
 describe( 'SearchUsers Instance', () => { 
 
     let component = new SearchUsers( {} );
+    let mockFn = jest.fn();
+    component.setState = mockFn;
+
+    let user = {
+
+        fullName: 'Jordan Rancie'
+    };
 
     test( 'will call showAllusers when searchbox \'s text is empty', () => { 
 
@@ -35,6 +42,22 @@ describe( 'SearchUsers Instance', () => {
         component.handleTextChange( [],  { text: '' } );
 
         expect( component.showAllUsers.mock.calls.length ).toBe( 1 );
-    } )
+    } );
+
+    test( 'renders a message box when message code is 200', () => {
+
+        let result = component.renderMessageBox( '200', user )
+
+        expect( result ).not.toBe( null );
+
+    } );
+
+    test( 'renders a message box when message code is 4xx', () => {
+
+        let result = component.renderMessageBox( '4xx', user )
+
+        expect( result ).not.toBe( null );
+
+    } );
 
 } );

@@ -22,12 +22,15 @@ class SearchUsersApp {
 
     deleteUser( user ) {
 
-        console.log( 5, user );
+        console.log( '***', user.accountId, user.hierarchyId );
 
         let httpStatusCode = 200;
         let httpStatusCodeLiteral = httpStatusCode.toString();
 
         // Todo: Wire up Jordan's delete call
+        // let deleteUserPromise = Jordan.deleteUser( accountId, hierarchyId );
+
+        // Mock
         let promise = new Promise( ( resolve, reject ) => {
 
             if ( httpStatusCodeLiteral === '200' ) {

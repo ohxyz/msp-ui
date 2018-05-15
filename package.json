@@ -27,7 +27,7 @@
     "serve:uat": "http-server ./test/uat -c-1",
     "dev": "npm run serve:dev & webpack --mode development --watch --env.environ=dev",
     "uat": "npm run serve:uat & webpack --mode development --watch --env.environ=uat",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
