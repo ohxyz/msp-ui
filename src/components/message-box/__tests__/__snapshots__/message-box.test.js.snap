@@ -24,7 +24,7 @@ exports[`should render by iconStyle when type is also there 1`] = `
 
 exports[`should render with defaults 1`] = `
 <div
-  className="message-box"
+  className="message-box message-box--info"
 >
   <i
     className="material-icons"

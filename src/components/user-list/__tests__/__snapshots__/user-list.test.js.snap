@@ -30,7 +30,7 @@ exports[`should render with defaults 1`] = `
           className="user-strip__delete material-icons"
           onClick={[Function]}
         >
-          close
+          delete_forever
         </div>
         <div
           className="user-strip__expand material-icons"
@@ -73,7 +73,7 @@ exports[`should render with defaults 1`] = `
           className="user-strip__delete material-icons"
           onClick={[Function]}
         >
-          close
+          delete_forever
         </div>
         <div
           className="user-strip__expand material-icons"
