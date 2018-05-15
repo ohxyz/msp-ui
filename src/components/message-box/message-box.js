@@ -97,8 +97,6 @@ class MessageBox extends React.Component {
 
             className += ' message-box--info';
         }
-
-        console.log( this.state );
         
         return (
 

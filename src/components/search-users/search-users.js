@@ -124,9 +124,7 @@ class SearchUsers extends React.Component {
     }
 
     handleDeleteUserPromise( user ) {
-
-        console.log( '*', user.accountId, user.hierarchyId );
-
+        
         let promise = this.state.onPropsDeleteUser( user );
 
         promise
