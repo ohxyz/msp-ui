@@ -163,7 +163,7 @@ class UserStrip extends React.Component {
                         className="user-strip__delete material-icons"
                         onClick={ this.handleDeleteIconClick }
                     >
-                        close
+                        delete_forever
                     </div>
                     <div 
                         className="user-strip__expand material-icons" 

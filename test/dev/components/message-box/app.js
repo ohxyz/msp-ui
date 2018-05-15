@@ -6,14 +6,14 @@ import '../../../../less/components/message-box.less';
 
 let m1 = {
 
-    icon: 'cloud',
-    title: 'Cloud title',
-    content: 'Cloud content'
+    title: 'Cloud title 2',
+    content: 'Cloud content',
+    type: 'success',
 };
 
 let m2 = {
 
-    type: 'info',
+    type: 'error',
     title: 'Users not found',
     content: 'Search again'
 };
@@ -21,13 +21,13 @@ let m2 = {
 
 ReactDOM.render( 
 
-    <MessageBox iconStyle={ m1.icon } title={ m1.title } content={ m1.content } seconds={ 2 } />,
+    <MessageBox iconStyle={ m1.icon } type={ m1.type } title={ m1.title } content={ m1.content } />,
     document.getElementById( 'message-box-1' )
 );
 
 
 ReactDOM.render( 
 
-    <MessageBox type="default" title={ m2.title } content={ m2.content } />,
+    <MessageBox type={ m2.type } title={ m2.title } content={ m2.content } />,
     document.getElementById( 'message-box-2' )
 );

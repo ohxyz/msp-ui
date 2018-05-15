@@ -138,7 +138,7 @@ class SearchUsers extends React.Component {
                     messageCode: SUCCESS_CODE,
                     userToDelete: user
                 } );
-                user.xxxxxxxxxxxxxxxxxx = 1;
+
                 return user;
 
             } )

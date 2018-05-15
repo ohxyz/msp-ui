@@ -88,18 +88,18 @@ class MessageBox extends React.Component {
                 iconLiteral = DEFAULT_ICON_STYLE;
             }
         }
+
+        if ( messageType !== '' ) {
+
+            className += ' message-box--' + messageType;
+        }
         else {
 
-            if ( messageType !== '' ) {
-
-                className += ' message-box--' + messageType;
-            }
-            else {
-
-                className += ' message-box--info';
-            }
+            className += ' message-box--info';
         }
 
+        console.log( this.state );
+        
         return (
 
             <div className={ className }>
