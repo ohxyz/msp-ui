@@ -2,12 +2,6 @@ import util from '../../helpers/util.js';
 import React from 'react';
 import { AccountProfile } from '../core/account-profile.js';
 
-function getExpandIconText( shouldExpand ) {
-
-    return shouldExpand === true ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
-
-}
-
 class UserStrip extends React.Component {
 
     constructor( props ) {
@@ -38,6 +32,12 @@ class UserStrip extends React.Component {
         };
     }
 
+    static getExpandIconText( shouldExpand ) {
+
+        return shouldExpand === true ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+
+    }
+
     handleChevronIconClick() {
 
         let shouldExpand = !this.state.shouldRenderAccessLevelsBox;
@@ -45,7 +45,7 @@ class UserStrip extends React.Component {
         this.setState( { 
 
             shouldRenderAccessLevelsBox: shouldExpand,
-            chevronIconText: getExpandIconText( shouldExpand )
+            chevronIconText: UserStrip.getExpandIconText( shouldExpand )
 
         } );
     }
@@ -71,7 +71,6 @@ class UserStrip extends React.Component {
                 shouldRenderAccessLevelsBox: false
 
             } );
-            
         } );
     }
 

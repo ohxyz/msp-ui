@@ -30,11 +30,11 @@ class SearchUsersApp {
 
             if ( httpStatusCodeLiteral === '200' ) {
 
-                setTimeout( () => resolve( user ), 1000 );
+                setTimeout( () => resolve( user ), 2000 );
             }
             else { 
 
-                setTimeout( () => reject( httpStatusCodeLiteral ), 1000 );
+                setTimeout( () => reject( httpStatusCodeLiteral ), 2000 );
             }
 
         } );
