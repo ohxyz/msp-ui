@@ -198,7 +198,7 @@ class UserList extends React.Component {
 
 }
 
-module.exports = {
+export {
 
     UserList
 };

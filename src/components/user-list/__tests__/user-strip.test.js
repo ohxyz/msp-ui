@@ -22,10 +22,10 @@ it( 'should render with defaults', () => {
 
 describe( 'UserStrip instance', () => { 
 
-    let userList = new UserStrip();
+    let userStrip = new UserStrip();
     let mockFn = jest.fn();
 
-    userList.setState = mockFn;
+    userStrip.setState = mockFn;
 
     beforeEach(() => {
 
@@ -34,23 +34,23 @@ describe( 'UserStrip instance', () => {
 
     test( "changes it's state after calling handleChevronIconClick", () => { 
 
-        userList.handleChevronIconClick();
+        userStrip.handleChevronIconClick();
         expect( mockFn.mock.calls.length ).toBe( 1 );
 
     } );
 
     test( "changes it's state after calling handleDeleteIconClick", () => { 
 
-        userList.handleDeleteIconClick();
+        userStrip.handleDeleteIconClick();
         expect( mockFn.mock.calls.length ).toBe( 1 );
 
     } );
 
     test( "calls it's prop's onDeleteUserYesButtonClick", () => { 
 
-        userList.state.onPropsDeleteUserYesClick = mockFn;
+        userStrip.state.onPropsDeleteUserYesClick = mockFn;
         mockFn.mockReturnValue( new Promise( ( resolve, reject ) => {} ) );
-        userList.handleDeleteUserYesButtonClick();
+        userStrip.handleDeleteUserYesButtonClick();
 
         expect( mockFn.mock.calls.length ).toBe( 1 );
 
@@ -58,15 +58,15 @@ describe( 'UserStrip instance', () => {
 
     test( "change's its state after calling No button is clicked ", () => { 
 
-        userList.state.onPropsDeleteUserYesClick = mockFn;
-        userList.handleDeleteUserNoButtonClick();
+        userStrip.state.onPropsDeleteUserYesClick = mockFn;
+        userStrip.handleDeleteUserNoButtonClick();
 
         expect( mockFn.mock.calls.length ).toBe( 1 );
     } );
 
     test( "change's its state after calling Delete Icon is clicked ", () => { 
 
-        userList.handleDeleteIconClick();
+        userStrip.handleDeleteIconClick();
 
         expect( mockFn.mock.calls.length ).toBe( 1 );
         

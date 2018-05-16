@@ -152,7 +152,7 @@ class UserStrip extends React.Component {
 }
 
 
-module.exports = {
+export {
 
     UserStrip,
 };
