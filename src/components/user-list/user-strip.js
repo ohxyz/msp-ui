@@ -86,9 +86,9 @@ class UserStrip extends React.Component {
 
         return (
 
-            <div className="user-strip__access-levels">
+            <React.Fragment>
                 User Access Levels
-            </div>
+            </React.Fragment>
         );   
     }
 
@@ -96,7 +96,7 @@ class UserStrip extends React.Component {
 
         return (
 
-            <div className="user-strip__delete-user">
+            <React.Fragment>
                 <div className="user-strip__delete-user__confirmation">Are you sure want to delete this user?</div>
                 <div className="user-strip__delete-user__buttons">
                     <button
@@ -112,7 +112,7 @@ class UserStrip extends React.Component {
                         No
                     </button>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 
@@ -128,6 +128,20 @@ class UserStrip extends React.Component {
         else {
 
             deleteIconClassName += ' user-strip__delete-icon--inactive';
+        }
+
+        let accessLevelsBoxClassName = 'user-strip__access-levels';
+
+        if ( this.state.shouldRenderAccessLevelsBox === true ) {
+
+            accessLevelsBoxClassName += ' user-strip__access-levels--active';
+        }
+
+        let deleteUserBoxClassName = 'user-strip__delete-user';
+
+        if ( this.state.shouldRenderDeleteUserBox === true ) {
+
+            deleteUserBoxClassName += ' user-strip__delete-user--active';
         }
 
         return (
@@ -154,13 +168,16 @@ class UserStrip extends React.Component {
                         <div className="user-strip__org">{ user.orgName }</div>
                     </div>
                 </div>
-                { this.state.shouldRenderAccessLevelsBox && this.renderAccessLevelsBox() }
-                { this.state.shouldRenderDeleteUserBox && this.renderDeleteUserBox() }
+                <div className={ accessLevelsBoxClassName }>
+                    { this.state.shouldRenderAccessLevelsBox && this.renderAccessLevelsBox() }
+                </div>
+                <div className={ deleteUserBoxClassName }>
+                    { this.state.shouldRenderDeleteUserBox && this.renderDeleteUserBox() }
+                </div>
             </div>
         );
     }
 }
-
 
 export {
 
