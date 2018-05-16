@@ -27,16 +27,24 @@ exports[`should render with defaults 1`] = `
         className="user-strip__main"
       >
         <div
-          className="user-strip__delete material-icons"
+          className="user-strip__delete-icon user-strip__delete-icon--inactive"
           onClick={[Function]}
         >
-          delete_forever
+          <i
+            className="material-icons"
+          >
+            delete_forever
+          </i>
         </div>
         <div
-          className="user-strip__expand material-icons"
+          className="user-strip__expand-icon"
           onClick={[Function]}
         >
-          keyboard_arrow_down
+          <i
+            className="material-icons"
+          >
+            keyboard_arrow_down
+          </i>
         </div>
         <div
           className="user-strip__top-bar"
@@ -62,6 +70,12 @@ exports[`should render with defaults 1`] = `
           </div>
         </div>
       </div>
+      <div
+        className="user-strip__access-levels"
+      />
+      <div
+        className="user-strip__delete-user"
+      />
     </div>
     <div
       className="user-strip"
@@ -70,16 +84,24 @@ exports[`should render with defaults 1`] = `
         className="user-strip__main"
       >
         <div
-          className="user-strip__delete material-icons"
+          className="user-strip__delete-icon user-strip__delete-icon--inactive"
           onClick={[Function]}
         >
-          delete_forever
+          <i
+            className="material-icons"
+          >
+            delete_forever
+          </i>
         </div>
         <div
-          className="user-strip__expand material-icons"
+          className="user-strip__expand-icon"
           onClick={[Function]}
         >
-          keyboard_arrow_down
+          <i
+            className="material-icons"
+          >
+            keyboard_arrow_down
+          </i>
         </div>
         <div
           className="user-strip__top-bar"
@@ -105,6 +127,12 @@ exports[`should render with defaults 1`] = `
           </div>
         </div>
       </div>
+      <div
+        className="user-strip__access-levels"
+      />
+      <div
+        className="user-strip__delete-user"
+      />
     </div>
   </div>
 </div>
