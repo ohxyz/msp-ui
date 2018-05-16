@@ -3,60 +3,159 @@
 
 .user-strip {
 
+    margin-bottom: 24px;
+
     &__main {
 
         position: relative;
-        border: @default-border;
-        padding: @default-padding;
+        background-color: white;
+        padding: 24px 64px 20px 16px;
     }
 
-    &__dropdown {
+    &__delete-icon, 
+    &__expand-icon {
+
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 48px;
+        line-height: 40px;
+        right: 0;
+    }
+
+    &__delete-icon {
+
         
-        position: relative;
-        border: @default-border;
-        padding: @default-padding;
-    }
-
-    &__delete {
-
-        position: absolute;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        right: 0;
+        bottom: 50%;
         top: 0;
+        border-left: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
 
+        &--inactive {
+            
+            color: #ababab;
+        }
+
+        &--active {
+
+            color: #ff373c;
+        }
     }
 
-    &__expand {
+    &__expand-icon {
 
-        position: absolute;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        top: 40px;
-        right: 0;
-        user-select: none;
+        top: 50%;
+        bottom: 0;
+        border-left: 1px solid #e3e3e3;
     }
 
     &__full-name {
 
         display: inline-block;
-        font-size: 36px;
+        font-size: 16px;
+        line-height: 24px;
+        margin-right: 16px;
+        font-weight: bold;
+        color: #232323;
     }
 
     &__top-org {
 
         display: inline-block;
-        font-size: 24px;
-        margin-left: 16px;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 2px 4px;
+        color: white;
+        background-color: #3f75c6;
     }
 
     &__org {
 
         display: inline-block;
         font-size: 20px;
+    }
+
+    &__top-bar {
+
+        margin-bottom: 16px;
+    }
+
+    &__org {
+
+        font-size: 14px;
+        line-height: 24px;
+        color: #505050;
+    }
+
+    &__delete-user {
+
+        margin-top: 8px;
+        background-color: white;
+        padding: 24px 0;
+
+        &__confirmation {
+
+            display: flex;
+            justify-content: center;
+            font-size: 14px;
+            line-height: 24px;
+            color: #505050;
+            margin-bottom: 24px;
+        }
+
+        &__buttons {
+
+            display: flex;
+            justify-content: center;
+            height: 48px;
+
+            button {
+
+                box-sizing: border-box;
+                width: 80px;
+                height: 48px;
+                font-size: 16px;
+                font-weight: 500;
+                border: 1px solid #ec0000;
+                outline: none;
+                margin: 0 8px;
+                cursor: pointer;
+
+
+                &:hover {
+
+                    background-color: #b30000;
+                    border: none;
+                    color: white;
+                }
+
+                &:focus {
+
+                    position: relative;
+                    top: -4px;
+                    height: 56px;
+                    width: 88px;
+                    background-color: #b30000;
+                    border: 4px solid #fbc2c2;
+                    margin-right: 4px;
+                    margin-left: 4px;
+                    color: white;
+                }
+            }
+
+            &__yes {
+
+                background-color: #ec0000;
+                color: white;
+
+            }
+
+            &__no {
+
+                color: #ec0000;
+            }
+        }
     }
 }

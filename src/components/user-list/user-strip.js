@@ -86,7 +86,7 @@ class UserStrip extends React.Component {
 
         return (
 
-            <div className="user-strip__access-level">
+            <div className="user-strip__access-levels">
                 User Access Levels
             </div>
         );   
@@ -97,16 +97,16 @@ class UserStrip extends React.Component {
         return (
 
             <div className="user-strip__delete-user">
-                <div className="user-strip__confirmation-text">Are you sure want to delete this user?</div>
-                <div className="user-strip__confirmation-buttons">
-                    <button 
-                        className="user-strip__delete-user-yes"
+                <div className="user-strip__delete-user__confirmation">Are you sure want to delete this user?</div>
+                <div className="user-strip__delete-user__buttons">
+                    <button
+                        className="user-strip__delete-user__buttons__yes"
                         onClick={ this.handleDeleteUserYesButtonClick }
                     >
                         Yes
                     </button>
                     <button 
-                        className="user-strip__delete-user-no"
+                        className="user-strip__delete-user__buttons__no"
                         onClick={ this.handleDeleteUserNoButtonClick }
                     >   
                         No
@@ -119,22 +119,32 @@ class UserStrip extends React.Component {
     render() {
 
         let user = this.state.user;
+        let deleteIconClassName = 'user-strip__delete-icon';
+
+        if ( this.state.shouldRenderDeleteUserBox === true ) {
+
+            deleteIconClassName += ' user-strip__delete-icon--active';
+        }
+        else {
+
+            deleteIconClassName += ' user-strip__delete-icon--inactive';
+        }
 
         return (
 
             <div className="user-strip">
                 <div className="user-strip__main">
                     <div 
-                        className="user-strip__delete material-icons"
+                        className={ deleteIconClassName }
                         onClick={ this.handleDeleteIconClick }
                     >
-                        delete_forever
+                         <i className="material-icons">delete_forever</i>
                     </div>
                     <div 
-                        className="user-strip__expand material-icons" 
+                        className="user-strip__expand-icon" 
                         onClick={ this.handleChevronIconClick }
                     >
-                        { this.state.chevronIconText }
+                        <i className="material-icons">{ this.state.chevronIconText }</i>
                     </div>
                     <div className="user-strip__top-bar">
                         <span className="user-strip__full-name">{ user.fullName }</span>
