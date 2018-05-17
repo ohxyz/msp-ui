@@ -29,6 +29,7 @@ class SearchUsers extends React.Component {
             usersFound: [],
             userToDelete: null,
             shouldRenderUserList: false,
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false,
             shouldRenderMessageBox: false,
             messageCode: '',
             onPropsDeleteUser: new Function()
@@ -63,8 +64,8 @@ class SearchUsers extends React.Component {
         this.setState( {
 
             usersFound: allUsers,
-            shouldRenderUserList: true
-
+            shouldRenderUserList: true,
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
         } );
     }
 
@@ -85,7 +86,8 @@ class SearchUsers extends React.Component {
         this.setState( { 
 
             usersFound: users,
-            shouldRenderUserList: true
+            shouldRenderUserList: true,
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
 
         } );
     }
@@ -169,8 +171,6 @@ class SearchUsers extends React.Component {
 
     handleMessageBoxDismiss() {
 
-        console.log( 'called' );
-
         this.setState( {
 
             shouldRenderMessageBox: false
@@ -238,6 +238,7 @@ class SearchUsers extends React.Component {
                 users={ this.state.usersFound }
                 onRenderCount={ count => `${count} users found` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
+                shouldRenderDeleteUserBoxAndAccessLevelsBox={ this.state.shouldRenderDeleteUserBoxAndAccessLevelsBox }
                 onDeleteUser={ this.handleDeleteUserPromise }
             />
         );
@@ -259,8 +260,10 @@ class SearchUsers extends React.Component {
         return (
 
             <div id="search-users-section">
-                { messageBox }
-                { this.renderSearchBox() }
+                <div className="container p-bot-50">
+                    { messageBox }
+                    { this.renderSearchBox() }
+                </div>
                 <div className="user-list__container">
                     { this.renderUserList() }
                 </div>
@@ -269,7 +272,7 @@ class SearchUsers extends React.Component {
     }
 }
 
-export {
+module.exports = {
 
     SearchUsers
 };

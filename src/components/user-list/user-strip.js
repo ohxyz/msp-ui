@@ -20,15 +20,26 @@ class UserStrip extends React.Component {
             shouldRenderAccessLevelsBox: false,
             chevronIconText: 'keyboard_arrow_down',
             onPropsDeleteUserYesClick: new Function(),
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
         };
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
-        
+
+        let shouldRenderBothBoxes = util.setDefault( nextProps.shouldRenderDeleteUserBoxAndAccessLevelsBox, false );
+
         return {
 
             user: util.setDefault( new AccountProfile( nextProps.user ), new AccountProfile() ),
-            onPropsDeleteUserYesClick: util.setDefault( nextProps.onDeleteUserYesClick, new Function() )
+            onPropsDeleteUserYesClick: util.setDefault( nextProps.onDeleteUserYesClick, new Function() ),
+            shouldRenderDeleteUserBox: shouldRenderBothBoxes,
+            shouldRenderAccessLevelsBox: shouldRenderBothBoxes,
+            chevronIconText: UserStrip.getExpandIconText( shouldRenderBothBoxes ),
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: util.setDefault(
+
+                nextProps.shouldRenderDeleteUserBoxAndAccessLevelsBox,
+                false
+            )
         };
     }
 

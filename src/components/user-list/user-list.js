@@ -27,7 +27,8 @@ class UserList extends React.Component {
             countIconStyle: '',
             onRenderCount: new Function(),
             sortByFields: [],
-            onPropsDeleteUser: new Function()
+            onPropsDeleteUser: new Function(),
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
         };
 
         this.id = util.setDefault( props.id, util.generateRandomString() );
@@ -44,7 +45,12 @@ class UserList extends React.Component {
             onRenderCount: util.setDefault( nextProps.onRenderCount, new Function() ),
             sortByFields: util.setDefault( nextProps.sortByFields, [] ),
             countIconStyle: util.setDefault( nextProps.countIconStyle, 'perm_identity' ),
-            onPropsDeleteUser: util.setDefault( nextProps.onDeleteUser, new Function() )
+            onPropsDeleteUser: util.setDefault( nextProps.onDeleteUser, new Function() ),
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: util.setDefault(
+
+                nextProps.shouldRenderDeleteUserBoxAndAccessLevelsBox, 
+                new Function() 
+            )
         };
     }
 
@@ -174,6 +180,7 @@ class UserList extends React.Component {
                             key={ key } 
                             user={ user }
                             onDeleteUserYesClick={ () => this.handleDeleteUserSuccessPromise( user ) }
+                            shouldRenderDeleteUserBoxAndAccessLevelsBox={ this.state.shouldRenderDeleteUserBoxAndAccessLevelsBox }
                         />
                     );
 
