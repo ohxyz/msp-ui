@@ -19,6 +19,7 @@ class SearchUsers extends React.Component {
         this.handleSearchBoxItemSelect = this.handleSearchBoxItemSelect.bind( this );
         this.handleTextChange = this.handleTextChange.bind( this );
         this.handleDeleteUserPromise = this.handleDeleteUserPromise.bind( this );
+        this.handleMessageBoxDismiss = this.handleMessageBoxDismiss.bind( this );
 
         this.numberOfStrikes = 3;
 
@@ -166,6 +167,17 @@ class SearchUsers extends React.Component {
         return promise;
     }
 
+    handleMessageBoxDismiss() {
+
+        console.log( 'called' );
+
+        this.setState( {
+
+            shouldRenderMessageBox: false
+
+        } );
+    }
+
     renderMessageBox( messageCode, user ) {
 
         let type = '';
@@ -207,6 +219,7 @@ class SearchUsers extends React.Component {
                 title={ title } 
                 content={ content } 
                 seconds={ SECONDS_TO_DISMISS_MESSAGE_BOX } 
+                onDismiss={ this.handleMessageBoxDismiss }
             />
         );
     }
@@ -223,7 +236,7 @@ class SearchUsers extends React.Component {
             <UserList
                 id="search-users-list"
                 users={ this.state.usersFound }
-                onRenderCount={ count => `${count} users found.` }
+                onRenderCount={ count => `${count} users found` }
                 sortByFields={ [ 'firstName', 'lastName' ] }
                 onDeleteUser={ this.handleDeleteUserPromise }
             />
@@ -242,18 +255,21 @@ class SearchUsers extends React.Component {
         let messageBox = shouldRenderMessageBox === true 
                        ? this.renderMessageBox( messageCode, userToDelete )
                        : null;
+
         return (
 
             <div id="search-users-section">
                 { messageBox }
                 { this.renderSearchBox() }
-                { this.renderUserList() }
+                <div className="user-list__container">
+                    { this.renderUserList() }
+                </div>
             </div>
         );
     }
 }
 
-module.exports = {
+export {
 
     SearchUsers
 };

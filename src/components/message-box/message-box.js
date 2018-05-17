@@ -18,6 +18,7 @@ class MessageBox extends React.Component {
             content: '',
             shouldDisplay: true,
             secondsToDismiss: 0,
+            onPropsDismiss: new Function()
         };
 
         this.mapOfTypeAndIcon = {
@@ -39,6 +40,7 @@ class MessageBox extends React.Component {
             content: util.setDefault( nextProps.content, '' ),
             shouldDisplay: util.setDefault( nextProps.shouldDisplay, true ),
             secondsToDismiss: util.setDefault( nextProps.seconds, DEFAULT_SECONDS_TO_DISMISS ),
+            onPropsDismiss: util.setDefault( nextProps.onDismiss, new Function() )
         };
     }
 
@@ -53,6 +55,8 @@ class MessageBox extends React.Component {
                 shouldDisplay: false
 
             } );
+
+            this.state.onPropsDismiss();
         
         }, milliseconds );
     }
@@ -109,7 +113,7 @@ class MessageBox extends React.Component {
     }
 }
 
-module.exports = {
+export {
 
     MessageBox,
 };
