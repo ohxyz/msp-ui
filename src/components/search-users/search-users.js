@@ -161,7 +161,8 @@ class SearchUsers extends React.Component {
 
                     shouldRenderMessageBox: true,
                     messageCode: messageCode,
-                    userToDelete: user
+                    userToDelete: user,
+                    shouldRenderDeleteUserBoxAndAccessLevelsBox: false
                 } );
 
             } );

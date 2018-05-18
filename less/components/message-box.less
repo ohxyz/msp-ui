@@ -1,5 +1,96 @@
 .message-box {
 
     padding: 16px 15px 16px 50px;
-    border: 1px solid black;
+    border: 1px solid #e3e3e3;
+    position: relative;
+    margin-bottom: 48px;
+    font-size: 14px;
+
+    .material-icons {
+
+        position: absolute;
+        top: 16px;
+        left: 16px;
+    }
+
+    .message-box__title {
+
+        margin-bottom: 16px;
+        font-weight: bold;
+        line-height: 24px;
+    }
+
+    .message-box__content {
+
+        line-height: 24px;
+
+        em {
+
+            font-weight: bold;
+            font-style: normal;
+        }
+    }
+
+    &--success {
+
+        background-color: #ebf6ec;
+        border-color: #d6edd7;
+        
+        .material-icons {
+
+            color: #007632;
+        }
+
+        .message-box__title {
+
+            color: #007632;
+        }
+
+        .message-box__content {
+
+            color: #007632;
+        }
+    }
+
+    &--error {
+
+        background-color: #feebeb;
+        border-color: #fcd6d6;
+        
+        .material-icons {
+
+            color: #ec0000;
+        }
+
+        .message-box__title {
+
+            color: #7b0000;
+        }
+
+        .message-box__content {
+
+            color: #7b0000;
+        }
+    }
+
+    &--info {
+
+        background-color: #f1f1f1;
+        border-color: #e3e3e3;
+        
+        .material-icons {
+
+            color: #505050;
+        }
+
+        .message-box__title {
+
+            color: #505050;
+        }
+
+        .message-box__content {
+
+            color: #505050;
+        }  
+    }
 }

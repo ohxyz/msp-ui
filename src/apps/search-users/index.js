@@ -22,7 +22,7 @@ class SearchUsersApp {
 
     deleteUser( user ) {
 
-        let httpStatusCode = 200;
+        let httpStatusCode = 400;
         let httpStatusCodeLiteral = httpStatusCode.toString();
 
         // Mock
@@ -79,7 +79,7 @@ class SearchUsersApp {
     }
 }
 
-module.exports = {
+export {
 
     SearchUsersApp
 };
