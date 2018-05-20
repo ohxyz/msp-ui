@@ -1,6 +1,6 @@
 const HierarchyStorage = require( '../../../../src/components/core/hierarchy-storage.js' ).HierarchyStorage;
-const dummySapObject = require( '../../dummies/sap.js' ).dummySapObject;
 
+let dummySapObject = require( '../../dummies/sap.json' );
 let storage = new HierarchyStorage( dummySapObject );
 
 storage.process();
