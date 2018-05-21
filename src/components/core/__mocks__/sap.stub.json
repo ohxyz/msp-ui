@@ -34,6 +34,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307",
               "AccountID" : "9000039144",
+              "AccountTypeID" : "2",
+              "UserName" : "U00000000545",
               "Name" : "ACE DIRECTIONS P/L",
               "FirstName" : "",
               "LastName" : "",
@@ -41,7 +43,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "04999999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-94011202",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307',AccountID='9000039144')/HierarchyAssignment"
@@ -84,6 +86,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802",
               "AccountID" : "195",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "KHOSROW",
               "LastName" : "MANN AND BUSUTTIL",
@@ -106,6 +110,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802",
               "AccountID" : "9000012035",
+              "AccountTypeID" : "2",
+              "UserName" : "",
               "Name" : "The Trustee Moonbrow Unit Trust",
               "FirstName" : "",
               "LastName" : "",
@@ -113,7 +119,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-843009246",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802',AccountID='9000012035')/HierarchyAssignment"
@@ -156,6 +162,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801",
               "AccountID" : "9000007697",
+              "AccountTypeID" : "2",
+              "UserName" : "U00000000994",
               "Name" : "BROLGA PARTNERSHIP",
               "FirstName" : "",
               "LastName" : "",
@@ -163,7 +171,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "MOE-42238651",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801',AccountID='9000007697')/HierarchyAssignment"
@@ -178,6 +186,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801",
               "AccountID" : "223",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "SHEFANA",
               "LastName" : "DINNERY",
@@ -200,6 +210,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801",
               "AccountID" : "225",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "Jan-Marie",
               "LastName" : "GARY JAMES NOYE",
@@ -250,6 +262,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303",
               "AccountID" : "9000034186",
+              "AccountTypeID" : "2",
+              "UserName" : "U00000000537",
               "Name" : "D N K QUALITY MEATS",
               "FirstName" : "",
               "LastName" : "",
@@ -257,10 +271,58 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "0499999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-19316234",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='9000034186')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15017')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15017')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303",
+              "AccountID" : "15017",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test50.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15017')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15025')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15025')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303",
+              "AccountID" : "15025",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "",
+              "LastName" : "",
+              "EmailAddress" : "",
+              "PhoneNo" : "",
+              "MobilePhoneNo" : "",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303',AccountID='15025')/HierarchyAssignment"
                 }
               }
             }
@@ -300,6 +362,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFB-D6D075228702",
               "AccountID" : "9000089172",
+              "AccountTypeID" : "1",
+              "UserName" : "U00000000944",
               "Name" : "",
               "FirstName" : "EBONITA",
               "LastName" : "MICHAEL JOHN MCALEER",
@@ -307,7 +371,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "0499999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-19301473",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFB-D6D075228702',AccountID='9000089172')/HierarchyAssignment"
@@ -322,12 +386,14 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFB-D6D075228702",
               "AccountID" : "15012",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "STEPHENOS",
-              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "LastName" : "STALBANS",
               "EmailAddress" : "9000038921@test10.com.au",
-              "PhoneNo" : "",
-              "MobilePhoneNo" : "",
+              "PhoneNo" : "0298765432",
+              "MobilePhoneNo" : "049999999",
               "JobTitle" : "",
               "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
@@ -372,6 +438,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01",
               "AccountID" : "9000042754",
+              "AccountTypeID" : "2",
+              "UserName" : "U00000000546",
               "Name" : "FURNESS TRANSPORT P/L",
               "FirstName" : "",
               "LastName" : "",
@@ -379,10 +447,34 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "0499999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-762002077",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01',AccountID='9000042754')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01',AccountID='15027')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01',AccountID='15027')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01",
+              "AccountID" : "15027",
+              "AccountTypeID" : "1",
+              "UserName" : "U00000001751",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test74.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "Director",
+              "PartnerReferenceNumber" : "12312",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01',AccountID='15027')/HierarchyAssignment"
                 }
               }
             },
@@ -394,6 +486,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFB-DE28D12E5B01",
               "AccountID" : "224",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "ONEN",
               "LastName" : "ESFANDIAR",
@@ -444,6 +538,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C3CB37FC1802",
               "AccountID" : "14929",
+              "AccountTypeID" : "2",
+              "UserName" : "U00000001199",
               "Name" : "Test LGP assignment no contracts",
               "FirstName" : "",
               "LastName" : "",
@@ -466,6 +562,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C3CB37FC1802",
               "AccountID" : "9000012035",
+              "AccountTypeID" : "2",
+              "UserName" : "",
               "Name" : "The Trustee Moonbrow Unit Trust",
               "FirstName" : "",
               "LastName" : "",
@@ -473,7 +571,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-843009246",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-C3CB37FC1802',AccountID='9000012035')/HierarchyAssignment"
@@ -516,6 +614,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1ED8-8AFC-C79C56451801",
               "AccountID" : "9000026165",
+              "AccountTypeID" : "2",
+              "UserName" : "",
               "Name" : "3D PARTIES PTY LTD",
               "FirstName" : "",
               "LastName" : "",
@@ -523,7 +623,7 @@
               "PhoneNo" : "",
               "MobilePhoneNo" : "",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-600009118",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED8-8AFC-C79C56451801',AccountID='9000026165')/HierarchyAssignment"
@@ -560,34 +660,14 @@
           "results" : [
             {
               "__metadata" : {
-                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15015')",
-                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15015')",
-                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
-              },
-              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000",
-              "AccountID" : "15015",
-              "Name" : "",
-              "FirstName" : "STEPHENOS",
-              "LastName" : "STALBANS ANGLICAN CH RECTORY",
-              "EmailAddress" : "9000038921@test99.com.au",
-              "PhoneNo" : "0398765432",
-              "MobilePhoneNo" : "0498765432",
-              "JobTitle" : "Directory",
-              "PartnerReferenceNumber" : "12312",
-              "HierarchyAssignment" : {
-                "__deferred" : {
-                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15015')/HierarchyAssignment"
-                }
-              }
-            },
-            {
-              "__metadata" : {
                 "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='9000012077')",
                 "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='9000012077')",
                 "type" : "USER_MANAGEMENT.UserHierarchyAccount"
               },
               "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000",
               "AccountID" : "9000012077",
+              "AccountTypeID" : "2",
+              "UserName" : "",
               "Name" : "GOSH SALON",
               "FirstName" : "",
               "LastName" : "",
@@ -595,7 +675,7 @@
               "PhoneNo" : "0399999999",
               "MobilePhoneNo" : "0499999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-12960464",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='9000012077')/HierarchyAssignment"
@@ -610,6 +690,8 @@
               },
               "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000",
               "AccountID" : "9000011222",
+              "AccountTypeID" : "2",
+              "UserName" : "",
               "Name" : "SARGEANTS COMMERCIAL BUSINESS SERVICES",
               "FirstName" : "",
               "LastName" : "",
@@ -617,32 +699,10 @@
               "PhoneNo" : "",
               "MobilePhoneNo" : "",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-544005903",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='9000011222')/HierarchyAssignment"
-                }
-              }
-            },
-            {
-              "__metadata" : {
-                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15016')",
-                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15016')",
-                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
-              },
-              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000",
-              "AccountID" : "15016",
-              "Name" : "",
-              "FirstName" : "STEPHENOS",
-              "LastName" : "STALBANS ANGLICAN CH RECTORY",
-              "EmailAddress" : "9000038921@test98.com.au",
-              "PhoneNo" : "0398765432",
-              "MobilePhoneNo" : "0498765432",
-              "JobTitle" : "Director",
-              "PartnerReferenceNumber" : "12312",
-              "HierarchyAssignment" : {
-                "__deferred" : {
-                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A5C125DDD000',AccountID='15016')/HierarchyAssignment"
                 }
               }
             }
@@ -676,12 +736,62 @@
           "results" : [
             {
               "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15020')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15020')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
+              "AccountID" : "15020",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test78.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15020')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15026')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15026')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
+              "AccountID" : "15026",
+              "AccountTypeID" : "1",
+              "UserName" : "U00000001750",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test75.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "CEO",
+              "PartnerReferenceNumber" : "9999",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15026')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
                 "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='9000013110')",
                 "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='9000013110')",
                 "type" : "USER_MANAGEMENT.UserHierarchyAccount"
               },
               "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
               "AccountID" : "9000013110",
+              "AccountTypeID" : "1",
+              "UserName" : "",
               "Name" : "",
               "FirstName" : "ALESKANDER",
               "LastName" : "ZAHAR",
@@ -689,10 +799,82 @@
               "PhoneNo" : "",
               "MobilePhoneNo" : "0499999999",
               "JobTitle" : "",
-              "PartnerReferenceNumber" : "CIS-15005291",
+              "PartnerReferenceNumber" : "",
               "HierarchyAssignment" : {
                 "__deferred" : {
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='9000013110')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15021')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15021')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
+              "AccountID" : "15021",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test77.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15021')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15022')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15022')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
+              "AccountID" : "15022",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test76.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15022')/HierarchyAssignment"
+                }
+              }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15028')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15028')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002",
+              "AccountID" : "15028",
+              "AccountTypeID" : "1",
+              "UserName" : "U00000001752",
+              "Name" : "",
+              "FirstName" : "STEPHENOS",
+              "LastName" : "STALBANS ANGLICAN CH RECTORY",
+              "EmailAddress" : "9000038921@test73.com.au",
+              "PhoneNo" : "0398765432",
+              "MobilePhoneNo" : "0498765432",
+              "JobTitle" : "Director",
+              "PartnerReferenceNumber" : "12312",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15028')/HierarchyAssignment"
                 }
               }
             }

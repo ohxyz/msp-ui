@@ -6,24 +6,18 @@ describe( 'HierarchyNode', () => {
     let rawNodes = dummySapObject.d.results;
     let hNodes = rawNodes.map( node => new HierarchyNode( node ) );
 
-    test( 'has no users in index 3', () => { 
+    test( 'has 1 user at index 3', () => { 
 
         let node = hNodes[ 3 ];
-        expect( node.users.length ).toBe( 0 );
+        expect( node.users.length ).toBe( 1 );
 
     } );
 
-    test( 'has one org in index 5', () => { 
+    test( 'has 6 users at index 9', () => { 
 
-        let node = hNodes[ 5 ];
-        expect( node.orgs.length ).toBe( 1 );
+        let node = hNodes[ 9 ];
+        expect( node.users.length ).toBe( 6 );
 
-    } );
-
-    test( 'can assign orgName to users', () => { 
-
-        let node = hNodes[ 5 ];
-        expect( node.users[ 0 ].orgName ).toBe( "FURNESS TRANSPORT P/L" );
     } );
 
 } );

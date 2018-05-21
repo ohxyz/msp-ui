@@ -72,10 +72,34 @@ exports[`should render with defaults 1`] = `
       </div>
       <div
         className="user-strip__access-levels"
-      />
+      >
+        User Access Levels
+      </div>
       <div
         className="user-strip__delete-user"
-      />
+      >
+        <div
+          className="user-strip__delete-user__confirmation"
+        >
+          Are you sure want to delete this user?
+        </div>
+        <div
+          className="user-strip__delete-user__buttons"
+        >
+          <button
+            className="user-strip__delete-user__buttons__yes"
+            onClick={[Function]}
+          >
+            Yes
+          </button>
+          <button
+            className="user-strip__delete-user__buttons__no"
+            onClick={[Function]}
+          >
+            No
+          </button>
+        </div>
+      </div>
     </div>
     <div
       className="user-strip"
@@ -129,10 +153,34 @@ exports[`should render with defaults 1`] = `
       </div>
       <div
         className="user-strip__access-levels"
-      />
+      >
+        User Access Levels
+      </div>
       <div
         className="user-strip__delete-user"
-      />
+      >
+        <div
+          className="user-strip__delete-user__confirmation"
+        >
+          Are you sure want to delete this user?
+        </div>
+        <div
+          className="user-strip__delete-user__buttons"
+        >
+          <button
+            className="user-strip__delete-user__buttons__yes"
+            onClick={[Function]}
+          >
+            Yes
+          </button>
+          <button
+            className="user-strip__delete-user__buttons__no"
+            onClick={[Function]}
+          >
+            No
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

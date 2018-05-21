@@ -3,7 +3,6 @@
  */
 
 const util = require( '../../helpers/util.js' );
-const AccountProfile = require( '../core/account-profile.js' ).AccountProfile;
 const HierarchyNode = require( '../core/hierarchy-node.js' ).HierarchyNode;
 
 class HierarchyStorage {
@@ -12,9 +11,9 @@ class HierarchyStorage {
 
         this.sapRaw = sapRaw;
         this.sapResults = null;
-        this.accounts = []; // users + orgs
         this.nodes = []; // HierarchyNodes
         this.isProcessed = false;
+        this.users = [];
 
         /*
          *
@@ -107,11 +106,13 @@ class HierarchyStorage {
             if ( currentNode.parentId === lastNode.hierarchyId ) {
 
                 currentNode.parent = lastNode;
+                lastNode.children.push( currentNode );
             }
             else if ( lastNode.parent !== null
                     && lastNode.parent.hierarchyId === currentNode.parentId ) {
 
                 currentNode.parent = lastNode.parent;
+                lastNode.parent.children.push( currentNode );
             }
             else {
 
@@ -121,17 +122,15 @@ class HierarchyStorage {
 
                     let parent = this.mapOfHierarchyIdAndNode[ parentId ];
                     currentNode.parent = parent;
+                    parent.children.push( currentNode );
                 }
             }
 
             for ( let user of currentNode.users ) {
 
-                if ( currentNode.parent !== null  ) {
-
-                }
+                user.parentNode = currentNode.parent;
+                user.accessLevels = this.getUserAccessLevels( user );
             }
-
-            this.accounts.push( ...currentNode.accounts );
 
             this.mapOfHierarchyIdAndNode[ hierarchyId ] = currentNode;
             this.nodes.push( currentNode );
@@ -142,43 +141,28 @@ class HierarchyStorage {
         this.isProcessed = true;
     }
 
-    getUsersByHierarchyId( hierarchyId, untilLevel = 1 ) {
+    getUserAccessLevels( user ) {
 
+        let currentNode = user.currentNode;
+        let accessLevels = [ currentNode.description ];
+
+        let nodeWalkingAt = currentNode.parent;
+
+        while ( nodeWalkingAt !== null ) {
+
+            accessLevels.unshift( nodeWalkingAt.description );
+            nodeWalkingAt = nodeWalkingAt.parent;
+        }
+
+        return accessLevels;
+    }
+
+    getUsersByHierarchyId( hierarchyId ) {
+
+        let users = [];
         let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
+        let childNodes = node.children;
 
-        if ( node === undefined ) {
-
-            return [];
-        }
-
-        let users = node.users;
-        let topOrg = null;
-        let topOrgName = '';
-        let levelLiteral = untilLevel.toString();
-
-        while ( node.parent !== null && node.level !== levelLiteral ) {
-
-            let parent = node.parent;
-
-            if ( parent.orgs.length > 0 ) {
-
-                let parentOrg = parent.orgs[ 0 ];
-
-                topOrg = parentOrg;
-                topOrgName = parentOrg.name;
-            }
-            
-            users.push( ...parent.users );
-            node = parent;
-        }
-
-        for ( let user of users ) {
-
-            user.topOrg = topOrg;
-            user.topOrgName = topOrgName;
-        }
-
-        users = Array.from( new Set( users ) );
 
         return users;
     }

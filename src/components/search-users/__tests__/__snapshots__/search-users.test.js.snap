@@ -5,34 +5,41 @@ exports[`should render with defaults 1`] = `
   id="search-users-section"
 >
   <div
-    className="search-box"
-    id="seach-users-box"
+    className="container p-bot-50"
   >
     <div
-      className="search-box__header"
+      className="search-box"
+      id="seach-users-box"
     >
-      <input
-        className="search-box__field"
-        data-text=""
-        id="search-users-field"
-        name={undefined}
-        onBlur={[Function]}
-        onChange={[Function]}
-        onFocus={[Function]}
-        placeholder="Search users by name, department or agency"
-        type="text"
-      />
-      <span
-        className="search-box__icon"
-        onClick={[Function]}
+      <div
+        className="search-box__header"
       >
-        <i
-          className="material-icons"
+        <input
+          className="search-box__field"
+          data-text=""
+          id="search-users-field"
+          name={undefined}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          placeholder="Search users by name, department or agency"
+          type="text"
+        />
+        <span
+          className="search-box__icon"
+          onClick={[Function]}
         >
-          close
-        </i>
-      </span>
+          <i
+            className="material-icons"
+          >
+            close
+          </i>
+        </span>
+      </div>
     </div>
   </div>
+  <div
+    className="user-list__container"
+  />
 </div>
 `;

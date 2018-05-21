@@ -45,78 +45,41 @@ describe( 'HierarchyStorage', () => {
 } );
 
 
-describe( 'HierarchyStorage that has valid SAP data', () => {
+describe( 'HierarchyStorage object that has valid SAP data', () => {
 
     let storage = new HierarchyStorage( dummySapObject );
 
     storage.process();
 
-    test( 'has a list of acounts', () => { 
-
-        expect( storage.accounts.length > 0 ).toBe( true );
-    } );
-
-    test( 'can get parent ID of it\'s node', () => { 
-
-        expect( storage.accounts[ 2 ].parentId ).toBe( "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307" );
-
-    } );
-
-    test( 'can assign users to an orgnisation', () => {
-
-        let account = storage.accounts[ 3 ];
-        expect( account.users[ 1 ].firstName ).toBe( 'Jan-Marie' );
-
-    } );
-
-    test( 'can assign Parent', () => { 
+    test( 'can assign parent', () => { 
 
         let node = storage.nodes[ 8 ].parent.parent.parent;
         expect( node.level ).toBe( '1' );
-    } );
-
-    test( 'can get users by hierarchy ID', () => { 
-
-        let hid = "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802";
-        let users = storage.getUsersByHierarchyId( hid );
-
-        expect( users.length ).toBe( 1 );
-    } );
-
-    test( 'can get users by hierarchy ID until some level', () => { 
-
-        let hid = "CA2B1FE6-D50C-1ED8-8AFB-D6D075228702";
-        let users = storage.getUsersByHierarchyId( hid, 2 );
-
-        expect( users.length ).toBe( 3 );
-    } );
-
-    test( 'throws an error when adding a user but can not find Hierarchy ID', () => { 
-
-        let user = { hierarchyId: '1234', firstName: 'Tom', lastName: 'Lu', emailAddress: 'tom.lu@tom.lu' };
-        expect( () => storage.addUser( user ) ).toThrow();
 
     } );
 
-    test( 'can add a user', () => {
+    test( 'can get 3 children at top level', () => { 
 
-        let hid = "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303";
-        let user = { hierarchyId: hid, firstName: 'Tom', lastName: 'Lu', emailAddress: 'tom.lu@tom.lu' };
-
-        storage.addUser( user );
-
-        expect( storage.nodes[ 3 ].accounts.length ).toBe( 2 );
+        let node = storage.nodes[ 0 ];
+        expect( node.children.length ).toBe( 3 );
 
     } );
 
-    test( 'can add a user again', () => {
 
-        let hid = "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303";
-        let user = { hierarchyId: hid, firstName: 'Tom', lastName: 'Cruise', emailAddress: 'tom.cruise@tom.cruise' };
+    test( 'can get 2 children when it is Melbourne East', () => { 
 
-        storage.addUser( user );
-        
-        expect( storage.nodes[ 3 ].users.length ).toBe( 2 );
+        let node = storage.nodes.filter( node => node.description === 'Melbourne East' )[ 0 ];
+
+        expect( node.children.length ).toBe( 2 );
+
+    } );
+
+    test( 'can get 0 children at level 4', () => { 
+
+        let count = storage.nodes.length;
+        let node = storage.nodes[ count - 1 ];
+
+        expect( node.children.length ).toBe( 0 );
     } );
 
 } );
@@ -135,11 +98,4 @@ describe( 'HierarchyStorage that has SAP data from session', () => {
         expect( users.length ).toBe( 0 );
     } );
 
-    test( 'can get 10 users by hierarchy ID', () => { 
-
-        let hid = "00215A9C-536A-1ED8-929B-5E0739B2D4B7";
-        let users = storage.getUsersByHierarchyId( hid );
-
-        expect( users.length ).toBe( 10 );
-    } );
 } );

@@ -273,7 +273,7 @@ class SearchUsers extends React.Component {
     }
 }
 
-module.exports = {
+export {
 
     SearchUsers
 };

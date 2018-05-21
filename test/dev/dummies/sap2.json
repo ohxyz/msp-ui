@@ -1,4 +1,3 @@
-const dummySapObject2 = 
 {
   "userHierarchy": {
     "results": [
@@ -621,9 +620,4 @@ const dummySapObject2 =
       }
     ]
   }
-};
-
-module.exports = {
-
-  dummySapObject2,
-};
+}
