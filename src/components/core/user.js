@@ -26,7 +26,11 @@ class User {
 
         Object.assign( this, obj );
 
-        if ( util.isObject( arg ) === true || arg instanceof User === true ) {
+        if ( arg === undefined ) {
+
+            // Do nothing, just let it pass
+        }
+        else if ( util.isObject( arg ) === true || arg instanceof User === true ) {
 
             for ( let prop in obj ) {
 
@@ -38,7 +42,7 @@ class User {
         }
         else {
 
-            throw new Error( "[MSP] User's argument in constructor should be an plain object or User itself." );
+            throw new Error( "[MSP] User's argument in constructor should be undefined, an plain object or User itself." );
         }
 
         this.name = ( this.firstName.trim() + ' ' + this.lastName.trim() ).trim();

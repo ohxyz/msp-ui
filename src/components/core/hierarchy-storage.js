@@ -224,29 +224,29 @@ class HierarchyStorage {
         return this.users;
     }
 
-    addUser( { hierarchyId, firstName, lastName, emailAddress } ) {
+    // addUser( { hierarchyId, firstName, lastName, emailAddress } ) {
 
-        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
-        let account = new AccountProfile( { 
+    //     let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
+    //     let account = new AccountProfile( { 
 
-            hierarchyId: hierarchyId,
-            firstName: firstName,
-            lastName: lastName,
-            emailAddress: emailAddress,
-            orgs: node.orgs
-        } );
+    //         hierarchyId: hierarchyId,
+    //         firstName: firstName,
+    //         lastName: lastName,
+    //         emailAddress: emailAddress,
+    //         orgs: node.orgs
+    //     } );
 
-        if ( node === undefined ) {
+    //     if ( node === undefined ) {
 
-            throw new Error( '[MSP] Failed to find Hierarchy ID when adding a user.' );
-        }
+    //         throw new Error( '[MSP] Failed to find Hierarchy ID when adding a user.' );
+    //     }
 
-        node.accounts.push( account );
-        node.users.push( account );
-        this.accounts.push( account );
+    //     node.accounts.push( account );
+    //     node.users.push( account );
+    //     this.accounts.push( account );
 
-        return account;
-    }
+    //     return account;
+    // }
 }
 
 

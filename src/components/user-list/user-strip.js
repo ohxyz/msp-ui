@@ -1,6 +1,6 @@
 import util from '../../helpers/util.js';
 import React from 'react';
-import { AccountProfile } from '../core/account-profile.js';
+import { User } from '../core/user.js';
 
 class UserStrip extends React.Component {
 
@@ -30,7 +30,7 @@ class UserStrip extends React.Component {
 
         return {
 
-            user: util.setDefault( new AccountProfile( nextProps.user ), new AccountProfile() ),
+            user: util.setDefault( new User( nextProps.user ), new User() ),
             onPropsDeleteUserYesClick: util.setDefault( nextProps.onDeleteUserYesClick, new Function() ),
             shouldRenderDeleteUserBox: shouldRenderBothBoxes,
             shouldRenderAccessLevelsBox: shouldRenderBothBoxes,
@@ -154,6 +154,8 @@ class UserStrip extends React.Component {
 
             deleteUserBoxClassName += ' user-strip__delete-user--active';
         }
+
+        console.log( 'user-strip', user );
 
         return (
 

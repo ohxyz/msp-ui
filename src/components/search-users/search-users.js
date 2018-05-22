@@ -61,6 +61,8 @@ class SearchUsers extends React.Component {
 
         let allUsers = this.state.storage.getAllUsers();
 
+        console.log( allUsers );
+
         this.setState( {
 
             usersFound: allUsers,
@@ -109,12 +111,17 @@ class SearchUsers extends React.Component {
 
     renderSearchBox() {
 
+        let items = this.state.storage.users.slice();
+        let items2 = this.state.storage.nodes.slice();
+
+        items.push( ...items2 );
+
         return (
 
             <SearchBox
                 id="seach-users-box"
                 inputId="search-users-field"
-                items={ this.state.storage.accounts }
+                items={ items }
                 fields={ [ 'fullName' ] }
                 indexOfFieldsToSort={ 0 }
                 strikes={ this.numberOfStrikes }
