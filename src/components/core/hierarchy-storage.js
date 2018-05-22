@@ -130,7 +130,7 @@ class HierarchyStorage {
 
                 user.parentNode = currentNode.parent;
                 user.accessLevels = this.getUserAccessLevels( user );
-                this.mergeUser( user );
+                this.mergeUser( user, this.users );
             }
 
             this.mapOfHierarchyIdAndNode[ hierarchyId ] = currentNode;
@@ -142,18 +142,18 @@ class HierarchyStorage {
         this.isProcessed = true;
     }
 
-    findUser( targetUser ) {
+    findUser( targetUser, users ) {
 
-        return this.users.find( userInStorage => userInStorage.accountId === targetUser.accountId );
+        return users.find( userInStorage => userInStorage.accountId === targetUser.accountId );
     }
 
-    mergeUser( targetUser ) {
+    mergeUser( targetUser, users ) {
 
-        let userInStorage = this.findUser( targetUser );
+        let userInStorage = this.findUser( targetUser, users );
 
         if ( userInStorage === undefined ) {
 
-            this.users.push( targetUser );
+            users.push( targetUser );
         }
         else {
 
@@ -185,7 +185,33 @@ class HierarchyStorage {
 
     getUsersByHierarchyId( hierarchyId ) {
 
+        if ( this.isProcessed === false ) {
 
+            this.process();
+        }
+
+        let users = [];
+        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
+
+        return getUsersFromNodeAndChildren( node );
+
+    }
+
+    getUsersFromNodeAndChildren( node ) {
+
+        let usersFound = node.users.slice();
+
+        for ( let eachChildNode of node.children ) {
+
+            let users = this.getUsersFromNodeAndChildren( eachChildNode );
+
+            for ( let eachUser of users ) {
+
+                this.mergeUser( eachUser, usersFound );
+            }
+        }
+
+        return usersFound;
     }
 
     getAllUsers() {

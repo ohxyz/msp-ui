@@ -6,6 +6,10 @@ let storage = new HierarchyStorage( dummySapObject );
 
 storage.process();
 
-console.log( storage );
+let node = storage.nodes[ 2 ];
+let users = storage.getUsersFromNodeAndChildren( node );
+let users2 = storage.getUsersFromNodeAndChildren( node );
+
+console.log( node );
 
 console.log( 'End' );

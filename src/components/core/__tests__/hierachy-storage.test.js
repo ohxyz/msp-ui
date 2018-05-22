@@ -94,7 +94,7 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         storage.users = users;
 
         let user = { 'accountId': '234', firstName: 'Banana Blue' };
-        let result = storage.findUser( user );
+        let result = storage.findUser( user, storage.users );
 
         expect( result.accountId ).toBe( '234' );
     } );
@@ -104,7 +104,7 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         storage.users = users;
 
         let user = { 'accountId': '999', firstName: 'Avocado' };
-        let result = storage.findUser( user );
+        let result = storage.findUser( user, storage.users );
 
         expect( result ).toBe( undefined );
     } );
@@ -115,7 +115,7 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         let user = { 'accountId': '123', firstName: 'Apple', accessLevels: [ [ 'CC', 'DD' ] ] };
 
         storage.users = users;
-        storage.mergeUser( user );
+        storage.mergeUser( user, storage.users );
 
         let accessLevels = storage.users[ 1 ].accessLevels;
 
@@ -129,7 +129,7 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         let user = { 'accountId': '789', firstName: 'Apricot', accessLevels: [ [ 'AA', 'BB' ] ] };
 
         storage.users = users;
-        storage.mergeUser( user );
+        storage.mergeUser( user, storage.users );
 
         expect( storage.users.length ).toBe( 4 );
         expect( user.accessLevels[ 0 ][ 1 ] ).toBe( 'BB' );
@@ -138,6 +138,64 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
 
 } );
 
+describe( 'HierarchyStorage getUsersFromNodeAndChildren method', () => {
+
+    let storage = new HierarchyStorage( dummySapObject );
+    storage.process();
+
+    test( 'has same numbe of users when it is the top node', () => {
+
+        let node = storage.nodes[ 0 ];
+        let users = storage.getUsersFromNodeAndChildren( node );
+
+        expect( users.length ).toBe( storage.users.length );
+
+    } );
+
+    test( 'has same numbe of users when it does not have children', () => {
+
+        let node = storage.nodes[ 9 ];
+        let users = storage.getUsersFromNodeAndChildren( node );
+
+        expect( users.length ).toBe( node.users.length );
+
+    } );
+
+    test( 'has correct number of users', () => { 
+
+        let node = storage.nodes[ 6 ];
+        let users = storage.getUsersFromNodeAndChildren( node );
+        
+        expect( users.length ).toBe( 7 );
+    } );
+
+    test( 'has correct number of users', () => { 
+
+        let node = storage.nodes[ 6 ];
+        let users = storage.getUsersFromNodeAndChildren( node );
+        
+        expect( users.length ).toBe( 7 );
+    } );
+
+    test( 'has correct number of users', () => {
+
+        let melbourneEast = storage.nodes[ 2 ];
+        let whiteHorse = storage.nodes[ 6 ];
+        let boxHill = storage.nodes[ 8 ];
+        let mountAlbert = storage.nodes[ 9 ];
+
+        let total = melbourneEast.users.length
+                        + whiteHorse.users.length
+                        + boxHill.users.length
+                        + mountAlbert.users.length;
+
+        let users = storage.getUsersFromNodeAndChildren( melbourneEast );
+        
+        expect( users.length ).toBe( total );
+
+    } );
+
+} );
 
 describe( 'HierarchyStorage that has SAP data from session', () => {
 
