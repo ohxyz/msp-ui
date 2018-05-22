@@ -53,6 +53,81 @@ function isNotEmptyArray( arg ) {
     return Array.isArray( arg ) && arg.length > 0;
 }
 
+// Does not include Symbol comparison
+function compareArrayOfNonObjects( array1, array2 ) {
+
+    if ( Array.isArray( array1 ) === false || Array.isArray( array2 ) === false ) {
+
+        throw new TypeError( '[MSP][Util] Both arguements should be arrays.' );
+    }
+    else if ( array1.length !== array2.length ) {
+
+        return false;
+    }
+
+    for ( let i = 0 ; i < array1.length ; i ++ ) {
+
+        let itemOfArray1 = array1[ i ];
+        let itemOfArray2 = array2[ i ];
+
+        if ( typeof itemOfArray1 === 'number'
+                && typeof itemOfArray2 === 'number'
+                && isNaN( itemOfArray1 ) === true 
+                && isNaN( itemOfArray2 ) === true ) {
+
+            continue;
+        }
+        else if ( itemOfArray1 === null || itemOfArray2 === null ) {
+
+            // Do nothing
+        }
+        else if ( typeof itemOfArray1 === 'object' || typeof itemOfArray2 === 'object' ) {
+
+            throw new Error( '[MSP][Util] This function should not contain an object or an array.' );
+        }
+
+        if ( itemOfArray1 !== itemOfArray2 ) {
+
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+function findIndexFromArrayOfArray( item, arrayOfArray ) {
+
+    if ( Array.isArray( arrayOfArray ) === false ) {
+
+        throw new TypeError( '[MSP][Util] 2nd argument should be an array.' );
+    }
+    else if ( Array.isArray( item ) === false ) {
+
+        return -1;
+    }
+
+    for ( let i = 0; i < arrayOfArray.length; i ++ ) {
+
+        let array = arrayOfArray[ i ];
+
+        try { 
+
+            if ( compareArrayOfNonObjects( item, array ) === true ) {
+
+                return i;
+            }
+        }
+        catch ( error ) {
+
+            return -1;
+        }
+
+    }
+
+    return -1;
+}
+
 module.exports = {
 
     isDescendant,
@@ -60,4 +135,6 @@ module.exports = {
     generateRandomString,
     setDefault,
     isNotEmptyArray,
+    compareArrayOfNonObjects,
+    findIndexFromArrayOfArray,
 };

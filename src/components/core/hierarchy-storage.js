@@ -130,6 +130,7 @@ class HierarchyStorage {
 
                 user.parentNode = currentNode.parent;
                 user.accessLevels = this.getUserAccessLevels( user );
+                this.mergeUser( user );
             }
 
             this.mapOfHierarchyIdAndNode[ hierarchyId ] = currentNode;
@@ -141,16 +142,41 @@ class HierarchyStorage {
         this.isProcessed = true;
     }
 
+    findUser( targetUser ) {
+
+        return this.users.find( userInStorage => userInStorage.accountId === targetUser.accountId );
+    }
+
+    mergeUser( targetUser ) {
+
+        let userInStorage = this.findUser( targetUser );
+
+        if ( userInStorage === undefined ) {
+
+            this.users.push( targetUser );
+        }
+        else {
+
+            for ( let eachLevel of targetUser.accessLevels ) {
+
+                if ( util.findIndexFromArrayOfArray( eachLevel, userInStorage.accessLevels ) === -1 ) {
+
+                    userInStorage.accessLevels.push( eachLevel );
+                }
+            }
+        }
+    }
+
     getUserAccessLevels( user ) {
 
         let currentNode = user.currentNode;
-        let accessLevels = [ currentNode.description ];
+        let accessLevels = [ [ currentNode.description ] ];
 
         let nodeWalkingAt = currentNode.parent;
 
         while ( nodeWalkingAt !== null ) {
 
-            accessLevels.unshift( nodeWalkingAt.description );
+            accessLevels[ 0 ].unshift( nodeWalkingAt.description );
             nodeWalkingAt = nodeWalkingAt.parent;
         }
 
@@ -159,12 +185,7 @@ class HierarchyStorage {
 
     getUsersByHierarchyId( hierarchyId ) {
 
-        let users = [];
-        let node = this.mapOfHierarchyIdAndNode[ hierarchyId ];
-        let childNodes = node.children;
 
-
-        return users;
     }
 
     getAllUsers() {
@@ -174,19 +195,7 @@ class HierarchyStorage {
             this.process();
         }
 
-        let allUsers = [];
-
-        for ( let node of this.nodes ) {
-
-            let hierarchyId = node.hierarchyId;
-            let users = this.getUsersByHierarchyId( hierarchyId );
-
-            allUsers.push( ...users );
-        }
-
-        allUsers = Array.from( new Set( allUsers ) );
-
-        return allUsers;
+        return this.users;
     }
 
     addUser( { hierarchyId, firstName, lastName, emailAddress } ) {

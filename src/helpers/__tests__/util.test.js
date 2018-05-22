@@ -62,7 +62,7 @@ describe( 'isObject function', () => {
 
 } );
 
-describe( 'isNotEmptyArray', () => { 
+describe( 'isNotEmptyArray function', () => { 
 
     test( 'has null as argument', () => { 
 
@@ -80,3 +80,83 @@ describe( 'isNotEmptyArray', () => {
     } );
 
 } )
+
+describe( 'compareArrayOfNonObjects function', () => {
+
+    test( 'returns true when two arrays are all empty', () => { 
+
+        let arr1 = [];
+        let arr2 = [];
+
+        expect( util.compareArrayOfNonObjects( arr1, arr2 ) ).toBe( true );
+    } );
+
+    test( 'returns false when two arrays of different size', () => { 
+
+        let arr1 = [ 1, 2 ];
+        let arr2 = [ 3 ];
+
+        expect( util.compareArrayOfNonObjects( arr1, arr2 ) ).toBe( false );
+    } );
+
+    test( 'returns true when two arrays have same items', () => { 
+
+        let arr1 = [ -1, null, '', NaN,  ];
+        let arr2 = [ -1, null, '', NaN,  ];
+
+        expect( util.compareArrayOfNonObjects( arr1, arr2 ) ).toBe( true );
+
+    } );
+
+    test( 'returns false', () => { 
+
+        let arr1 = [ 'AA', 'BB' ];
+        let arr2 = [ 'CC', 'DD' ];
+
+        expect( util.compareArrayOfNonObjects( arr1, arr2 ) ).toBe( false );
+
+    } );
+
+} );
+
+describe( 'findIndexFromArrayOfArray function', () => {
+
+    test( 'returns false when 1st argument is not an array', () => { 
+
+        expect( util.findIndexFromArrayOfArray( undefined, [] ) ).toBe( -1 );
+    } );
+
+    test( 'returns 1 when array is found', () => {
+
+        let item = [ 1, 2 ];
+
+        let array = [
+
+            [ 3, 4 ],
+            [ 1, 2 ],
+            [ 5, 6 ],
+            [ 1, 2 ]
+        ];
+
+        expect( util.findIndexFromArrayOfArray( item, array ) ).toBe( 1 );
+    } );
+
+
+    test( 'returns 3 when array is found', () => {
+
+        let item = [ 1, 2, 'a' ];
+
+        let array = [
+
+            [ 3, 4 ],
+            [ 1, 2 ],
+            [ 5, 6 ],
+            [ 1, 2, 'a' ]
+        ];
+
+        expect( util.findIndexFromArrayOfArray( item, array ) ).toBe( 3 );
+    } );
+
+} );
+
+

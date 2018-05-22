@@ -13,10 +13,10 @@ describe( 'HierarchyNode', () => {
 
     } );
 
-    test( 'has 6 users at index 9', () => { 
+    test( 'has 0 users at index 8', () => { 
 
-        let node = hNodes[ 9 ];
-        expect( node.users.length ).toBe( 6 );
+        let node = hNodes[ 8 ];
+        expect( node.users.length ).toBe( 0 );
 
     } );
 

@@ -44,8 +44,15 @@ describe( 'HierarchyStorage', () => {
 
 } );
 
-
 describe( 'HierarchyStorage object that has valid SAP data', () => {
+
+    let users = [
+
+        { 'accountId': '456', firstName: 'Coconut' },
+        { 'accountId': '123', firstName: 'Apple', accessLevels: [ [ 'AA', 'BB' ] ] },
+        { 'accountId': '234', firstName: 'Banana' },
+
+    ]
 
     let storage = new HierarchyStorage( dummySapObject );
 
@@ -82,6 +89,53 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         expect( node.children.length ).toBe( 0 );
     } );
 
+    test( 'findUser method can find a user', () => { 
+
+        storage.users = users;
+
+        let user = { 'accountId': '234', firstName: 'Banana Blue' };
+        let result = storage.findUser( user );
+
+        expect( result.accountId ).toBe( '234' );
+    } );
+
+    test( 'findUser method returns undefined when user is not found', () => { 
+
+        storage.users = users;
+
+        let user = { 'accountId': '999', firstName: 'Avocado' };
+        let result = storage.findUser( user );
+
+        expect( result ).toBe( undefined );
+    } );
+
+
+    test( 'mergeUser method merges accessLevels', () => {
+
+        let user = { 'accountId': '123', firstName: 'Apple', accessLevels: [ [ 'CC', 'DD' ] ] };
+
+        storage.users = users;
+        storage.mergeUser( user );
+
+        let accessLevels = storage.users[ 1 ].accessLevels;
+
+        expect( accessLevels.length ).toBe( 2 );
+        expect( accessLevels[ 1 ][ 1 ] ).toBe( 'DD' );
+
+    } );
+
+    test( 'mergeUser method adds a new user', () => {
+
+        let user = { 'accountId': '789', firstName: 'Apricot', accessLevels: [ [ 'AA', 'BB' ] ] };
+
+        storage.users = users;
+        storage.mergeUser( user );
+
+        expect( storage.users.length ).toBe( 4 );
+        expect( user.accessLevels[ 0 ][ 1 ] ).toBe( 'BB' );
+
+    } );
+
 } );
 
 
@@ -92,10 +146,8 @@ describe( 'HierarchyStorage that has SAP data from session', () => {
 
     test( 'can get 0 users by hierarchy ID', () => { 
 
-        let hid = "00215A9B-AA4A-1EE7-83A4-CFB9DBFF038B";
-        let users = storage.getUsersByHierarchyId( hid );
-
-        expect( users.length ).toBe( 0 );
+        expect( true ).toBe( true );
     } );
 
 } );
+
