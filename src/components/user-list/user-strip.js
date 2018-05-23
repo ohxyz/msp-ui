@@ -12,6 +12,7 @@ class UserStrip extends React.Component {
         this.handleDeleteIconClick = this.handleDeleteIconClick.bind( this );
         this.handleDeleteUserYesButtonClick = this.handleDeleteUserYesButtonClick.bind( this );
         this.handleDeleteUserNoButtonClick = this.handleDeleteUserNoButtonClick.bind( this );
+        this.handleMoreClick = this.handleMoreClick.bind( this );
 
         this.state = {
 
@@ -93,6 +94,11 @@ class UserStrip extends React.Component {
         } );
     }
 
+    handleMoreClick() {
+
+        this.handleChevronIconClick();
+    }
+
     renderAccessLevelsBox() {
 
         return (
@@ -130,6 +136,11 @@ class UserStrip extends React.Component {
     renderAdminTag() {
 
         return <span className="user-strip__admin">Admin</span>;
+    }
+
+    renderMoreTag() {
+
+        return <span className="user-strip__more" onClick={ this.handleMoreClick } >More</span>;
     }
 
     render() {
@@ -182,7 +193,8 @@ class UserStrip extends React.Component {
                         { user.isAdmin && this.renderAdminTag() }
                     </div>
                     <div className="user-strip__middle-bar">
-                        <div className="user-strip__org">{ user.parentNodeDescription }</div>
+                        <span className="user-strip__org">{ user.parentNodeDescription }</span>
+                        { user.accessLevels.length > 1 && this.renderMoreTag() }
                     </div>
                 </div>
                 <div className={ accessLevelsBoxClassName }>

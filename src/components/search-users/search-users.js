@@ -4,6 +4,8 @@ import { SearchBox } from '../search-box/search-box.js';
 import { UserList } from '../user-list/user-list.js';
 import { MessageBox } from '../message-box/message-box.js';
 import { componentManager } from '../core/component-manager.js';
+import { User } from '../core/user.js';
+import { HierarchyNode } from '../core/hierarchy-node.js';
 
 const SECONDS_TO_DISMISS_MESSAGE_BOX = 10;
 const SUCCESS_CODE = '200';
@@ -61,8 +63,6 @@ class SearchUsers extends React.Component {
 
         let allUsers = this.state.storage.getAllUsers();
 
-        console.log( allUsers );
-
         this.setState( {
 
             usersFound: allUsers,
@@ -73,18 +73,18 @@ class SearchUsers extends React.Component {
 
     handleSearchBoxItemSelect( item, searchBox ) {
 
-        let account = item.__origin__;
+        let object = item.__origin__;
         let users = [];
 
-        if ( account.type === 'person' ) {
+        if ( object instanceof HierarchyNode === true ) {
 
-            users = [ account ];
+            users = this.state.storage.getUsersByHierarchyId( object.hierarchyId );
         }
-        else {
-            
-            users = this.state.storage.getUsersByHierarchyId( account.hierarchyId );
+        else if ( object instanceof User === true ) {
+
+            users = [ object ];
         }
-        
+
         this.setState( { 
 
             usersFound: users,

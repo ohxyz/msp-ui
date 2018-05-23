@@ -33,22 +33,28 @@ exports[`should render with defaults 1`] = `
       <span
         className="user-strip__full-name"
       >
-        Full Name
+        
       </span>
       <span
         className="user-strip__top-org"
       >
-        Top Orgnisation Name
+        
       </span>
     </div>
     <div
       className="user-strip__middle-bar"
     >
-      <div
+      <span
         className="user-strip__org"
       >
-        Orgnisation Name
-      </div>
+        
+      </span>
+      <span
+        className="user-strip__more"
+        onClick={[Function]}
+      >
+        More
+      </span>
     </div>
   </div>
   <div

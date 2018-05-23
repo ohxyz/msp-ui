@@ -878,6 +878,30 @@
                   "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1EE8-8AFE-A9C2EFAD9002',AccountID='15028')/HierarchyAssignment"
                 }
               }
+            },
+            {
+              "__metadata" : {
+                "id" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802',AccountID='195')",
+                "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802',AccountID='195')",
+                "type" : "USER_MANAGEMENT.UserHierarchyAccount"
+              },
+              "HierarchyID" : "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802",
+              "AccountID" : "195",
+              "AccountTypeID" : "1",
+              "UserName" : "",
+              "Name" : "",
+              "FirstName" : "KHOSROW",
+              "LastName" : "MANN AND BUSUTTIL",
+              "EmailAddress" : "",
+              "PhoneNo" : "",
+              "MobilePhoneNo" : "0499999999",
+              "JobTitle" : "",
+              "PartnerReferenceNumber" : "",
+              "HierarchyAssignment" : {
+                "__deferred" : {
+                  "uri" : "http://oehgrad1.saporg.local:8050/sap/opu/odata/sap/USER_MANAGEMENT/UserHierarchyAccounts(HierarchyID=guid'CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802',AccountID='195')/HierarchyAssignment"
+                }
+              }
             }
           ]
         }
