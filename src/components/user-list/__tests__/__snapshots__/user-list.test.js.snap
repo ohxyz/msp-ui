@@ -68,12 +68,6 @@ exports[`should render with defaults 1`] = `
           >
             
           </span>
-          <span
-            className="user-strip__more"
-            onClick={[Function]}
-          >
-            More
-          </span>
         </div>
       </div>
       <div
@@ -154,12 +148,6 @@ exports[`should render with defaults 1`] = `
             className="user-strip__org"
           >
             
-          </span>
-          <span
-            className="user-strip__more"
-            onClick={[Function]}
-          >
-            More
           </span>
         </div>
       </div>

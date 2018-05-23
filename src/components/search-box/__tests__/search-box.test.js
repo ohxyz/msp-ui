@@ -1,7 +1,9 @@
 import React from 'react';
 import SearchBox from '../search-box.js';
 import { SearchItem } from '../data-model.js';
-import renderer from 'react-test-renderer';
+import TestRenderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
+import ReactTestUtils from 'react-dom/test-utils';
 
 const items = [
 
@@ -12,29 +14,37 @@ const items = [
     { 'name': 'abcd lady', 'org': 'abce LADY GROUP' }
 ];
 
-it( 'renders with default settings', () => {
+describe( 'SearchBox', () => { 
 
-    const tree = renderer
-        .create( 
+    it( 'creates snapshots', () => {
+
+        let component = TestRenderer.create(
+
             <SearchBox
                 id="seach-box-users"
                 name="my-box"
-                onSelect={ ( item, self ) => { console.log( 'onSelect', item ); } }
+                onSelect={ ( item, self ) => { console.log( 'select', item ); } }
                 onIconClick= { self => { console.log( 'onIconClick', self ); self.showAllItems(); } }
-                onChange= { self => console.log( 'onChange', self ) }
+                onChange= { self => console.log( 'change', self ) }
                 placeholder="Search users by name, department or agency"
                 onFocus={ self => { console.log( 'focus', self ); } }
                 onBlur={ self => console.log( 'blur', self ) }
                 items={ items }
                 iconStyle="add"
                 fields={ [ 'org', 'name' ] }
-                strikes={ 3 } /> 
+                strikes={ 3 } 
+            /> 
         )
-        .toJSON();
+        
+        let tree = component.toJSON();
 
-    expect( tree ).toMatchSnapshot();
+        expect( tree ).toMatchSnapshot();
 
-} );
+    } );
+
+} )
+
+
 
 
 describe( 'SearchBox React component instance', () => {
@@ -45,37 +55,15 @@ describe( 'SearchBox React component instance', () => {
         'abcd', 'abce', 'bcde', 'cdef', 'cefg', 'defg', 'efgh'
     ];
 
-    describe( 'static method: getDerivedStateFromProps', () => { 
+    it( 'static method: getDerivedStateFromProps', () => { 
 
         let state = SearchBox.getDerivedStateFromProps( {}, {} );
         expect( Object.keys( state ).length ).toBe( 18 );
 
     } );
     
-    describe( 'filterSearchItemsByText method', () => {
 
-        let props = { items: items };
-        let searchBox = new SearchBox( props );
-
-        test( 'can filter searchItems by text', () => {
-
-            let searchItems = items.map( item => new SearchItem( item ) );
-
-            let filtered = searchBox.filterSearchItemsByText( searchItems, 'abc' );
-            let expected = [
-
-                { __content__: 'abcd', __origin__: 'abcd', '__field__': '' },
-                { __content__: 'abce', __origin__: 'abce', '__field__': '' },
-
-            ];
-
-            expect( filtered ).toEqual( expected );
-
-        } );
-
-    } );
-
-    describe( 'updateItems method', () => {
+    it( 'updateItems method', () => {
 
         let props = { items: items };
         let searchBox = new SearchBox( props );
@@ -90,8 +78,7 @@ describe( 'SearchBox React component instance', () => {
 
     } );
 
-
-    describe( 'renderCount method', () => { 
+    it( 'renderCount method', () => { 
 
         let searchBox = new SearchBox( {} );
         searchBox.state.shouldRenderCount = true;
@@ -101,11 +88,6 @@ describe( 'SearchBox React component instance', () => {
         expect( result.props.children[ 0 ].props.children ).toBe( 0 );
     } );
 
-    describe( 'sortByIndexOfFields method', () => {
 
-        
-
-    } );
 
 } );
-

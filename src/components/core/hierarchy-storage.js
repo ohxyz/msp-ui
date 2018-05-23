@@ -258,7 +258,7 @@ class HierarchyStorage {
         return this.getUsersFromNodeAndChildren( this.nodes[0] );
     }
 
-    deleteUser( accountId, hierarchyIds ) {
+    deleteUser( accountId ) {
 
 
     }

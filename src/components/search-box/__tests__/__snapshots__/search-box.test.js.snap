@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders with default settings 1`] = `
+exports[`SearchBox creates snapshots 1`] = `
 <div
   className="search-box"
   id="seach-box-users"

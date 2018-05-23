@@ -137,6 +137,11 @@ class SearchUsers extends React.Component {
         
         let promise = this.state.onPropsDeleteUser( user );
 
+        if ( promise === undefined ) {
+
+            throw new Error( '[MSP] The onPropsDeleteUser function did not return a promise.' );
+        }
+
         promise
             .then( () => {
 
