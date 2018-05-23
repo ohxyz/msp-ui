@@ -13,13 +13,11 @@ class HierarchyStorage {
         this.sapResults = null;
         this.nodes = []; // HierarchyNodes
         this.isProcessed = false;
-        this.users = [];
 
         /*
-         *
          * @example [
          *
-         *     { "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307": HierarchyNode }
+         *     { "CA2B1FE6-D50C-1ED6-B5FC-07B7BC728307": HierarchyNode },
          *     { "CA2B1FE6-D50C-1ED7-BD9E-55E1ACCF4802": HierarchyNode },
          *     { "CA2B1FE6-D50C-1ED8-8AFC-C1EFC84A5801": HierarchyNode },
          *     { "CA2B1FE6-D50C-1ED8-8AFC-D71F61F20303": HierarchyNode }
@@ -97,6 +95,7 @@ class HierarchyStorage {
         let lastNode = new HierarchyNode();
         let lastParentNode = new HierarchyNode();
         let hierarchyNodes = this.sapResults.map( result => new HierarchyNode( result ) );
+        let allUsers = [];
 
         for ( let i = 0; i < hierarchyNodes.length; i ++ ) {
 
@@ -137,7 +136,7 @@ class HierarchyStorage {
                 user.topNodeDescription = user.topNode.description;
                 user.accessLevels = this.getUserAccessLevelsFromNodes( accessNodes );
 
-                this.mergeUser( user, this.users );
+                this.mergeUser( user, allUsers );
             }
 
             this.mapOfHierarchyIdAndNode[ hierarchyId ] = currentNode;
@@ -256,7 +255,7 @@ class HierarchyStorage {
             this.process();
         }
 
-        return this.users;
+        return this.getUsersFromNodeAndChildren( this.nodes[0] );
     }
 
     deleteUser( accountId, hierarchyIds ) {

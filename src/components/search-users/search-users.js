@@ -111,7 +111,7 @@ class SearchUsers extends React.Component {
 
     renderSearchBox() {
 
-        let items = this.state.storage.users.slice();
+        let items = this.state.storage.getAllUsers().slice();
         let items2 = this.state.storage.nodes.slice();
 
         items.push( ...items2 );

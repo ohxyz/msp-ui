@@ -104,7 +104,15 @@ class UserStrip extends React.Component {
         return (
 
             <React.Fragment>
-                User Access Levels
+                <div className="user-strip__title">User Access Levels</div>
+                {
+                    this.state.user.accessLevels.map( ( eachAccessLevel, index ) => 
+
+                        <div key={ index } className="user-strip__access-level">
+                            { /* need markups and styles here */ eachAccessLevel.join( ' > ' ) }
+                        </div>
+                    )
+                }
             </React.Fragment>
         );   
     }
