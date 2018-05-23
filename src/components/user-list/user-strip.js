@@ -155,8 +155,6 @@ class UserStrip extends React.Component {
             deleteUserBoxClassName += ' user-strip__delete-user--active';
         }
 
-        console.log( 'user-strip', user );
-
         return (
 
             <div className="user-strip">
@@ -175,10 +173,10 @@ class UserStrip extends React.Component {
                     </div>
                     <div className="user-strip__top-bar">
                         <span className="user-strip__full-name">{ user.fullName }</span>
-                        <span className="user-strip__top-org">{ user.topOrgName }</span>
+                        <span className="user-strip__top-org">{ user.topNodeDescription }</span>
                     </div>
                     <div className="user-strip__middle-bar">
-                        <div className="user-strip__org">{ user.orgName }</div>
+                        <div className="user-strip__org">{ user.parentNodeDescription }</div>
                     </div>
                 </div>
                 <div className={ accessLevelsBoxClassName }>

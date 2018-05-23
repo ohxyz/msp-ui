@@ -168,7 +168,6 @@ class UserList extends React.Component {
             );
         }
 
-        console.log( 'user-list', users );
         return (
 
             <div className="user-list__users">

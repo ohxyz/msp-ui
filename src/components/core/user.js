@@ -14,7 +14,7 @@ class User {
             name: '',
             emailAddress: '',
             level: '',
-            isAdmin: false,
+            isAdmin: false, // isAdmin is undefined when instantiated, figure it out! Busheng
             accessLevels: [ [] ],
             currentNode: null,
             currentNodeDescription: '',
@@ -49,8 +49,6 @@ class User {
 
         // Following properties are deprecated, will be removed after UserStrip is refactored.
         this.fullName = this.name;
-        this.topOrgName = this.topNodeDescription;
-        this.orgName = this.parentNodeDescription;
     }
 }
 

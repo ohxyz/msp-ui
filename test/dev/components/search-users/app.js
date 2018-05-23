@@ -10,6 +10,9 @@ let storage = new HierarchyStorage( dummySapObject );
 
 ReactDOM.render(
     
-    <SearchUsers is="search-users" storage={ storage } />,
+    <SearchUsers 
+        id="search-users"
+        storage={ storage } 
+    />,
     document.getElementById( 'search-users' )
 );
