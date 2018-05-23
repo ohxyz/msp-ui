@@ -7,12 +7,13 @@ import '../../../../less/components/search-users.less';
 let dummySapObject = require( '../../dummies/sap.json');
 let storage = new HierarchyStorage( dummySapObject );
 
-
-ReactDOM.render(
+let component = ReactDOM.render(
     
     <SearchUsers 
         id="search-users"
-        storage={ storage } 
+        storage={ storage }
     />,
     document.getElementById( 'search-users' )
 );
+
+component.showAllUsers();

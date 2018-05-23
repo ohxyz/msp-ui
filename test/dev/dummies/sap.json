@@ -795,6 +795,7 @@
               "Name" : "",
               "FirstName" : "ALESKANDER",
               "LastName" : "ZAHAR",
+              "IsAdmin": true,
               "EmailAddress" : "",
               "PhoneNo" : "",
               "MobilePhoneNo" : "0499999999",

@@ -127,6 +127,11 @@ class UserStrip extends React.Component {
         );
     }
 
+    renderAdminTag() {
+
+        return <span className="user-strip__admin">Admin</span>;
+    }
+
     render() {
 
         let user = this.state.user;
@@ -174,6 +179,7 @@ class UserStrip extends React.Component {
                     <div className="user-strip__top-bar">
                         <span className="user-strip__full-name">{ user.fullName }</span>
                         <span className="user-strip__top-org">{ user.topNodeDescription }</span>
+                        { user.isAdmin && this.renderAdminTag() }
                     </div>
                     <div className="user-strip__middle-bar">
                         <div className="user-strip__org">{ user.parentNodeDescription }</div>
