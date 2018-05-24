@@ -148,7 +148,7 @@ class UserStrip extends React.Component {
 
     renderMoreTag() {
 
-        return <span className="user-strip__more" onClick={ this.handleMoreClick } >More</span>;
+        return <span className="user-strip__more" onClick={ this.handleMoreClick } >...</span>;
     }
 
     render() {

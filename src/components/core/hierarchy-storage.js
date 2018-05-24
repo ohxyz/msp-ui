@@ -163,13 +163,14 @@ class HierarchyStorage {
         }
         else {
 
-            for ( let eachLevel of targetUser.accessLevels ) {
+            let unionOfAccessLevels = util.unionArrayOfArray(
 
-                if ( util.findIndexFromArrayOfArray( eachLevel, userInStorage.accessLevels ) === -1 ) {
+                userInStorage.accessLevels,
+                targetUser.accessLevels
+            );
 
-                    userInStorage.accessLevels.push( eachLevel );
-                }
-            }
+            userInStorage.accessLevels = unionOfAccessLevels;
+            targetUser.accessLevels = unionOfAccessLevels;
         }
     }
 
@@ -255,12 +256,34 @@ class HierarchyStorage {
             this.process();
         }
 
+        if ( this.nodes.length === 0 ) {
+
+            return [];
+        }
+
         return this.getUsersFromNodeAndChildren( this.nodes[0] );
+        
     }
 
     deleteUser( accountId ) {
 
+        if ( typeof accountId !== 'string' && isNaN( accountId, 10 ) === true ) {
 
+            throw new TypeError( "[MSP] The argument of deleteUser should be a string of numbers." );
+        }
+
+        for ( let eachNode of this.nodes ) {
+
+            for ( let i = 0; i < eachNode.users.length ; i ++ ) {
+
+                let userInNode = eachNode.users[ i ];
+
+                if ( userInNode.accountId === accountId ) {
+
+                    eachNode.users.splice( i, 1 );
+                }
+            }
+        }
     }
 }
 

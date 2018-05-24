@@ -128,6 +128,23 @@ function findIndexFromArrayOfArray( item, arrayOfArray ) {
     return -1;
 }
 
+function unionArrayOfArray( array1, array2 ) {
+
+    let union = array2.slice();
+
+    for ( let eachArray of array1 ) {
+
+        let index = findIndexFromArrayOfArray( eachArray, array2 );
+
+        if ( index === -1 ) {
+
+            union.push( eachArray.slice() );
+        }
+    }
+
+    return union;
+}
+
 module.exports = {
 
     isDescendant,
@@ -137,4 +154,5 @@ module.exports = {
     isNotEmptyArray,
     compareArrayOfNonObjects,
     findIndexFromArrayOfArray,
+    unionArrayOfArray
 };

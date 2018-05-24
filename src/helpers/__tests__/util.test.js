@@ -159,4 +159,54 @@ describe( 'findIndexFromArrayOfArray function', () => {
 
 } );
 
+describe( 'unionArrayOfArray function', () => { 
+
+    test( 'case 1', () => { 
+
+        let a1 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+        let a2 = [ [ 0, 0 ], [ 1, 2 ], [ 7, 8 ] ];
+
+        expect( util.unionArrayOfArray( a1, a2 ).length )
+            .toBe( util.unionArrayOfArray( a2, a1 ).length );
+
+    } );
+
+    test( 'case 2', () => { 
+
+        let a1 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+        let a2 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+
+        expect( util.unionArrayOfArray( a1, a2 ).length ).toBe( a2.length );
+
+    } );
+
+    test( 'case 3', () => { 
+
+        let a1 = [ [ 1, 2 ], [ 3, 4 ], [ 5, '6' ] ];
+        let a2 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+
+        expect( util.unionArrayOfArray( a1, a2 ).length ).toBe( a2.length + 1 );
+
+    } );
+
+    test( 'case 4', () => { 
+
+        let a1 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+        let a2 = [];
+
+        expect( util.unionArrayOfArray( a1, a2 ).length ).toBe( a1.length );
+
+    } );
+
+    test( 'case 5', () => { 
+
+        let a1 = [];
+        let a2 = [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ];
+
+        expect( util.unionArrayOfArray( a1, a2 ).length ).toBe( a2.length );
+
+    } );
+
+} );
+
 

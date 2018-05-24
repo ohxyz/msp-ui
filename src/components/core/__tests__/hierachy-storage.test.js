@@ -44,6 +44,7 @@ describe( 'HierarchyStorage', () => {
 
 } );
 
+
 describe( 'HierarchyStorage object that has valid SAP data', () => {
 
     let users = [
@@ -51,7 +52,6 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
         { 'accountId': '456', firstName: 'Coconut' },
         { 'accountId': '123', firstName: 'Apple', accessLevels: [ [ 'AA', 'BB' ] ] },
         { 'accountId': '234', firstName: 'Banana' },
-
     ]
 
     let storage = new HierarchyStorage( dummySapObject );
@@ -91,20 +91,20 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
 
     test( 'findUser method can find a user', () => { 
 
-        storage.users = users;
+        let theUsers = users;
 
         let user = { 'accountId': '234', firstName: 'Banana Blue' };
-        let result = storage.findUser( user, storage.users );
+        let result = storage.findUser( user, theUsers );
 
         expect( result.accountId ).toBe( '234' );
     } );
 
     test( 'findUser method returns undefined when user is not found', () => { 
 
-        storage.users = users;
+        let theUsers = users;
 
         let user = { 'accountId': '999', firstName: 'Avocado' };
-        let result = storage.findUser( user, storage.users );
+        let result = storage.findUser( user, theUsers );
 
         expect( result ).toBe( undefined );
     } );
@@ -114,13 +114,12 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
 
         let user = { 'accountId': '123', firstName: 'Apple', accessLevels: [ [ 'CC', 'DD' ] ] };
 
-        storage.users = users;
-        storage.mergeUser( user, storage.users );
+        let theUsers = users.slice();
+        storage.mergeUser( user, theUsers );
 
-        let accessLevels = storage.users[ 1 ].accessLevels;
+        let accessLevels = theUsers[ 1 ].accessLevels;
 
         expect( accessLevels.length ).toBe( 2 );
-        expect( accessLevels[ 1 ][ 1 ] ).toBe( 'DD' );
 
     } );
 
@@ -128,15 +127,28 @@ describe( 'HierarchyStorage object that has valid SAP data', () => {
 
         let user = { 'accountId': '789', firstName: 'Apricot', accessLevels: [ [ 'AA', 'BB' ] ] };
 
-        storage.users = users;
-        storage.mergeUser( user, storage.users );
+        let theUsers = users;
+        storage.mergeUser( user, theUsers );
 
-        expect( storage.users.length ).toBe( 4 );
+        expect( theUsers.length ).toBe( 4 );
         expect( user.accessLevels[ 0 ][ 1 ] ).toBe( 'BB' );
 
     } );
 
+
+    test( 'deleteUser method can remove a user from different nodes', () => {
+
+        let accountId = '195';
+
+        storage.deleteUser( accountId );
+
+        expect( storage.nodes[ 9 ].users.length ).toBe( 6 );
+        expect( storage.nodes[ 1 ].users.length ).toBe( 0 );
+
+    } );
+
 } );
+
 
 describe( 'HierarchyStorage getUsersFromNodeAndChildren method', () => {
 
@@ -148,7 +160,7 @@ describe( 'HierarchyStorage getUsersFromNodeAndChildren method', () => {
         let node = storage.nodes[ 0 ];
         let users = storage.getUsersFromNodeAndChildren( node );
 
-        expect( users.length ).toBe( storage.users.length );
+        expect( users.length ).toBe( 14 );
 
     } );
 

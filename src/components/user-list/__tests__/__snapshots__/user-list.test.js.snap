@@ -73,7 +73,16 @@ exports[`should render with defaults 1`] = `
       <div
         className="user-strip__access-levels"
       >
-        User Access Levels
+        <div
+          className="user-strip__title"
+        >
+          User Access Levels
+        </div>
+        <div
+          className="user-strip__access-level"
+        >
+          
+        </div>
       </div>
       <div
         className="user-strip__delete-user"
@@ -154,7 +163,16 @@ exports[`should render with defaults 1`] = `
       <div
         className="user-strip__access-levels"
       >
-        User Access Levels
+        <div
+          className="user-strip__title"
+        >
+          User Access Levels
+        </div>
+        <div
+          className="user-strip__access-level"
+        >
+          
+        </div>
       </div>
       <div
         className="user-strip__delete-user"

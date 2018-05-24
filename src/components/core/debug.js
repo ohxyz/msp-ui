@@ -11,5 +11,4 @@ let users = storage.getUsersFromNodeAndChildren( node );
 let users2 = storage.getUsersFromNodeAndChildren( node );
 
 console.log( storage );
-
 console.log( 'End' );
