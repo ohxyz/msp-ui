@@ -181,7 +181,7 @@ describe( 'HierarchyStorage getUsersFromNodeAndChildren method', () => {
         expect( users.length ).toBe( 7 );
     } );
 
-    test( 'has correct number of users', () => { 
+    test( 'has correct number of users, again', () => { 
 
         let node = storage.nodes[ 6 ];
         let users = storage.getUsersFromNodeAndChildren( node );
@@ -189,7 +189,7 @@ describe( 'HierarchyStorage getUsersFromNodeAndChildren method', () => {
         expect( users.length ).toBe( 7 );
     } );
 
-    test( 'has correct number of users', () => {
+    test( 'has correct number of users, again and again', () => {
 
         let melbourneEast = storage.nodes[ 2 ];
         let whiteHorse = storage.nodes[ 6 ];

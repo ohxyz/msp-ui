@@ -32,3 +32,135 @@ exports[`SearchBox creates snapshots 1`] = `
   </div>
 </div>
 `;
+
+exports[`SearchBox creates snapshots 2`] = `
+<div
+  className="search-box"
+  id="seach-box-users"
+>
+  <div
+    className="search-box__header"
+  >
+    <input
+      className="search-box__field"
+      data-text=""
+      id={undefined}
+      name="my-box"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search users by name, department or agency"
+      type="text"
+    />
+    <span
+      className="search-box__icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons"
+      >
+        add
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`SearchBox creates snapshots 3`] = `
+<div
+  className="search-box"
+  id="seach-box-users"
+>
+  <div
+    className="search-box__header"
+  >
+    <input
+      className="search-box__field"
+      data-text=""
+      id={undefined}
+      name="my-box"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search users by name, department or agency"
+      type="text"
+    />
+    <span
+      className="search-box__icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons"
+      >
+        add
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`SearchBox creates snapshots 4`] = `
+<div
+  className="search-box"
+  id="seach-box-users"
+>
+  <div
+    className="search-box__header"
+  >
+    <input
+      className="search-box__field"
+      data-text=""
+      id={undefined}
+      name="my-box"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search users by name, department or agency"
+      type="text"
+    />
+    <span
+      className="search-box__icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons"
+      >
+        add
+      </i>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`SearchBox creates snapshots 5`] = `
+<div
+  className="search-box"
+  id="seach-box-users"
+>
+  <div
+    className="search-box__header"
+  >
+    <input
+      className="search-box__field"
+      data-text=""
+      id={undefined}
+      name="my-box"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Search users by name, department or agency"
+      type="text"
+    />
+    <span
+      className="search-box__icon"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons"
+      >
+        add
+      </i>
+    </span>
+  </div>
+</div>
+`;

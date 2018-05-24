@@ -23,12 +23,12 @@ describe( 'SearchBox', () => {
             <SearchBox
                 id="seach-box-users"
                 name="my-box"
-                onSelect={ ( item, self ) => { console.log( 'select', item ); } }
-                onIconClick= { self => { console.log( 'onIconClick', self ); self.showAllItems(); } }
-                onChange= { self => console.log( 'change', self ) }
+                onSelect={ () => {} }
+                onIconClick={ self=> self.showAllItems() }
+                onChange={ () => {} }
                 placeholder="Search users by name, department or agency"
-                onFocus={ self => { console.log( 'focus', self ); } }
-                onBlur={ self => console.log( 'blur', self ) }
+                onFocus={ () => {} }
+                onBlur={ () => {} }
                 items={ items }
                 iconStyle="add"
                 fields={ [ 'org', 'name' ] }
@@ -38,6 +38,22 @@ describe( 'SearchBox', () => {
         
         let tree = component.toJSON();
 
+        expect( tree ).toMatchSnapshot();
+
+        let textInput = tree.children[ 0 ].children[ 0 ];
+        let span = tree.children[ 0 ].children[ 1 ];
+
+        textInput.props.onFocus();
+        expect( tree ).toMatchSnapshot();
+
+        textInput.props.onBlur();
+        expect( tree ).toMatchSnapshot();
+
+        // Mock
+        textInput.props.onChange( { target: { value: 'abc' } } );
+        expect( tree ).toMatchSnapshot();
+
+        span.props.onClick();
         expect( tree ).toMatchSnapshot();
 
     } );
