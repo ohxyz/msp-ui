@@ -74,6 +74,7 @@ function makeSearchItemsByFields( items, fields ) {
     return searchItems;
 }
 
+
 function makeSearchItems( items, fields ) {
 
     if ( Array.isArray( fields ) === true && fields.length > 0 ) {
