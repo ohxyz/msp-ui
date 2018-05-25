@@ -12,7 +12,6 @@ let app = new SearchUsersApp( {
     id: 'searchUsers',
     sapData: dummySapObject,
     domElement: elem
-
 } );
 
 let button1 = document.getElementById( 'manage-users' );

@@ -21,7 +21,8 @@ class User {
             parentNode: null,
             parentNodeDescription: '',
             topNode: null,
-            topNodeDescription: ''
+            topNodeDescription: '',
+            organisationName: '',
         };
 
         Object.assign( this, obj );

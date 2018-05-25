@@ -201,7 +201,7 @@ class UserStrip extends React.Component {
                         { user.isAdmin && this.renderAdminTag() }
                     </div>
                     <div className="user-strip__middle-bar">
-                        <span className="user-strip__org">{ user.parentNodeDescription }</span>
+                        <span className="user-strip__org">{ user.organisationName }</span>
                         { user.accessLevels.length > 1 && this.renderMoreTag() }
                     </div>
                 </div>

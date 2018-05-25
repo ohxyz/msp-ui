@@ -129,10 +129,16 @@ class HierarchyStorage {
 
                 user.parentNode = currentNode.parent;
                 user.parentNodeDescription = user.parentNode === null ? '' : user.parentNode.description;
+                user.organisationName = user.parentNodeDescription;
+
+                if ( parseInt( user.parentNode.level, 10 ) === 1 ) {
+
+                    user.organisationName = '';
+                }
 
                 let accessNodes = this.getUserAccessNodes( user );
 
-                user.topNode = accessNodes[ 0 ];
+                user.topNode = accessNodes[ 1 ];
                 user.topNodeDescription = user.topNode.description;
                 user.accessLevels = this.getUserAccessLevelsFromNodes( accessNodes );
 
@@ -190,32 +196,19 @@ class HierarchyStorage {
         return accessNodes;
     }
 
-    getUserAccessLevelsFromNodes( nodes ) {
+    getUserAccessLevelsFromNodes( nodes, fromLevel = 2 ) {
 
         let eachAccessLevel = [];
 
         for ( let eachNode of nodes ) {
 
-            eachAccessLevel.push( eachNode.description );
+            if ( parseInt( eachNode.level, 10 ) >= fromLevel ) {
+
+                eachAccessLevel.push( eachNode.description );
+            }
         }
 
         return [ eachAccessLevel ];
-    }
-
-    getUserAccessLevels( user ) {
-
-        let currentNode = user.currentNode;
-        let accessLevels = [ [ currentNode.description ] ];
-
-        let nodeWalkingAt = currentNode.parent;
-
-        while ( nodeWalkingAt !== null ) {
-
-            accessLevels[ 0 ].unshift( nodeWalkingAt.description );
-            nodeWalkingAt = nodeWalkingAt.parent;
-        }
-
-        return accessLevels;
     }
 
     getUsersByHierarchyId( hierarchyId ) {
