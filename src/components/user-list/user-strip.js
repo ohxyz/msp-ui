@@ -148,10 +148,17 @@ class UserStrip extends React.Component {
 
     renderMoreTag() {
 
-        return <span className="user-strip__more" onClick={ this.handleMoreClick } >...</span>;
+        return <span className="user-strip__more" onClick={ this.handleMoreClick } >More</span>;
+    }
+
+    renderOrganisationName( name ) {
+
+        return <span className="user-strip__org">{ name }</span>
     }
 
     render() {
+
+
 
         let user = this.state.user;
         let deleteIconClassName = 'user-strip__delete-icon';
@@ -201,7 +208,7 @@ class UserStrip extends React.Component {
                         { user.isAdmin && this.renderAdminTag() }
                     </div>
                     <div className="user-strip__middle-bar">
-                        <span className="user-strip__org">{ user.organisationName }</span>
+                        { user.organisationName.length > 0 && this.renderOrganisationName( user.organisationName ) }
                         { user.accessLevels.length > 1 && this.renderMoreTag() }
                     </div>
                 </div>

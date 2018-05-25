@@ -129,16 +129,37 @@
         font-size: 14px;
         line-height: 24px;
         color: #505050;
+        margin-right: 16px;
     }
 
     &__more {
 
         display: inline-block;
         font-size: 14px;
-        margin-left: 16px;
         color: #505050;
         line-height: 24px;
         cursor: pointer;
+        text-decoration: underline;
+
+        &:hover {
+
+            color: #ec0000;
+            text-decoration: none;
+        }
+    }
+
+    &__access-levels {
+
+        background-color: #f8f8f8;
+        padding: 0 16px;
+        height: 0;
+        transition: all 0.3s ease;
+
+        &--active {
+
+            padding: 24px 16px;
+            height: auto;
+        }
     }
 
     &__delete-user {
@@ -146,12 +167,12 @@
         margin-top: 8px;
         background-color: white;
         height: 0;
-        transition: all 0.3s ease-out;
+        transition: all 0.3s ease;
 
         &--active {
 
             height: 96px;
-            padding: 24px 0;
+            padding: 24px 16px;
 
         }
 
