@@ -142,8 +142,6 @@ class UserStrip extends React.Component {
 
     render() {
 
-
-
         let user = this.state.user;
         let deleteIconClassName = 'user-strip__delete-icon';
 

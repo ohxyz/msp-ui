@@ -103,8 +103,6 @@ class UserList extends React.Component {
 
         let count = this.state.users.length;
 
-        console.log( 'count', count );
-
         return (
 
             <div className="user-list__count">
