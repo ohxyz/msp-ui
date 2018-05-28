@@ -103,7 +103,7 @@ class SearchUsers extends React.Component {
         } );
     }
 
-    handleTextChange( usersFound, searchBox ) {
+    handleTextChange( searchBox ) {
 
         if ( searchBox.text.length <= this.numberOfStrikes 
                 && searchBox.text.length > 0 ) {

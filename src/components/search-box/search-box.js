@@ -158,7 +158,7 @@ export default class SearchBox extends React.Component {
             }
         }
 
-        this.state.onPropsChange( itemsFiltered, this );
+        this.state.onPropsChange( this );
     }
 
     handleTextInputFocus() {
