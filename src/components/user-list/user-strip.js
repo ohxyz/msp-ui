@@ -10,7 +10,6 @@ class UserStrip extends React.Component {
 
         this.handleChevronIconClick = this.handleChevronIconClick.bind( this );
         this.handleDeleteIconClick = this.handleDeleteIconClick.bind( this );
-        this.handleDeleteUserYesButtonClick = this.handleDeleteUserYesButtonClick.bind( this );
         this.handleDeleteUserNoButtonClick = this.handleDeleteUserNoButtonClick.bind( this );
         this.handleMoreClick = this.handleMoreClick.bind( this );
 
@@ -71,21 +70,6 @@ class UserStrip extends React.Component {
         } );
     }
 
-    handleDeleteUserYesButtonClick() {
-
-        let promise = this.state.onPropsDeleteUserYesClick( this.state.user );
-
-        promise.then( () => { 
-
-            this.setState( {
-
-                shouldRenderDeleteUserBox: false,
-                shouldRenderAccessLevelsBox: false
-
-            } );
-        } );
-    }
-
     handleDeleteUserNoButtonClick() {
 
         this.setState( { 
@@ -126,7 +110,7 @@ class UserStrip extends React.Component {
                 <div className="user-strip__delete-user__buttons">
                     <button
                         className="user-strip__delete-user__buttons__yes"
-                        onClick={ this.handleDeleteUserYesButtonClick }
+                        onClick={ () => this.state.onPropsDeleteUserYesClick( this.state.user ) }
                     >
                         Yes
                     </button>

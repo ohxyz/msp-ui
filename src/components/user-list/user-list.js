@@ -17,7 +17,6 @@ class UserList extends React.Component {
     constructor( props ) {
 
         super( props );
-        this.handleDeleteUserSuccessPromise = this.handleDeleteUserSuccessPromise.bind( this );
 
         this.state = {
 
@@ -95,47 +94,6 @@ class UserList extends React.Component {
         } );
     }
 
-    handleDeleteUserSuccessPromise( user ) {
-
-        let deleteUserPromise = this.state.onPropsDeleteUser( user );
-
-        deleteUserPromise
-            .then( user => {
-
-                this.removeUser( user );
-
-            } )
-            .catch( () => {
-
-                // Put a empty function here to avoid error displayed in Chrome's console
-
-            } );
-
-        return deleteUserPromise;
-    }
-
-    removeUser( user ) {
-
-        if ( util.isNotEmptyArray( this.state.users ) === false ) {
-
-            return;
-        }
-
-        let index = this.state.users.indexOf( user );
-        let users = this.state.users.slice();
-
-        users.splice( index, 1 );
-
-        this.setState( {
-
-            users: users
-
-        } );
-
-        // Return users for test purpose
-        return users;
-    }
-
     renderCount() {
 
         if ( this.state.shouldRenderCount === false ) {
@@ -144,6 +102,8 @@ class UserList extends React.Component {
         }
 
         let count = this.state.users.length;
+
+        console.log( 'count', count );
 
         return (
 
@@ -179,7 +139,7 @@ class UserList extends React.Component {
                         <UserStrip 
                             key={ key } 
                             user={ user }
-                            onDeleteUserYesClick={ () => this.handleDeleteUserSuccessPromise( user ) }
+                            onDeleteUserYesClick={ () => this.state.onPropsDeleteUser( user ) }
                             shouldRenderDeleteUserBoxAndAccessLevelsBox={ this.state.shouldRenderDeleteUserBoxAndAccessLevelsBox }
                         />
                     );

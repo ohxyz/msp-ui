@@ -22,7 +22,7 @@ class SearchUsersApp {
 
     deleteUser( user ) {
 
-        let httpStatusCode = 400;
+        let httpStatusCode = 200;
         let httpStatusCodeLiteral = httpStatusCode.toString();
 
         // Mock
@@ -34,7 +34,11 @@ class SearchUsersApp {
             }
             else { 
 
-                setTimeout( () => reject( httpStatusCodeLiteral ), 2000 );
+                setTimeout( () => { 
+
+                    reject( new Error( httpStatusCodeLiteral ) );
+
+                }, 2000 );
             }
 
         } );
@@ -45,7 +49,7 @@ class SearchUsersApp {
     reload( sapData ) {
 
         this.hierarchyStorage = new HierarchyStorage( sapData );
-        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } />;
+        this.searchUsersReactElement = <SearchUsers storage={ this.hierarchyStorage } onDeleteUser={ this.deleteUser } />;
         this.unload();
         this.load();
     }

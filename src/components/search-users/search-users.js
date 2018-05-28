@@ -34,7 +34,8 @@ class SearchUsers extends React.Component {
             shouldRenderDeleteUserBoxAndAccessLevelsBox: false,
             shouldRenderMessageBox: false,
             messageCode: '',
-            onPropsDeleteUser: new Function()
+            onPropsDeleteUser: new Function(),
+            itemSelected: null,
         };
 
         this.id = util.setDefault( props.id, util.generateRandomString() );
@@ -71,7 +72,7 @@ class SearchUsers extends React.Component {
         } );
     }
 
-    handleSearchBoxItemSelect( item, searchBox ) {
+    getUsersByItemSelected( item ) {
 
         let object = item.__origin__;
         let users = [];
@@ -85,8 +86,16 @@ class SearchUsers extends React.Component {
             users = [ object ];
         }
 
+        return users;
+    }
+
+    handleSearchBoxItemSelect( item ) {
+
+        let users = this.getUsersByItemSelected( item );
+
         this.setState( { 
 
+            itemSelected: item,
             usersFound: users,
             shouldRenderUserList: true,
             shouldRenderDeleteUserBoxAndAccessLevelsBox: false
@@ -145,19 +154,26 @@ class SearchUsers extends React.Component {
         promise
             .then( () => {
 
+                let accountId = user.accountId;
+
+                this.state.storage.deleteUser( accountId );
+
+                let usersLeft = this.state.usersFound.filter( user => user.accountId !== accountId );
+
                 this.setState( { 
 
                     shouldRenderMessageBox: true,
                     messageCode: SUCCESS_CODE,
-                    userToDelete: user
+                    userToDelete: user,
+                    usersFound: usersLeft
                 } );
 
                 return user;
 
             } )
-            .catch( errorCode => {
+            .catch( error => {
 
-                let errorCodeLiteral = errorCode.toString();
+                let errorCodeLiteral = error.message;
                 let messageCode = '';
 
                 if ( errorCodeLiteral[ 0 ] === '4' ) {
