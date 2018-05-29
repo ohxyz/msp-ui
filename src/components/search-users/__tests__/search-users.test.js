@@ -39,7 +39,7 @@ describe( 'SearchUsers Instance', () => {
     test( 'will call showAllusers when searchbox \'s text is empty', () => { 
 
         component.showAllUsers = jest.fn();
-        component.handleTextChange( [],  { text: '' } );
+        component.handleTextChange( { text: '' } );
 
         expect( component.showAllUsers.mock.calls.length ).toBe( 1 );
     } );

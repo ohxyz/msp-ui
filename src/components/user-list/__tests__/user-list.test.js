@@ -52,13 +52,4 @@ describe( 'UserList Instance', () => {
         expect( results[ 2 ].name ).toBe( 'abcd lady' );
     } );
 
-    test( 'removeUser method can remove a user', () => { 
-
-        let userToRemove = users[ 1 ];
-        let usersLeft = testInstance.removeUser( userToRemove );
-
-        expect( users.length ).toBe( 5 );
-        expect( usersLeft.length ).toBe( 4 );
-    } );
-
 } );

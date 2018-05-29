@@ -43,13 +43,7 @@ exports[`should render with defaults 1`] = `
     </div>
     <div
       className="user-strip__middle-bar"
-    >
-      <span
-        className="user-strip__org"
-      >
-        
-      </span>
-    </div>
+    />
   </div>
   <div
     className="user-strip__access-levels"

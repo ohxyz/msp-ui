@@ -83,18 +83,44 @@ class UserStrip extends React.Component {
         this.handleChevronIconClick();
     }
 
+    renderAccessLevelBreadCrumb( accessLevelNames, index ) {
+
+        if ( Array.isArray( accessLevelNames ) === false || accessLevelNames.length === 0 ) {
+
+            return;
+        }
+        else if ( accessLevelNames.length === 1 ) {
+
+            return <div className="user-strip__access-level" key={ index }>{ accessLevelNames[ 0 ] }</div>
+        }
+
+        return (
+
+            <div className="user-strip__access-level" key={ index } >
+                {
+                    accessLevelNames.reduce( ( bread, crumb ) => 
+                        
+                        <React.Fragment>
+                            { bread }
+                            <i className="material-icons">keyboard_arrow_right</i>
+                            { crumb }
+                        </React.Fragment>
+                    )
+                }
+            </div>
+        )
+    }
+
     renderAccessLevelsBox() {
 
         return (
 
             <React.Fragment>
-                <div className="user-strip__title">User Access Levels</div>
+                <div className="user-strip__title">User's access level/s</div>
                 {
                     this.state.user.accessLevels.map( ( eachAccessLevel, index ) => 
 
-                        <div key={ index } className="user-strip__access-level">
-                            { /* need markups and styles here */ eachAccessLevel.join( ' > ' ) }
-                        </div>
+                        this.renderAccessLevelBreadCrumb( eachAccessLevel, index )
                     )
                 }
             </React.Fragment>

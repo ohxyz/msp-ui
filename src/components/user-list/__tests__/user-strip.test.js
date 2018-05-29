@@ -46,16 +46,6 @@ describe( 'UserStrip instance', () => {
 
     } );
 
-    test( "calls it's prop's onDeleteUserYesButtonClick", () => { 
-
-        userStrip.state.onPropsDeleteUserYesClick = mockFn;
-        mockFn.mockReturnValue( new Promise( ( resolve, reject ) => {} ) );
-        userStrip.handleDeleteUserYesButtonClick();
-
-        expect( mockFn.mock.calls.length ).toBe( 1 );
-
-    } );
-
     test( "change's its state after calling No button is clicked ", () => { 
 
         userStrip.state.onPropsDeleteUserYesClick = mockFn;
