@@ -2,6 +2,7 @@ import React from 'react';
 import { SearchUsers } from '../search-users.js';
 import renderer from 'react-test-renderer';
 import { HierarchyStorage } from '../../core/hierarchy-storage.js';
+import { HierarchyNode } from '../../core/hierarchy-node.js'
 
 it( 'should render with defaults', () => {
 
@@ -58,6 +59,14 @@ describe( 'SearchUsers Instance', () => {
 
         expect( result ).not.toBe( null );
 
+    } );
+
+    test( 'getUsersByItemSelected method', () => { 
+
+        let item = new HierarchyNode();
+        let users = component.getUsersByItemSelected( item );
+
+        expect( users ).toEqual( [] );
     } );
 
 } );
