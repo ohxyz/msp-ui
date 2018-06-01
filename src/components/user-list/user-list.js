@@ -18,6 +18,8 @@ class UserList extends React.Component {
 
         super( props );
 
+        this.handleDeleteUserIconClick = this.handleDeleteUserIconClick.bind( this );
+
         this.state = {
 
             domElementId: undefined,
@@ -27,7 +29,8 @@ class UserList extends React.Component {
             onRenderCount: new Function(),
             sortByFields: [],
             onPropsDeleteUser: new Function(),
-            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
+            shouldRenderDeleteUserBoxAndAccessLevelsBox: false,
+            indexOfDeleteUserIconClicked: -1,
         };
 
         this.id = util.setDefault( props.id, util.generateRandomString() );
@@ -35,6 +38,8 @@ class UserList extends React.Component {
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
+
+        console.log( 'user-list, getDerivedStateFromProps');
         
         return {
 
@@ -94,6 +99,17 @@ class UserList extends React.Component {
         } );
     }
 
+    handleDeleteUserIconClick( index ) {
+
+        console.log( 'user-list icon clicked', index );
+
+        this.setState( {
+
+            indexOfDeleteUserIconClicked: index
+
+        } );
+    }
+
     renderCount() {
 
         if ( this.state.shouldRenderCount === false ) {
@@ -126,6 +142,9 @@ class UserList extends React.Component {
             );
         }
 
+        console.log( 'indexOfDeleteUserIconClicked', this.state.indexOfDeleteUserIconClicked );
+
+
         return (
 
             <div className="user-list__users">
@@ -135,10 +154,12 @@ class UserList extends React.Component {
                     return (
 
                         <UserStrip 
-                            key={ key } 
+                            key={ key }
+                            index={ key }
                             user={ user }
+                            onDeleteUserIconClick={ this.handleDeleteUserIconClick }
                             onDeleteUserYesClick={ () => this.state.onPropsDeleteUser( user ) }
-                            shouldRenderDeleteUserBoxAndAccessLevelsBox={ this.state.shouldRenderDeleteUserBoxAndAccessLevelsBox }
+                            shouldRenderDeleteUserBox={ this.state.indexOfDeleteUserIconClicked === key }
                         />
                     );
 

@@ -44,8 +44,6 @@ class SearchUsers extends React.Component {
 
     static getDerivedStateFromProps( nextProps, prevState ) {
 
-        console.log( 'getDerivedStateFromProps' );
-
         let storage = nextProps.storage;
 
         if ( storage === undefined ) {

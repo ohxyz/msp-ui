@@ -20,26 +20,22 @@ class UserStrip extends React.Component {
             shouldRenderAccessLevelsBox: false,
             chevronIconText: 'keyboard_arrow_down',
             onPropsDeleteUserYesClick: new Function(),
-            shouldRenderDeleteUserBoxAndAccessLevelsBox: false
+            onPropsDeleteUserIconClick: new Function(),
+            index: -1
         };
     }
 
     static getDerivedStateFromProps( nextProps, prevState ) {
 
-        let shouldRenderBothBoxes = util.setDefault( nextProps.shouldRenderDeleteUserBoxAndAccessLevelsBox, false );
+        console.log( 'user-strip, getDerivedStateFromProps');
 
         return {
 
+            index: util.setDefault( nextProps.index, -1 ),
             user: util.setDefault( new User( nextProps.user ), new User() ),
             onPropsDeleteUserYesClick: util.setDefault( nextProps.onDeleteUserYesClick, new Function() ),
-            shouldRenderDeleteUserBox: shouldRenderBothBoxes,
-            shouldRenderAccessLevelsBox: shouldRenderBothBoxes,
-            chevronIconText: UserStrip.getExpandIconText( shouldRenderBothBoxes ),
-            shouldRenderDeleteUserBoxAndAccessLevelsBox: util.setDefault(
-
-                nextProps.shouldRenderDeleteUserBoxAndAccessLevelsBox,
-                false
-            )
+            onPropsDeleteUserIconClick: util.setDefault( nextProps.onDeleteUserIconClick, new Function() ),
+            shouldRenderDeleteUserBox: util.setDefault( nextProps.shouldRenderDeleteUserBox, false ),
         };
     }
 
@@ -61,13 +57,9 @@ class UserStrip extends React.Component {
         } );
     }
 
-    handleDeleteIconClick() {
+    handleDeleteIconClick( index ) {
 
-        this.setState( { 
-
-            shouldRenderDeleteUserBox: true
-
-        } );
+        this.state.onPropsDeleteUserIconClick( index );
     }
 
     handleDeleteUserNoButtonClick() {
@@ -200,7 +192,7 @@ class UserStrip extends React.Component {
                 <div className="user-strip__main">
                     <div 
                         className={ deleteIconClassName }
-                        onClick={ this.handleDeleteIconClick }
+                        onClick={ () => this.handleDeleteIconClick( this.state.index ) }
                     >
                          <i className="material-icons">delete_forever</i>
                     </div>
