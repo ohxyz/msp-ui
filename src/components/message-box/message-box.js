@@ -12,35 +12,23 @@ class MessageBox extends React.Component {
 
         this.state = {
 
-            type: '',
-            iconStyle: '',
-            title: '',
-            content: '',
-            shouldDisplay: true,
-            secondsToDismiss: 0,
-            onPropsDismiss: new Function()
+            type: util.setDefault( props.type, '' ),
+            iconStyle: util.setDefault( props.iconStyle, '' ),
+            title: util.setDefault( props.title, '' ),
+            content: util.setDefault( props.content, '' ),
+            shouldDisplay: util.setDefault( props.shouldDisplay, true )
         };
 
+        this.secondsToDismiss = util.setDefault( props.seconds, DEFAULT_SECONDS_TO_DISMISS );
+        this.onPropsDismiss = util.setDefault( props.onDismiss, new Function() );
+        this.onPropsMount = util.setDefault( props.onMount, new Function() );
+        
         this.mapOfTypeAndIcon = {
 
             'warning': 'warning',
             'error': 'cancel',
             'success': 'check_circle',
             'info': 'info',
-        };
-    }
-
-    static getDerivedStateFromProps( nextProps, prevState ) {
-        
-        return {
-
-            type: util.setDefault( nextProps.type, '' ),
-            iconStyle: util.setDefault( nextProps.iconStyle, '' ),
-            title: util.setDefault( nextProps.title, '' ),
-            content: util.setDefault( nextProps.content, '' ),
-            shouldDisplay: util.setDefault( nextProps.shouldDisplay, true ),
-            secondsToDismiss: util.setDefault( nextProps.seconds, DEFAULT_SECONDS_TO_DISMISS ),
-            onPropsDismiss: util.setDefault( nextProps.onDismiss, new Function() )
         };
     }
 
@@ -56,14 +44,16 @@ class MessageBox extends React.Component {
 
             } );
 
-            this.state.onPropsDismiss();
+            this.onPropsDismiss( this );
         
         }, milliseconds );
     }
 
     componentDidMount() {
 
-        let seconds = this.state.secondsToDismiss;
+        this.onPropsMount( this );
+
+        let seconds = this.secondsToDismiss;
 
         if ( seconds > 0 ) {
 
@@ -81,7 +71,6 @@ class MessageBox extends React.Component {
         let className = 'message-box';
         let iconLiteral = this.state.iconStyle;
         let messageType = this.state.type;
-        let defaultIconStyle = 'info';
 
         if ( iconLiteral === '' ) {
 
@@ -112,6 +101,7 @@ class MessageBox extends React.Component {
         );
     }
 }
+
 
 export {
 

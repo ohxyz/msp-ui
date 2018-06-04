@@ -1,3 +1,11 @@
+/* Examples
+ * 
+ * npm run dev -- --env.component=search-box
+ *
+ * npm run dev -- --env.app=search-users
+ * 
+ */
+
 var path = require( 'path' );
 
 module.exports = env => {
@@ -15,23 +23,24 @@ module.exports = env => {
 
     let outputPathFragment = '';
     let fileName = '';
+    let folder = '';
 
     if ( environ === 'uat' || environ === 'dev' ) { 
 
         // Todo: check componentName's actual type, eg. '', undefined or null
         if ( componentName ) {
 
-            componentFolder = path.join( __dirname, 'test', environ, 'components', componentName );
+            folder = path.join( __dirname, 'test', environ, 'components', componentName );
 
-            entryPath = path.join( componentFolder, 'app.js' );
-            outputPath = componentFolder;
+            entryPath = path.join( folder, 'app.js' );
+            outputPath = folder;
         }
         else if ( appName ) {
 
-            appFolder = path.join( __dirname, 'test', environ, 'apps', appName );
+            folder = path.join( __dirname, 'test', environ, 'apps', appName );
 
-            entryPath = path.join( appFolder, 'app.js' );
-            outputPath = appFolder;
+            entryPath = path.join( folder, 'app.js' );
+            outputPath = folder;
         }
     }
 

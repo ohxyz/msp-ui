@@ -27,8 +27,6 @@ class UserStrip extends React.Component {
 
     static getDerivedStateFromProps( nextProps, prevState ) {
 
-        console.log( 'user-strip, getDerivedStateFromProps');
-
         return {
 
             index: util.setDefault( nextProps.index, -1 ),
@@ -203,6 +201,7 @@ class UserStrip extends React.Component {
                         <i className="material-icons">{ this.state.chevronIconText }</i>
                     </div>
                     <div className="user-strip__top-bar">
+                        <span style={ { color: 'red' } } >{ user.accountId } </span>
                         <span className="user-strip__full-name">{ user.fullName }</span>
                         <span className="user-strip__top-org">{ user.topNodeDescription }</span>
                         { user.isAdmin && this.renderAdminTag() }
