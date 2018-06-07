@@ -8,7 +8,7 @@ let m1 = {
 
     title: 'Cloud title 2',
     content: 'Cloud content',
-    type: 'success',
+    type: 'info',
 };
 
 let m2 = {
@@ -18,16 +18,58 @@ let m2 = {
     content: 'Search again'
 };
 
+class MessageBoxTest extends React.Component {
+
+    constructor( props ) {
+
+        super( props );
+
+        this.state = {
+
+            foo: 1
+        };
+
+        this.handleButtonClick = this.handleButtonClick.bind( this );
+    }
+
+    handleButtonClick() {
+
+        this.setState( { foo: 2 } );
+    }
+
+    render() {
+        
+        console.log( 'rendered', this.state );
+
+        return (
+
+            <div>
+                <button onClick={ this.handleButtonClick }>Re-render</button>
+                <MessageBox 
+                    iconStyle={ m1.icon } 
+                    type={ m1.type }
+                    content={ m1.content }
+                    onMount={ () => console.log( 0, 'mounted' ) }
+                    onDismiss={ () => console.log( 1, 'dismissed' ) }
+                    seconds={ 5 }
+                />
+            </div>
+        );
+    }
+}
+
+let container = document.getElementById( 'message-box-1' );
 
 ReactDOM.render( 
 
-    <MessageBox 
-        iconStyle={ m1.icon } 
-        type={ m1.type } 
-        content={ m1.content }
-        onMount={ () => console.log( '0 mount' ) }
-        onDismiss={ () => console.log( '1 dismiss' ) } 
-    />,
-    document.getElementById( 'message-box-1' )
+    <MessageBoxTest />,
+    container
 );
+
+document.getElementById( 'reload' ).addEventListener( 'click', () => { 
+
+    ReactDOM.unmountComponentAtNode( container );
+    ReactDOM.render( <MessageBoxTest />, container );
+
+} );
 
