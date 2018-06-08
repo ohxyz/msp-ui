@@ -1,4 +1,5 @@
 @import "./message-box";
+@import "./button";
 
 .user-list {
 
@@ -219,41 +220,9 @@
             justify-content: center;
             height: 48px;
 
-            button {
-
-                box-sizing: border-box;
-                width: 80px;
-                height: 48px;
-                font-size: 16px;
-                font-weight: 500;
-                border: 1px solid #ec0000;
-                outline: none;
-                margin: 0 8px;
-                cursor: pointer;
-
-
-                &:hover {
-
-                    background-color: #b30000;
-                    border: none;
-                    color: white;
-                }
-
-                &:focus {
-
-                    position: relative;
-                    top: -4px;
-                    height: 56px;
-                    width: 88px;
-                    background-color: #b30000;
-                    border: 4px solid #fbc2c2;
-                    margin-right: 4px;
-                    margin-left: 4px;
-                    color: white;
-                }
-            }
-
             &__yes {
+
+                &:extend(.button);
 
                 background-color: #ec0000;
                 color: white;
@@ -261,6 +230,8 @@
             }
 
             &__no {
+
+                &:extend(.button);
 
                 color: #ec0000;
             }
